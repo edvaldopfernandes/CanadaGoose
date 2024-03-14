@@ -49,3 +49,7 @@ ANT/prd/*
 ANT/uat/*
 ANT/preprd/*
 ANT/build.properties
+jest.config.js
+*.md
+pre-commit
+*.json
