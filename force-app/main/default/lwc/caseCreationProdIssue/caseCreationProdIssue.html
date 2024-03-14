@@ -39,7 +39,7 @@
         <div class="slds-grid slds-gutters">
             <div class="slds-col slds-size_1-of-1 field-container">
                 <label>{labels.prodDescLabel}</label>
-                <lightning-textarea name="description" class="field slds-m-top_small" variant="label-hidden" value={description} onchange={setField}></lightning-textarea>
+                <lightning-textarea name="description" class="field slds-m-top_small" required="true" variant="label-hidden" value={description} onchange={setField}></lightning-textarea>
             </div>
         </div>
         <div if:true={editing} class="slds-m-top_medium">

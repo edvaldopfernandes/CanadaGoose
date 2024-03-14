@@ -85,6 +85,12 @@ export default class CaseCreationProdIssue extends LightningElement {
     saveProdIssue() {
         const inputElements = this.template.querySelectorAll('lightning-input');
         let valid = true;
+        
+        if(!this.description){
+            const textarea = this.template.querySelector('lightning-textarea');
+            textarea.reportValidity();
+            return;
+        }
 
         inputElements.forEach((element) => {
             valid = (element.reportValidity() && valid);
