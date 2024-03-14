@@ -1,0 +1,764 @@
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    /* Footer background */
+    .footer-background {
+        width: 100%; 
+        height: 100%; 
+        background: black; 
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .first-content {
+        margin-left: 65px;
+        margin-top: 35px;
+        align-items: center;
+        text-align: left;
+        height: 230px;
+    }
+    .second-content {
+        margin-top: 35px;
+        align-items: center;
+        text-align: left;
+        height: 230px;
+    }
+
+    .third-content {
+        margin-right: 65px;
+        margin-top: 35px;
+        align-items: center;
+        text-align: left;
+        height: 230px;
+    }
+
+    /* Discover your nearest store */
+    .discover-store-title {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 32px; 
+    }
+
+    .discover-store-description {
+        color: white;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .find-store-text {
+        color: white;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 12px;
+        letter-spacing: 0.12px;
+        word-wrap: break-word;
+    }
+
+    .find-store-arrow {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Second Content */
+    .how-can-we-help {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 28px; 
+    }
+
+    .contact-us-text {
+        color: white;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        margin-bottom: 16px;
+        white-space: pre;
+    }
+
+    .faqs {
+        color: white;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        white-space: pre;
+    }
+
+    .redirect-icon {
+        width: 16px; 
+        height: 16px; 
+        color: white;
+    }
+
+    /* Third Content */
+    .get-us-inbox-title {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 28px; 
+    }
+
+    .email-address-text {
+        color: white; 
+        font-size: 14px;
+        font-weight: 500; 
+        text-transform: capitalize; 
+        line-height: 25px; 
+        letter-spacing: 0.28px; 
+        word-wrap: break-word; 
+        margin-bottom: 6px;
+        white-space: pre;
+    }
+
+    .email-line {
+        margin-bottom: 50px; 
+        width: 294px; 
+        height: 0px; 
+        border: 1px white solid;
+    }
+
+    .arrow-email {
+        width: 16px; 
+        height: 16px; 
+        transform: translateX(190px);
+    }
+
+    .social-media-logos {
+        display: flex;
+        column-gap: 16px;
+    }
+
+    /* Line divider */
+    .line-divider {
+        width: 100%;
+        background: #727483;
+        border: 1px #727483 solid;
+    }
+
+    /* Bottom of the footer */
+    .first-content-bottom {
+        margin-left: 65px;
+        margin-top: 31px;
+        align-items: center;
+        text-align: left;
+        height: 70px;
+    }
+
+    .second-content-bottom {
+        margin-top: 51px;
+        align-items: center;
+        text-align: left;
+        height: 70px;
+    }
+
+    .third-content-bottom {
+        margin-right: 310px;
+        margin-top: 51px;
+        align-items: center;
+        text-align: left;
+        height: 70px;
+    }
+
+    .company-logo {
+        width: 56px; 
+        height: 56px;
+    }
+
+    /* Copyright and Others */
+    .copyright-text {
+        color: white; 
+        font-size: 12px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+        width: fit-content;
+    }
+
+    /* Accessibility Statement, Privacy Policy, Terms & Conditions */
+    .footer-links {
+        justify-content: center; 
+        align-items: center; 
+        gap: 56px; 
+        display: flex;
+    }
+
+    .footer-links-inner {
+        justify-content: flex-start; 
+        align-items: flex-start; 
+        gap: 16px; 
+        display: flex;
+    }
+
+    .acessibility-statement {
+        color: #F5F5F5; 
+        font-size: 12px; 
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+    }
+
+    .privacy-policy {
+        width: 85px; 
+        color: white; 
+        font-size: 12px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+    }
+
+    .terms-conditions {
+        width: 119px; 
+        color: white; 
+        font-size: 12px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+    }
+
+    .footer-link-divider {
+        width: 16px; 
+        height: 0px; 
+        transform: rotate(90deg); 
+        transform-origin: 0 0;
+        border: 1px #727483 solid;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    /* Footer background */
+    .footer-background {
+        width: 100%; 
+        height: 100%; 
+        background: black; 
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .first-content {
+        margin-left: 24px;
+        margin-top: 24px;
+        align-items: center;
+        text-align: left;
+        height: 230px;
+    }
+    .second-content {
+        margin-top: 24px;
+        align-items: center;
+        text-align: left;
+        height: 230px;
+    }
+
+    .third-content {
+        margin-right: 24px;
+        margin-top: 24px;
+        align-items: center;
+        text-align: left;
+        height: 230px;
+    }
+
+    /* Discover your nearest store */
+    .discover-store-title {
+        color: white;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 32px; 
+    }
+
+    .discover-store-description {
+        color: white;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .find-store-text {
+        color: white;
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 12px;
+        letter-spacing: 0.12px;
+        word-wrap: break-word;
+    }
+
+    .find-store-arrow {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Second Content */
+    .how-can-we-help {
+        color: white;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 28px; 
+    }
+
+    .contact-us-text {
+        color: white;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        margin-bottom: 16px;
+        white-space: pre;
+    }
+
+    .faqs {
+        color: white;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        white-space: pre;
+    }
+
+    .redirect-icon {
+        width: 16px; 
+        height: 16px; 
+        color: white;
+    }
+
+    /* Third Content */
+    .get-us-inbox-title {
+        color: white;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 28px; 
+    }
+
+    .email-address-text {
+        color: white; 
+        font-size: 12px;
+        font-weight: normal; 
+        text-transform: capitalize; 
+        line-height: 25px; 
+        letter-spacing: 0.28px; 
+        word-wrap: break-word; 
+        margin-bottom: 6px;
+        white-space: pre;
+    }
+
+    .email-line {
+        margin-bottom: 40px; 
+        width: 90%; 
+        height: 0px; 
+        border: 1px white solid;
+    }
+
+    .arrow-email {
+        width: 16px; 
+        height: 16px; 
+        transform: translateX(50px);
+    }
+
+    .social-media-logos {
+        display: flex;
+        column-gap: 8px;
+        height: 28px;
+    }
+
+    /* Line divider */
+    .line-divider {
+        width: 100%;
+        background: #727483;
+        border: 1px #727483 solid;
+    }
+
+    /* Bottom of the footer */
+    .first-content-bottom {
+        margin-left: 24px;
+        margin-top: 31px;
+        align-items: center;
+        text-align: left;
+        height: 70px;
+    }
+
+    .second-content-bottom {
+        margin-top: 51px;
+        align-items: center;
+        text-align: left;
+        height: 70px;
+    }
+
+    .third-content-bottom {
+        margin-right: 20px;
+        margin-top: 51px;
+        align-items: center;
+        text-align: left;
+        height: 70px;
+    }
+
+    .company-logo {
+        width: 56px; 
+        height: 56px;
+    }
+
+    /* Copyright and Others */
+    .copyright-text {
+        color: white; 
+        font-size: 10px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+        width: fit-content;
+    }
+
+    /* Accessibility Statement, Privacy Policy, Terms & Conditions */
+    .footer-links {
+        justify-content: center; 
+        align-items: center; 
+        gap: 56px; 
+        display: flex;
+        transform: translateX(20px);
+    }
+
+    .footer-links-inner {
+        justify-content: flex-start; 
+        align-items: flex-start; 
+        gap: 16px; 
+        display: flex;
+    }
+
+    .acessibility-statement {
+        color: #F5F5F5; 
+        font-size: 10px; 
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+    }
+
+    .privacy-policy {
+        width: 85px; 
+        color: white; 
+        font-size: 10px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+    }
+
+    .terms-conditions {
+        width: 119px; 
+        color: white; 
+        font-size: 10px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+    }
+
+    .footer-link-divider {
+        width: 16px; 
+        height: 0px; 
+        transform: rotate(90deg); 
+        transform-origin: 0 0;
+        border: 1px #727483 solid;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    /* Footer background */
+    .footer-background {
+        width: 100%; 
+        height: 100%; 
+        background: black; 
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .first-content {
+        margin-left: 24px;
+        margin-top: 24px;
+        margin-bottom: 40px;
+        align-items: center;
+        text-align: left;
+        /* height: 200px; */
+    }
+
+    .second-content {
+        margin-left: 24px;
+        align-items: center;
+        text-align: left;
+        height: 100px;
+    }
+
+    .third-content {
+        margin: 0 24px;
+        align-items: center;
+        text-align: left;
+        height: 200px;
+    }
+    
+    .image-store { 
+        width: 100%;
+        padding-right: 24px;
+    }
+
+    /* Discover your nearest store */
+    .discover-store-title {
+        color: white;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 16px; 
+    }
+
+    .discover-store-description {
+        color: white;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .find-store-text {
+        color: white;
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 12px;
+        letter-spacing: 0.12px;
+        word-wrap: break-word;
+        display: flex;
+    }
+
+    .find-store-arrow {
+        width: 8px;
+        height: 8px;
+        margin-top: 2px;
+    }
+
+    /* Second Content */
+    .how-can-we-help {
+        color: white;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-bottom: 16px; 
+    }
+
+    .contact-us-text {
+        color: white;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        margin-bottom: 16px;
+        white-space: pre;
+    }
+
+    .faqs {
+        color: white;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.60px;
+        word-wrap: break-word;
+        white-space: pre;
+    }
+
+    .redirect-icon {
+        width: 16px; 
+        height: 16px; 
+        color: white;
+    }
+
+    /* Third Content */
+    .get-us-inbox-title {
+        color: white;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        line-height: 24px;
+        letter-spacing: 0.42px;
+        word-wrap: break-word;
+        margin-top: 24px; 
+        margin-bottom: 16px; 
+    }
+
+    .email-address-text {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        color: white; 
+        font-size: 12px;
+        font-weight: normal; 
+        text-transform: capitalize; 
+        line-height: 25px; 
+        letter-spacing: 0.28px; 
+        word-wrap: break-word; 
+        margin-bottom: 6px;
+        white-space: pre;
+    }
+
+    .email-line {
+        margin-bottom: 40px; 
+        width: 100%; 
+        height: 0px; 
+        border: 1px white solid;
+    }
+
+    .arrow-email {
+        width: 16px; 
+        height: 16px; 
+    }
+
+    .social-media-logos {
+        display: flex;
+        justify-content: center;
+        column-gap: 10px;
+        height: 30px;
+    }
+
+    /* Line divider */
+    .line-divider {
+        width: 100%;
+        background: #727483;
+        border: 1px #727483 solid;
+    }
+
+    /* Bottom of the footer */
+    .first-content-bottom {
+        margin-left: 24px;
+        margin-top: 24px;
+        align-items: center;
+        text-align: left;
+        height: 55px;
+    }
+
+    .second-content-bottom {
+        margin-left: 24px;
+        align-items: center;
+        text-align: left;
+        height: 55px;
+    }
+
+    .third-content-bottom {
+        margin-left: 24px;
+        align-items: center;
+        text-align: left;
+        height: 55px;
+    }
+
+    .company-logo { 
+        height: 35px;
+        transform: translateY(100px);
+    }
+
+    /* Copyright and Others */
+    .copyright-text {
+        color: white; 
+        font-size: 10px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+        transform: translate(50px, 50px);
+        width: fit-content;
+    }
+
+    /* Accessibility Statement, Privacy Policy, Terms & Conditions */
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        transform: translateY(-110px);
+    }
+
+    .acessibility-statement {
+        color: #F5F5F5; 
+        font-size: 10px; 
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+        margin-bottom: 16px;
+    }
+
+    .privacy-policy {
+        width: 85px; 
+        color: white; 
+        font-size: 10px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+        margin-bottom: 16px;
+    }
+
+    .terms-conditions {
+        width: 119px; 
+        color: white; 
+        font-size: 10px;
+        font-weight: 400; 
+        line-height: 18px; 
+        letter-spacing: 0.60px; 
+        word-wrap: break-word;
+        margin-bottom: 16px;
+    }
+}

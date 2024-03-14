@@ -1,0 +1,27 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="record" type="Object" description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      fields="Customer_Status_Image__c, Customer_Status__c"
+                      mode="VIEW"/>
+    
+    <aura:if isTrue="{!v.simpleRecord.Customer_Status_Image__c != null}">
+        <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Case">
+            <div>
+                <table border="0" bgcolor="#000">
+                    <tr>
+                        <td class="tdContainer"><img class="statusImage" src="{!$Resource.WarrantyIcons + '/' + v.simpleRecord.Customer_Status_Image__c + '.svg'}"/></td>
+                        <td style="align:left;color:#fff;" class="slds-p-left_small statusHeader"><h3><lightning:outputField variant="label-hidden" fieldName="Customer_Status__c" /></h3></td>
+                    </tr>
+                </table>
+            </div>
+        </lightning:recordViewForm>
+    </aura:if>
+</aura:component>

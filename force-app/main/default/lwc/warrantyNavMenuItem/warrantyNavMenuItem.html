@@ -1,0 +1,19 @@
+<template>
+    <div class="container" onclick={handleClick}>
+        <div class="label">{item.label}</div>
+        <template if:true={item.isExternal}>
+            <svg width="16" height="16" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_939_31437)">
+                    <path d="M7.375 15.7109L21.125 1.96094" stroke="white" stroke-miterlimit="10" stroke-linecap="square"/>
+                    <path d="M10.125 1.96094H0.5V22.5859H21.125V12.9609H19.75V21.2109H1.875V3.33594H10.125V1.96094Z" fill="white"/>
+                    <path d="M22.5 0.585938H14.25V1.96094H21.125V8.83594H22.5V0.585938Z" fill="white"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_939_31437">
+                        <rect width="22" height="22" fill="white" transform="translate(0.5 0.585938)"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </template>
+    </div>
+</template>

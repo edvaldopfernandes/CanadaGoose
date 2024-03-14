@@ -1,0 +1,54 @@
+<template>
+    <div style="margin:-28px;">
+        <div class="slds-p-around_none slds-m-top_x-small slds-m-horizontal_none">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+                    <lightning-combobox
+                            label = "Select Country"                                
+                            value={countryCode}
+                            options={countries}
+                            lwc:ref="countryRef"
+                            onchange={handleCountryChange}>
+                        </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6" padding="around-small">                
+                    <lightning-combobox
+                        label = "Select Language"                                
+                        value={selectedLang}
+                        options={languages}
+                        lwc:ref="langRef"
+                        onchange={handleLanguageChange}>
+                    </lightning-combobox>                    
+                </lightning-layout-item>            
+            </lightning-layout>
+        </div>
+        <div class="slds-p-around_none slds-m-top_x-small slds-m-horizontal_none">
+            <lightning-layout multiple-rows>
+                 <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+                    <lightning-input 
+                                class="slds-p-right_xx-large" 
+                                type="text" 
+                                lwc:ref="mobileRef" 
+                                value={mobile}
+                                label="Enter Mobile No."
+                                onchange={handleMobile}></lightning-input>
+                </lightning-layout-item>    
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+                    <lightning-input 
+                                class="slds-p-right_xx-large" 
+                                type="checkbox" 
+                                data-id="checkbox" 
+                                lwc:ref="subscribeRef" 
+                                checked={isSubscribe}
+                                label="Subscribe"
+                                onchange={onSubscribeChange}></lightning-input>
+                </lightning-layout-item>            
+            </lightning-layout>
+        </div>        
+        <footer class="slds-modal__footer">
+            <lightning-button variant="brand" label="Cancel" title="Cancel" onclick= {closeHandler} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Update Subscription" title="Update Subscription" onclick= {handleUpdate} class="slds-m-left_x-small"></lightning-button>
+        </footer>
+    </div>
+    
+</template>

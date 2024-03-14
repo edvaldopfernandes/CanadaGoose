@@ -1,0 +1,24 @@
+<template>
+    <header if:false={isGuest} data-f6-region class="custom-header">
+        <!-- <slot name="header"></slot>         -->
+        <div class="header">
+            <div class="nav-menu">
+                <slot name="navMenu"></slot>
+            </div>
+            <div class={logoClass}>
+                <slot name="logo"></slot>
+            </div>
+            <template if:true={isDesktop}>
+                <div data-f6-region>
+                    <slot name="languageSelector"></slot>
+                </div>
+            </template>
+        </div>
+    </header>
+    <main data-f6-region>
+        <slot></slot>
+    </main>
+    <footer data-f6-region>
+        <slot name="footer"></slot>
+    </footer>
+</template>

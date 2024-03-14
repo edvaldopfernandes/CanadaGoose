@@ -1,0 +1,115 @@
+/* Desktop CSS */
+
+.container {
+    height: 80dvh;
+}
+
+.mobile-detail-card,
+.mobile-header {
+    display: none;
+}
+
+.desktop-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 15px 0;
+    letter-spacing: 1px;
+}
+
+.desktop-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 10px 0 20px;
+}
+
+.desktop-detail-card {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.desktop-details {
+    max-width: 372px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.first-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field-container {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.field-container label {
+    font-weight: bold;
+}
+
+.desktop-status {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 5px 0;
+    letter-spacing: 1px;
+}
+
+.desktop-description {
+    margin: 15px 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+/* Mobile CSS */
+
+@media (max-width: 600px) {
+    
+    .desktop-detail-card,
+    .desktop-header {
+        display: none;
+    }
+    
+    .mobile-header {
+      display: block;
+    }
+
+    .mobile-detail-card {
+        background-color: #FFFFFF;
+        display: flex;
+        padding: 20px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .mobile-details {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .mobile-details img  {
+        max-width: 50% !important;
+    }
+
+    .field-container {
+        font-size: 12px;
+    }
+
+    .mobile-status {
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .mobile-description {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+}

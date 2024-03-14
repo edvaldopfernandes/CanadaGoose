@@ -1,0 +1,29 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" controller="AdyenPaymentController" action="{!getHPPReceivedPaymentVerification}"> 
+    <html>
+        <head>
+            <apex:stylesheet value="{!$Resource.SLDS_CSS}"/>
+            <script>
+                window.onload = function() {
+                    window.parent.document.getElementById("header-overlay").style.display = 'none';
+                    window.parent.document.getElementById("footer").style.display = 'none';
+                    window.parent.document.getElementsByClassName("cTopNavigation")[0].style.display='none';
+                    window.parent.document.getElementById(window.frameElement.id).height = '150px';
+                    document.getElementById('PaymentStatus').height='150px';
+                }
+            </script>
+            <style>
+                html {
+                    background: #fff !important;
+                }
+                
+            </style>
+        </head>
+        <body>
+            <div id="PaymentStatus">
+                <apex:pageBlock >
+                    <b>{!PaymentConfirmationStatus}</b>
+                </apex:pageBlock>
+            </div>
+        </body>
+    </html>
+</apex:page>

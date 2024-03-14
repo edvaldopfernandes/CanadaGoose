@@ -1,0 +1,30 @@
+<template>
+    <template if:true={loading}>
+        <div class="spinner-container">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <section if:false={loading} class="main-container">
+        <div>
+            <section class="card-container">
+                <c-case-creation-address case={caseObj} editing={addressEditing} onsaveaddress={save} oneditinfo={edit}></c-case-creation-address>
+            </section>
+            <section class="card-container">
+                <c-case-creation-prod-identification case={caseObj} editing={prodIdentEditing} ondispatchmodal={dispatch} onsaveprodident={save} oneditinfo={edit}></c-case-creation-prod-identification>
+            </section>
+            <section class="card-container">
+                <c-case-creation-prod-issue case={caseObj} editing={prodIssueEditing} onsaveprodissue={save} oneditinfo={edit}></c-case-creation-prod-issue>
+            </section>
+            <section class="card-container">
+                <c-case-creation-image-upload case={caseObj} editing={imgUploadEditing} ondispatchmodal={dispatch} oneditinfo={edit} ontoast={showToast} onsaveall={saveAll}></c-case-creation-image-upload>
+            </section>
+        </div>
+    </section>
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open info-modal">
+            <c-case-creation-modal title={modalTitle} content={modalContent} image={modalImage} onclosecasemodal={closeCaseModal}></c-case-creation-modal>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+    
+</template>

@@ -1,0 +1,116 @@
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.card {
+    position: relative;
+    background-color: white;
+    padding: 15px;
+    max-height: 150px;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+.edit-icon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.close-title {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.image-upload {
+    position: relative;
+}
+
+.image-container {
+    border: 1px solid #000000;
+    color: #000000;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .image-container:hover,
+    .img-icon:hover,
+    .image-upload:has(.image-container:hover) .img-icon,
+    .image-upload:has(.img-icon:hover) .image-container {
+        --slds-c-icon-color-foreground: #FFFFFF;
+        --sds-c-icon-color-foreground-default: #FFFFFF;
+        background-color: #000000;
+        color: #FFFFFF;
+        fill: #000000;
+    }
+}
+
+.image-upload:has(.img-icon.close-icon:active) .image-container {
+    background-color: #A6192E;
+    color: #000000;
+}
+
+.image-upload:has(.img-icon.close-icon:checked) .image-container {
+    transition: background-color 10s ease-out;
+}
+
+.image-container:active {
+    opacity: 75%;
+}
+
+.image-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.img-icon {
+    position: absolute;
+    top: calc(100% - 75%);
+    right: 10px;
+    --slds-c-icon-color-foreground: #000000;
+    --sds-c-icon-color-foreground-default: #000000;
+    cursor: pointer;
+}
+
+.add-icon {
+    padding: 1px;
+}
+
+.close-icon {
+    z-index: 999999;
+}
+
+.close-icon:hover {
+    --sds-c-icon-color-foreground-default: #A6192E;
+}
+
+.img-icon.close-icon:active {
+    background-color: #A6192E;
+    --sds-c-icon-color-foreground-default: #000000;
+}
+
+.file-selector {
+    display: none;
+}

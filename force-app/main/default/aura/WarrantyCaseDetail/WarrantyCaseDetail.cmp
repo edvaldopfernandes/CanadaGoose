@@ -1,0 +1,98 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="record" type="Object" description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="VIEW"/>
+    
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Case">
+        <div class="slds-grid slds-m-left_medium slds-p-bottom_small slds-m-top_small">
+            <lightning:icon size="large" iconName="standard:case" alternativeText="{!$Label.c.Warranty_CaseDetail_CaseHeader}" />
+            <h3 class="slds-section__title">
+                <span class="slds-m-left_small slds-text-heading_large slds-truncate" title="{!'$Label.c.Warranty_CaseDetail_CaseHeader #' + v.simpleRecord.CaseNumber}">{!$Label.c.Warranty_CaseDetail_CaseHeader} #{!v.simpleRecord.CaseNumber}</span>
+            </h3>
+        </div>
+        
+        <div class="slds-grid slds-m-left_medium slds-p-bottom_small slds-m-top_small">
+            <h3 class="slds-section__title">
+                <span class="$font-size-heading-x-large slds-truncate" title="{!$Label.c.Warranty_CaseDetail_Section_CaseInformation}">{!$Label.c.Warranty_CaseDetail_Section_CaseInformation}</span>
+            </h3>
+        </div>
+        
+        <div class="slds-grid slds-grid_align-space slds-wrap slds-m-bottom_small">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                <lightning:outputField fieldName="Customer_Status__c"/>
+                <lightning:outputField fieldName="CreatedDate" />
+                
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                <lightning:outputField fieldName="Accept_Cleaning_Health_Policy__c" />
+                <aura:if isTrue="{!v.simpleRecord.ClosedDate != null}"><lightning:outputField fieldName="ClosedDate" /></aura:if>
+            </div>
+        </div>
+        
+        <div class="slds-grid slds-m-left_medium slds-p-bottom_small slds-panel_section slds-border_top">
+            <h3 class="slds-section__title">
+                <span class="slds-truncate slds-m-top_small" title="{!$Label.c.Warranty_CaseDetail_Section_CustomerDetail}">{!$Label.c.Warranty_CaseDetail_Section_CustomerDetail}</span>
+            </h3>
+        </div>
+        
+        <div class="slds-grid slds-grid_align-space slds-wrap slds-m-bottom_small">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                <lightning:outputField fieldName="ContactId" />
+                <aura:if isTrue="{!v.simpleRecord.ContactPhone != null}"><lightning:outputField fieldName="ContactPhone" /></aura:if>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                <lightning:outputField fieldName="ContactEmail" />
+            </div>
+        </div>
+        
+        <div class="slds-grid slds-m-left_medium slds-p-bottom_small slds-panel_section slds-border_top">
+            <h3 class="slds-section__title">
+                <span class="slds-truncate slds-m-top_small" title="{!$Label.c.labelName}">{!$Label.c.Warranty_CaseDetail_Section_GarmentInformation}</span>
+            </h3>
+        </div>
+        
+        <div class="slds-grid slds-grid_align-space slds-wrap slds-m-bottom_small">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                <lightning:outputField fieldName="Customer_Issue__c" />
+                <lightning:outputField fieldName="Style__c" />
+                <lightning:outputField fieldName="Size__c" />
+                <aura:if isTrue="{!v.simpleRecord.Cut_Number__c != null}"><lightning:outputField fieldName="Cut_Number__c" /></aura:if>
+                
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                <lightning:outputField fieldName="Has_Fur__c" />
+                <aura:if isTrue="{!v.simpleRecord.Style__r.Name == 'OTHER'}">
+                    <lightning:outputField fieldName="StyleNumber__c" />
+                </aura:if>
+                <lightning:outputField fieldName="Colour__c" />
+                <aura:if isTrue="{!v.simpleRecord.Manufacturer_ID__c != null}"><lightning:outputField fieldName="Manufacturer_ID__c" /></aura:if>
+            </div>
+        </div>
+        
+        <aura:if isTrue="{!v.simpleRecord.Tracking_Number__c != null}">
+            <div class="slds-grid slds-m-left_medium slds-p-bottom_small slds-panel_section slds-border_top">
+                <h3 class="slds-section__title">
+                    <span class="slds-truncate slds-m-top_small" title="{!$Label.c.Warranty_CaseDetail_Section_ShippingInformation}">{!$Label.c.Warranty_CaseDetail_Section_ShippingInformation}</span>
+                </h3>
+            </div>
+            
+            <div class="slds-grid slds-grid_align-space slds-wrap slds-m-bottom_small">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                    <lightning:outputField fieldName="Shipping_Courier__c" />
+                    <lightning:outputField fieldName="Tracking_Link__c" />
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-horizontal_medium">
+                    <lightning:outputField fieldName="Shipped_Address__c" />
+                </div>
+            </div>
+        </aura:if>
+    </lightning:recordViewForm>
+</aura:component>

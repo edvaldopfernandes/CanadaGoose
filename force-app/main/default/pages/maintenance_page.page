@@ -1,0 +1,22 @@
+<apex:page id="CommunityInMaintenance" standardStylesheets="false" sideBar="false" showHeader="false" applyHtmlTag="true" applyBodyTag="false">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+
+   <style>
+       .centered{
+           min-width: 98%;
+           position: fixed;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+       }
+   </style>
+   <div class="centered">
+       <div class="container-fluid">
+           <div class="bg-warning">
+               <h1 class="text-center">Time for some maintenance</h1>
+               <p class="text-center">We will be back on Monday, 31st of October 2022 around 10am (Eastern standard time). We will be happy to serve you! Stay warm - your Canada Goose Customer Experience Team</p>
+           </div>
+       </div>
+   </div>
+
+</apex:page>

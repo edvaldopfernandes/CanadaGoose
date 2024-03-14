@@ -1,0 +1,121 @@
+<template>
+        <div if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+        <c-cg-error-message error={error} onseterrornull={setNullValue}></c-cg-error-message>
+
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_full">
+
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeModal} >
+            <svg class="slds-button__icon slds-button__icon_large"  aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+            </svg>
+            <span class="slds-assistive-text" >Cancel and close</span>
+            </button>
+        <div class="slds-modal__header">
+            <h5 id="modal-heading-01" class="slds-modal__title slds-hyphenate" style="font-size: 2.5rem">Canada Goose</h5>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">   
+            <lightning-card>
+                    <div class="slds-grid slds-wrap"> 
+                        <lightning-card  title="Customer Information">
+                        </lightning-card>
+                        <lightning-layout multiple-rows>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2" >
+                                <lightning-input label="First Name" lwc:ref="firstNameRef" type="text" value={firstName} placeholder = "Enter First Name"  data-id={firstName} onchange={handleFirstName} ></lightning-input>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                                <lightning-input label="Last Name" lwc:ref="lastNameRef" type="text" value={lastName} placeholder = "Enter Last Name"  data-id={lastName} onchange={handleLastName} ></lightning-input>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                                <lightning-input label="Phone" lwc:ref="mobileRef" type="phone" value={mobile} placeholder = "Enter Phone Number"  data-id={mobile} onchange={handleMobile} ></lightning-input>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                                <lightning-combobox label = "Select Language"  value={language} options={languages} lwc:ref="languageRef" onchange={handleLanguage}> </lightning-combobox> 
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-1">
+                                <lightning-input label="Email" lwc:ref="emailRef" type="email" value={email} placeholder = "Enter Email Address" data-id={email} onchange={handleEmail} ></lightning-input>
+                            </p>
+                            <p class="slds-checkbox slds-p-horizontal_small slds-col slds-size_1-of-8" style="width: 1%;">
+                                <lightning-input type="checkbox" lwc:ref="consentRef" value={consent} data-id={consent} onchange={handleConsent} ></lightning-input>             
+                            </p>
+                            <p class="slds-checkbox slds-p-horizontal_small slds-col slds-size_7-of-8">
+                                <label class="slds-checkbox__label" for="consentCheckbox">
+                                    <span class="slds-form-element__label slds-m-left_xx-small" style="font-size: 10px;">
+                                        By checking off the box, I agree that I want to receive emails from Canada Goose Inc. about updates, products, collections, upcoming events and services that I may find interesting. I can withdraw this consent at any time as described in the Privacy Policy or by clicking on the "unsubscribe" link in the email
+                                    </span>
+                                </label>
+                            </p>
+                        </lightning-layout>
+                    </div>
+            </lightning-card> 
+        
+            <lightning-card>
+                    <div class="slds-grid slds-wrap">
+                        <lightning-card  title="Address">
+                        </lightning-card>
+                        <lightning-layout multiple-rows>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-1">
+                                <lightning-input label="Street" lwc:ref="streetRef" type="text" value={street} placeholder = "Enter Street and House Number"  data-id={street} onchange={handleStreet} ></lightning-input>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                                <lightning-input label="City" lwc:ref="cityRef" type="text" value={city} placeholder = "Enter City"  data-id={city} onchange={handleCity} ></lightning-input>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                                <lightning-input label="State" lwc:ref="stateRef" type="text" value={state} data-id={state} onchange={handleState} ></lightning-input>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                              <lightning-combobox label = "Select Country"  value={country} options={countries} lwc:ref="countryRef"  onchange={handleCountry}> </lightning-combobox>
+                            </p>
+                            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                                <lightning-input label="Postal/Zip Code" lwc:ref="postalcodeRef" type="text" value={postalcode} placeholder = "Enter Postal/Zip code"  data-id={postalcode} onchange={handlePostalCode} ></lightning-input>           
+                            </p>
+
+                            <p class="slds-checkbox slds-p-horizontal_small slds-col slds-size_1-of-8" style="width: 1%;">
+                                <lightning-input type="checkbox" lwc:ref="shippingAddRef" value={shippingAdd} data-id={shippingAdd} onchange={handleshippingAdd} ></lightning-input>             
+                            </p>
+                            <p class="slds-checkbox slds-p-horizontal_small slds-col slds-size_7-of-8">
+                                <span class="slds-form-element__label slds-m-left_xx-small" style="font-size: 10px;">
+                                    Is Shipping address same as mailing address?
+                                </span> 
+                            </p>
+                        </lightning-layout>
+                    </div>
+            </lightning-card> 
+            <!--shipping address to show when it is different -->
+
+        <template if:false={shippingAdd}>
+            <lightning-card>
+                <div class="slds-grid slds-wrap">
+                    <lightning-card  title="Shipping Address">
+                    </lightning-card>
+                    <lightning-layout multiple-rows>
+                        <p class="slds-p-horizontal_small slds-col slds-size_1-of-1">
+                            <lightning-input label="Shipping Street" lwc:ref="shipstreetRef" type="text" value={shipstreet} placeholder = "Enter Shipping Street and House Number"  data-id={shipstreet} onchange={handleshipStreet} ></lightning-input>
+                        </p>
+                        <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                            <lightning-input label="Shipping City" lwc:ref="shipcityRef" type="text" value={shipcity} placeholder = "Enter Shipping City"  data-id={shipcity} onchange={handleshipCity} ></lightning-input>
+                        </p>
+                        <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                            <lightning-input label=" Shipping State" lwc:ref="shipstateRef" type="text" value={shipstate} data-id={shipstate} onchange={handleshipState} ></lightning-input>
+                        </p>
+                        <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                        <lightning-combobox label = "Select Shipping Country"  value={shipcountry} options={countries} lwc:ref="shipcountryRef"  onchange={handleshipCountry}> </lightning-combobox>
+                        </p>
+                        <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                            <lightning-input label=" Shipping Postal/Zip Code" lwc:ref="shippostalcodeRef" type="text" value={shippostalcode} placeholder = "Enter Shpping Postal/Zip code"  data-id={shippostalcode} onchange={handleshipPostalCode} ></lightning-input>           
+                        </p>
+                    </lightning-layout>
+                  </div>
+            </lightning-card>
+        </template>         
+        </div>
+        <div class="slds-modal__footer slds-modal__footer_directional">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeModal} >Cancel</button>
+            <lightning-button label="Submit" style="background-color: #000" onclick={handleSave} ></lightning-button>
+        </div>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>     
+</template>

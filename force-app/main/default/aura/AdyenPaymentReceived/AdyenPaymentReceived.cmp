@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="AdyenPaymentController">
+	<aura:attribute name="PaymentMessage" type="String"/>
+    <aura:attribute name="caseNumber" type="String" />
+    <aura:attribute name="parameters" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.SubmitPayment}"/>
+    {!v.PaymentMessage}
+
+</aura:component>

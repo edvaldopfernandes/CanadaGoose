@@ -1,0 +1,79 @@
+/*
+    * Test Class: Test_BatchToPushCaseDocumentsIntoBOX 
+    * --------------------
+    * Batch class :- BatchToPushCaseDocumentsIntoBOX
+    *
+    *  Author : Venkata Kalyan
+    *  returns: N/A
+*/
+
+@isTest
+public class Test_BatchToPushCaseDocumentsIntoBOX {
+    @testsetup
+    static void testsetup(){
+        
+        Batch_Archival_Range__c range = new Batch_Archival_Range__c();
+        range.Name ='Date Range for Batch';
+        range.Range_Start_Date__c = Date.today()-1;
+        range.Range_End_date__c =  Date.today()+2;
+        insert range;
+        //Initialize
+        Style__c style = new Style__c( Name = 'Test001');
+        insert style;
+        
+        Account acc = TestDataFactory.createTestAccount(false);
+        acc.ShippingStreet = '123 Test';
+        acc.ShippingCity = 'Brasil';
+        acc.ShippingState = 'Amazonas';
+        acc.ShippingStateCode = 'AM';
+        acc.ShippingCountry = 'Brazil';
+        acc.ShippingCountryCode = 'BR';
+        acc.ShippingPostalCode = '12345';
+        insert acc;
+        
+        Contact con = TestDataFactory.createTestContact('Testuser12', acc.Id, true);
+        Case cas = TestDataFactory.createTestCase(acc.Id , con.Id, false);
+        Repair__c rep = TestDataFactory.createTestRepair(true);
+        Repair_Facility__c repFac = TestDataFactory.createTestRepairFacility('M1M1M1', 'Toronto', 'ON', 'CA', true);
+        cas.Repair_Facility__c = repFac.Id;
+        cas.Status ='closed';
+        upsert cas;
+        
+        Box_Case_Folder__c boxCaseFolder = new Box_Case_Folder__c();
+        boxCaseFolder.Box_Folder_Id__c = '123424324234';
+        boxCaseFolder.Related_Case__c = cas.id;
+        insert boxCaseFolder;
+        
+        String fileName = 'CaseDoc'+String.ValueOf(System.today());
+        String body = 'Test Body';
+        ContentVersion cv = new ContentVersion();
+        cv.ContentLocation = 'S'; 
+        cv.VersionData = blob.valueOf(body);
+        cv.Title = fileName;
+        cv.PathOnClient = filename;
+        insert cv;
+
+		cv = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id =: cv.Id LIMIT 1];
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = cv.ContentDocumentId;
+        cdl.LinkedEntityId = cas.id;
+        cdl.ShareType = 'V';
+        insert cdl;
+        
+    }
+    @isTest
+    public static void testMethodToCheckCoverage(){
+        Test.startTest();
+        Batch_Archival_Range__c range = Batch_Archival_Range__c.getValues('Date Range for Batch');
+        list<Box_Case_Folder__c> listOfCases = [SELECT Id, Related_case__c, Box_Folder_Id__c FROM Box_Case_Folder__c 
+                                         		WHERE  Related_case__r.ClosedDate > :range.Range_Start_Date__c 
+                                         		AND Related_case__r.ClosedDate < :range.Range_End_Date__c];
+        system.assertEquals(1, listOfCases.size());
+        
+        BatchToPushCaseDocumentsIntoBOX batchclass = new BatchToPushCaseDocumentsIntoBOX();
+        Database.executeBatch(batchclass, 200);
+        Test.stopTest();
+        
+    }
+    
+}

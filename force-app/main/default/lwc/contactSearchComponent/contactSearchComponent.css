@@ -1,0 +1,17 @@
+.rcorners2{
+	border-radius: 250px;
+}
+.slds-form-element__label {
+  display: block;
+  text-align: center;
+}
+
+.slds-input {
+  margin: 0 auto;
+  width: 80%; /* Adjust width as necessary */
+}
+
+.lightning-button {
+  display: block;
+  margin: 20px auto;
+}

@@ -1,0 +1,190 @@
+<template>
+    <h1 style="font-size:20px;">Order History</h1>
+ 
+    <lightning-input type="text" label="Search" onchange={handleSearch}>
+    </lightning-input>
+    </br>
+ 
+    <!-- Lightning table to show orders-->
+     <lightning-datatable 
+         data={result.customer_orders} 
+         columns={columns} 
+         key-field="result.customer_orders.order_id" 
+         onrowaction={handleRowAction}
+         row-number-offset={rowOffset}
+         hide-checkbox-column="true">
+         </lightning-datatable>
+ 
+         <!-- Detail view modal start -->
+         <template if:true={bShowModal}>
+             <section role="dialog" tabindex="-1"
+                      aria-labelledby="modal-heading-01"
+                      aria-modal="true"
+                      aria-describedby="modal-content-id-1"
+                     class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container">
+                 
+                 <!-- modal header start -->
+                   <header class="slds-modal__header">
+                      <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                         <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                      </button>
+                      <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Order Details</h2>
+                   </header>
+                   <!-- modal body start -->
+                 <div class="slds-modal__content slds-p-medium" id="modal-content-id-1">
+                     <dl class="slds-list_horizontal slds-wrap">
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="Name">Customer Name :</dt>
+                         <dd class="slds-item_detail slds-truncate">{result.customer_master.customer_name}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="Fname">First Name :</dt>
+                         <dd class="slds-item_detail slds-truncate">{result.customer_master.customer_first_name}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="Lname">Last Name :</dt>
+                         <dd class="slds-item_detail slds-truncate">{result.customer_master.customer_last_name}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="email">Email :</dt>
+                         <dd class="slds-item_detail slds-truncate">{result.customer_master.email}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="phone">Phone: </dt>
+                         <dd class="slds-item_detail slds-truncate">{result.customer_master.phone_no}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="localeId">Locale ID:</dt>
+                         <dd class="slds-item_detail slds-truncate">{result.customer_master.customer_locale_id}</dd>
+                      </dl>
+                         <dl class="slds-list_horizontal slds-wrap" key={order_id}>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="orderNo">Order# :</dt>
+                         <dd class="slds-item_detail slds-truncate">{orderToShow.order_no}</dd>
+                         <!--dt style="font-weight:bold" class="slds-item_label slds-truncate" title="invoiceStatus">Invoice Status :</dt>
+                         <dd class="slds-item_detail slds-truncate">{orderToShow.invoice_status}</dd--> 
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="paymentStatus">Payment Status :</dt>
+                         <dd class="slds-item_detail slds-truncate">{orderToShow.payment_status}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="total">Order Total :</dt>
+                         <dd class="slds-item_detail slds-truncate">{orderToShow.order_total}</dd> 
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="salesCompany">Sales Company :</dt>
+                         <dd class="slds-item_detail slds-truncate">{orderToShow.sales_company}</dd> 
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="localeId">Shipping Address:</dt>
+                         <dd class="slds-item_detail slds-truncate">{addressO.address1} {addressO.address2}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="localeId"></dt>
+                         <dd class="slds-item_detail slds-truncate">{addressO.city} {addressO.state_code}</dd>
+                         <dt style="font-weight:bold" class="slds-item_label slds-truncate" title="localeId"></dt>
+                         <dd class="slds-item_detail slds-truncate">{addressO.country_code} {addressO.postal_code}</dd>
+                         </dl> 
+                     </br>
+                     <h1 style="font-size:20px;">Order Line Items</h1>
+
+            <div class=" slds-scrollable_x ">
+             <table style="margin-left: 3px; margin-right: 3px;" class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" border="1">
+                 <thead>
+             <tr style="font-weight:bold" class="slds-line-height_reset">
+                 <td>
+                     Product Name
+                 </td>
+                 <td>
+                     Quantity
+                 </td>
+                 <td>
+                     Size
+                 </td>
+                 <td>
+                     Color
+                 </td>
+                 <td>
+                     Base Price
+                 </td>
+                 <td>
+                     Item ID
+                 </td>
+                 <td>
+                     Item Text
+                 </td>
+                 <td>
+                     Price
+                 </td>
+                 <td>
+                     Price after discount
+                 </td>
+                 <td>
+                   Tax
+                </td>
+                <td>
+                  Parent Order ID
+                </td>
+             </tr>
+             </thead>
+             <template for:each={orderToShow.customer_order_lines} for:item="a" >
+                 <tr key={a.id}  class="slds-hint-parent">
+                     <td>{a.product_name}</td>
+                     <td>{a.quantity}</td>
+                     <td>{a.size}</td>
+                     <td>{a.color_name}</td>
+                     <td>{a.base_price}</td>
+                     <td>{a.item_id}</td>
+                     <td>{a.item_text}</td>
+                     <td>{a.price}</td>
+                     <td>{a.price_after_order_discount}</td>
+                     <td>{a.tax}</td>
+                     <td>{a.parent_order_id}</td>
+                 </tr>
+             </template>
+ 
+         </table>
+        </div>
+    </br>
+    <h1 style="font-size:20px;">Invoices</h1>
+
+<div class=" slds-scrollable_x ">
+<table style="margin-left: 3px; margin-right: 3px;" class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" border="1">
+<thead>
+<tr style="font-weight:bold" class="slds-line-height_reset">
+<td>
+    Invoice ID
+</td>
+<td>
+    Invoice Status
+</td>
+<td>
+    Order Total
+</td>
+<td>
+    Order Line ID
+</td>
+</tr>
+</thead>
+<template for:each={orderToShow.invoice} for:item="a" >
+<tr key={a.id}  class="slds-hint-parent">
+    <td>{a.invoice_id}</td>
+    <td>{a.invoice_status}</td>
+    <td>{a.invoice_total}</td>
+    <td>{a.order_line_id}</td>
+</tr>
+</template>
+
+</table>
+</div>
+                   </div>
+                   <!-- modal footer start-->
+                   <footer class="slds-modal__footer">
+                        <lightning-button variant="brand"
+                        label="Close"
+                        title="Close"
+                        onclick={closeModal}
+                        ></lightning-button>
+                   </footer>
+                </div>
+             </section>
+             <div class="slds-backdrop slds-backdrop_open"></div>
+          </template>
+          <!-- Detail view modal end -->
+ 
+       </br>
+       <lightning-layout horizontal-align="space">
+           <lightning-layout-item flexibility="auto">
+               <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}>
+               </lightning-button>
+           </lightning-layout-item>
+           <lightning-layout-item flexibility="auto">
+               Page {page} of {totalPage}
+           </lightning-layout-item>
+           <lightning-layout-item flexibility="auto">
+               <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+                   onclick={nextHandler}>
+               </lightning-button>
+           </lightning-layout-item>
+       </lightning-layout>
+ </template>

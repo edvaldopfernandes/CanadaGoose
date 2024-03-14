@@ -1,0 +1,15 @@
+<aura:component implements="lightningsnapin:minimizedUI" description="Custom Minimized UI">
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:attribute name="message" type="String" default="Live Chat"/>
+    
+	<!-- For registering our minimized event handler and maximizing -->
+	<lightningsnapin:minimizedAPI aura:id="minimizedAPI"/>
+
+	<button class="minimizedContainer"
+		onclick="{!c.handleMaximize}"
+		aura:id="minimizedContainer">
+        <div class="messageContent">
+            <div style="float: left; margin-top: 5px; padding-right: inherit;"> <img src="https://canadagoose--c.na115.visual.force.com/resource/1571350898000/Chatlogo" height="15" width="15"/></div> {!v.message}
+        </div>
+	</button>    
+</aura:component>

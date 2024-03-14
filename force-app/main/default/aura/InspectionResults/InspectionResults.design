@@ -1,0 +1,3 @@
+<design:component label="Inspection Results">
+    <design:attribute name="recordId" label="Record ID" required="true" default="{!recordId}" />
+</design:component>

@@ -1,0 +1,91 @@
+<template>
+    <template if:true={loading}>
+        <div class="spinner-container">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <template if:false={loading}>
+        <div if:true={userInfo} class="container">
+            <template if:false={editing}>
+                <section class="no-edit-section">
+                    <div class="title">{labels.generalTitle}</div>
+                    <c-user-profile-info-box label={labels.nameRO} value={name} type="name" oneditinfo={handleEditInfo}></c-user-profile-info-box>
+                    <c-user-profile-info-box label={labels.emailRO} value={email} type="email" oneditinfo={handleEditInfo}></c-user-profile-info-box>
+                    <c-user-profile-info-box label={labels.phoneRO} value={phone} type="phone" oneditinfo={handleEditInfo}></c-user-profile-info-box>
+                </section>
+                <section class="no-edit-section">
+                    <div class="title">{labels.addressTitle}</div>
+                    <c-user-profile-info-box label={labels.addressRO} value={addressFormatted} type="address" oneditinfo={handleEditInfo}></c-user-profile-info-box>
+                </section>
+            </template>
+            <template if:true={editing}>
+                <div class="edit-container">
+                    <lightning-icon size="x-small" icon-name="utility:close" alternative-text="Close" onclick={handleClose} class="close-icon"></lightning-icon>
+                    <template if:true={editName}>
+                        <div class="edit-title">{labels.nameSubtitle}</div>
+                        <div class="slds-grid slds-gutters slds-wrap edit-content">
+                            <div class="slds-col slds-size_1-of-2">
+                                <label>{labels.firstName}</label>
+                                <lightning-input name="firstName" class="field" variant="label-hidden" required="true" value={userInfo.firstName} onchange={setField}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <label>{labels.lastName}</label>
+                                <lightning-input name="lastName" class="field" variant="label-hidden" required="true" value={userInfo.lastName} onchange={setField}></lightning-input>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={editEmail}>
+                        <div class="edit-title">{labels.emailSubtitle}</div>
+                        <div class="slds-grid slds-gutters slds-wrap edit-content">
+                            <div class="slds-col slds-size_1-of-1">
+                                <label>{labels.email}</label>
+                                <lightning-input name="email" class="field" variant="label-hidden" required="true" value={userInfo.email} onchange={setField}></lightning-input>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={editPhone}>
+                        <div class="edit-title">{labels.phoneSubtitle}</div>
+                        <div class="slds-grid slds-gutters slds-wrap edit-content">
+                            <div class="slds-col slds-size_1-of-1">
+                                <label>{labels.phone}</label>
+                                <lightning-input name="phone" class="field" variant="label-hidden" required="true" value={userInfo.phone} onchange={setField}></lightning-input>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={editAddress}>
+                        <div class="edit-title">{labels.addressSubtitle}</div>
+                        <div class="slds-grid slds-gutters slds-wrap edit-content">
+                            <div class="slds-col slds-size_1-of-1">
+                                <label>{labels.street}</label>
+                                <lightning-input name="street" class="field" variant="label-hidden" required="true" value={userInfo.street} onchange={setField}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <label>{labels.complement}</label>
+                                <lightning-input name="complement" class="field" variant="label-hidden" required="true" value={userInfo.complement} onchange={setField}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <label>{labels.zipCode}</label>
+                                <lightning-input name="zipCode" class="field" variant="label-hidden" required="true" value={userInfo.zipCode} onchange={setField}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <label>{labels.city}</label>
+                                <lightning-input name="city" class="field" variant="label-hidden" required="true" value={userInfo.city} onchange={setField}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <label>{labels.state}</label>
+                                <lightning-input name="state" class="field" variant="label-hidden" required="true" value={userInfo.state} onchange={setField}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <label>{labels.country}</label>
+                                <lightning-input name="country" class="field" variant="label-hidden" required="true" value={userInfo.country} onchange={setField}></lightning-input>
+                            </div>
+                        </div>
+                    </template>
+                    <div>
+                        <c-cag-button disabled={disableContinue} label={labels.updateBtn} variant="brand" onbuttonclick={updateUserInfo}></c-cag-button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

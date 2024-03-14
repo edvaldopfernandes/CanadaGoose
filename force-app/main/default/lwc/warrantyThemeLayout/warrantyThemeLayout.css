@@ -1,0 +1,66 @@
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: minmax(0, 1fr);
+    --dxp-c-header-container-spacing-block-start: 5px;
+    --dxp-c-header-container-spacing-block-end: 5px;
+    --dxp-c-header-container-color-background: rgb(255, 255, 255);
+    --dxp-c-header-container-style-border-bottom: solid;
+    --dxp-c-header-container-color-border-bottom: rgb(255, 255, 255);
+}
+
+.custom-header {
+    background-color: var(--dxp-g-root);
+    min-height: 3rem;
+}
+
+@media only screen and (min-width: 48em) {
+    .header {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--dxp-c-header-container-spacing-block-start, var(--dxp-s-section-content-spacing-block-start) ) var(--dxp-c-header-container-spacing-inline-end) var(--dxp-c-header-container-spacing-block-end, var(--dxp-s-section-content-spacing-block-end) ) var(--dxp-c-header-container-spacing-inline-start);
+    background-color: var(--dxp-c-header-container-color-background, var(--dxp-g-root) );
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mobile-logo {
+    max-width: 220px;
+}
+
+.desktop-logo {
+    max-width: 250px;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .logo {
+        top: 5px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .logo {
+        top: 9px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .logo {
+        top: 9px;
+    }
+}

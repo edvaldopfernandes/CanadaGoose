@@ -1,0 +1,11 @@
+<template>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value={username} oninput={handleUsernameChange} />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" value={password} oninput={handlePasswordChange} />
+
+        <button onclick={handleLogin}>Login</button>
+    </div>
+</template>

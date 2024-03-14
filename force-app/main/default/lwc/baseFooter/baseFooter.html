@@ -1,0 +1,99 @@
+<template>
+    <div class="footer-background">
+        <div class="container">
+            <!-- First Content -->
+            <div class="first-content">
+                <!-- Discover your nearest store -->
+                <div class="discover-store-title">DISCOVER Your Nearest Store</div>
+                <img class="image-store" src={imageStore} alt="Image of nearest store" />
+                <div class="discover-store-description">Experience Canadian craftsmanship in person</div> 
+                <a href={linkFindStore} target="_blank" aria-label="Find a Store">
+                    <div class="find-store-text">
+                        <span>Find a Store</span> <img class="find-store-arrow" src={arrowStoreIcon} alt="Find Store">
+                    </div>
+                </a>
+            </div>
+            <!-- Second Content -->
+            <div class="second-content">
+                <!-- How can we help? -->
+                <div class="how-can-we-help">How can we help?</div>
+                <a href={linkContactUs} target="_blank" aria-label="Contact Us">
+                    <div class="contact-us-text">
+                        Contact Us   <img class="redirect-icon" src={redirectIcon} alt="Contact Us">
+                    </div>
+                </a>
+                <a href={linkFAQs} target="_blank" aria-label="FAQs">
+                    <div class="faqs">
+                        FAQs   <img class="redirect-icon" src={redirectIcon} alt="FAQs">
+                    </div>
+                </a>
+            </div>
+            <!-- Third Content -->
+            <div class="third-content">
+                <!-- Get us in your inbox -->
+                <div class="get-us-inbox-title">GET US IN YOUR INBOX</div>
+                <!-- Only displays if the user did not agree to sign up to basecamp during sign up process -->
+                <template lwc:if={didNotAgreeToSignUp}>
+                    <a href={linkGetUsInbox} target="_blank" aria-label="Email Address">
+                        <div class="email-address-text">
+                            <span>Email Address</span><img class="arrow-email" src={arrowEmailIcon} alt="Email Address">
+                        </div>
+                        <div class="email-line"></div>
+                    </a>
+                </template>
+                <!-- Social Media Logos-->
+                <div class="social-media-logos">
+                    <a href={linkFacebook} target="_blank" alt="Facebook" aria-label="Facebook">
+                        <img src={facebookIcon} alt="Facebook Icon">
+                    </a>
+                    <a href={linkTwitter} target="_blank" alt="Twitter" aria-label="Twitter">
+                        <img src={twitterIcon} alt="Twitter Icon">
+                    </a>
+                    <a href={linkInstagram} target="_blank" alt="Instagram" aria-label="Instagram">
+                        <img src={instagramIcon} alt="Instagram Icon">
+                    </a>
+                    <a href={linkYoutube} target="_blank" alt="Youtube" aria-label="Youtube">
+                        <img src={youtubeIcon} alt="Youtube Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Line divider -->
+        <div class="line-divider"></div>
+        <!-- Bottom of the footer -->
+        <!-- New -->
+        <div class="container">
+            <!-- First Content -->
+            <div class="first-content-bottom">
+                <!-- Company Logo -->
+                <img class="company-logo" src={companyIcon} alt="Company Logo">
+            </div>
+            <!-- Second Content -->
+            <div class="second-content-bottom">
+                <!-- Copyright and Others -->
+                <div class="copyright-text">
+                    Copyright © 2023 Canada Goose Inc.
+                </div>
+            </div>
+            <!-- Third Content -->
+            <div class="third-content-bottom">
+                <!-- Accessibility Statement, Privacy Policy, Terms & Conditions -->
+                <div class="footer-links">
+                    <div class="footer-links-inner">
+                        <a href={linkAccessibility} target="_blank" alt="Accessibility Statement" aria-label="Accessibility Statement">
+                            <div class="acessibility-statement">Accessibility Statement</div>
+                        </a>
+                        <div class="footer-link-divider"></div>
+                        <a href={linkPrivacyPolicy} target="_blank" alt="Privacy Policy" aria-label="Privacy Policy">
+                            <div class="privacy-policy">Privacy Policy</div>
+                        </a>
+                        <div class="footer-link-divider"></div>
+                        <a href={linkTermsConditions} target="_blank" alt="Terms & Conditions" aria-label="Terms & Conditions">
+                            <div class="terms-conditions">Terms & Conditions</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

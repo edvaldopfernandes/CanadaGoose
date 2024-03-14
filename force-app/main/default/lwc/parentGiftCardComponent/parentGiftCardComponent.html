@@ -1,0 +1,35 @@
+<template>  
+    
+    <lightning-card style="background-color:rgb(238, 238, 238); ">
+        <div class="slds-m-around_medium slds-box" style="padding:0px; ">
+            <div class="slds-box slds-box_small" >
+                <lightning-card title="GWG Gift Cards" variant="narrow" icon-name="custom:custom45" >          
+                                <template if:true={isPermitted}>
+                                    <lightning-button variant="brand" label="Create Gift Card" onclick={clickHandler} slot="actions" ></lightning-button>  
+                                </template>       
+                                <template if:true={showChild}>
+                                    <c-create-gift-card-component onclose={handleClose} oncancel ={handleCancel} record-id={recordId}></c-create-gift-card-component>
+                                </template>                    
+                </lightning-card>
+            </div>       
+            <div class="slds-scrollable_y slds-border_right slds-border_left" style="height:100% !important;">
+            <div  if:true={gcRecords}>
+                    <lightning-datatable                        
+                            key-field="id"
+                            data={gcRecords} 
+                            columns={columns}
+                            row-number-offset={rowOffset}
+                            show-row-number-column
+                            hide-checkbox-column
+                            default-sort-direction={defaultSortDirection}
+                            sorted-direction={sortDirection}
+                            sorted-by={sortedBy}
+                            onsort={onHandleSort}>
+                    </lightning-datatable>
+                </div>
+            </div>
+        </div>
+       
+    </lightning-card>
+
+</template>

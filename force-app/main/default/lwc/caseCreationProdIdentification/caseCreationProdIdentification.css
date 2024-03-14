@@ -1,0 +1,143 @@
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.card {
+    position: relative;
+    background-color: white;
+    padding: 15px;
+    max-height: 150px;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+.close-title {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.field-container label {
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.field, 
+.field:focus, 
+.field:active {
+    --sds-c-input-text-color: #000000;
+    --dxp-c-input-text-font-size: 14px;
+    --dxp-c-input-text-font-weight: normal;
+    --slds-c-input-spacing-horizontal-start: 0;
+    --slds-c-input-shadow-focus: transparent;
+    --slds-c-input-color-border-focus: transparent;
+}
+
+.style-label {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.style-info {
+    cursor: pointer;
+}
+
+.style-info svg:hover {
+    opacity: 50%;
+}
+
+.size-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.size-field {
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 10px;
+    width: 23%;
+    color: #000000;
+    font-size: 12px;
+    cursor: pointer;
+    transform: all  0.3s linear;
+}
+
+.size-field:hover,
+.size-active {
+    color: #FFFFFF;
+    background: #000000;
+}
+
+.size-field:active {
+    opacity: 50%;
+}
+
+.button-container button {
+    width: 100%;
+}
+
+.button-container {
+    cursor: pointer;
+}
+
+.button-container button:hover:not(:disabled) {
+    opacity: 75%;
+}
+
+.button-container button:disabled {
+    background-color: #727483;
+    border-color: #727483;
+}
+
+.button-container button:hover:disabled {
+    height: 100%;
+    padding: 0;
+}
+
+.edit-icon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.edit-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #000000;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    .size-container {
+        gap: 7px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .size-container {
+        gap: 7px;
+    }
+}

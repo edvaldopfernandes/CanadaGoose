@@ -1,0 +1,26 @@
+.case-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.column {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.column-value {
+    margin-top: 5px;
+}
+
+.column-icon {
+    font-size: 24px;
+}

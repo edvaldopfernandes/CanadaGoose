@@ -1,0 +1,83 @@
+<template>
+    <lightning-card title="Order Details" style="margin-top:-1rem">
+        <div >
+            <lightning-record-view-form record-id={recordId} object-api-name="Order">
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-grid" style="margin-left: 1rem">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name="First_Name__c"></lightning-output-field>
+                            <lightning-output-field field-name="Last_Name__c"></lightning-output-field>
+                            <lightning-output-field field-name="Phone_Number__c"></lightning-output-field>
+                            <lightning-output-field field-name="Email__c"></lightning-output-field> 
+                            <lightning-output-field field-name="Order_Id__c"></lightning-output-field>
+                            <lightning-output-field field-name="Order_Created_By__c"></lightning-output-field> 
+                            <lightning-output-field field-name="Sales_Company__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name="Order_No__c" label="Order Number"></lightning-output-field>
+                            <lightning-output-field field-name="Address_1__c" label="Address 1"></lightning-output-field> 
+                            <lightning-output-field field-name="Address_2__c" label="Address 2"></lightning-output-field> 
+                            <lightning-output-field field-name="City__c" label="City"></lightning-output-field>  
+                            <lightning-output-field field-name="State_Code__c" label="State"></lightning-output-field> 
+                            <lightning-output-field field-name="Country_Code__c" label="Country"></lightning-output-field> 
+                            <lightning-output-field field-name="Postal_Code__c" label="Postal Code"></lightning-output-field>
+                        </div>
+                    </div>
+                </div>
+
+                <lightning-card title="Order status">
+                    <div >
+                       <lightning-record-view-form > 
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-grid" style="margin-left: 1rem">
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-output-field field-name="Status"></lightning-output-field>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-output-field field-name="CreatedDate"></lightning-output-field>
+                                    </div>
+                                </div>
+                            </div>
+                            </lightning-record-view-form>
+                        </div>
+                        </lightning-card>    
+
+                 <lightning-card title="Payment Info">
+                            <div >
+                                <lightning-record-view-form >
+                                    <div class="slds-grid slds-grid_vertical">
+                                        <div class="slds-grid" style="margin-left: 1rem">
+                                            <div class="slds-col slds-size_1-of-2">
+                                                <lightning-output-field field-name="Order_Total__c"></lightning-output-field>
+                                                <lightning-output-field field-name="TotalAmount"></lightning-output-field>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2">
+                                                <lightning-output-field field-name="Payment_Status__c"></lightning-output-field>
+                                                <lightning-output-field field-name="StatusCode"></lightning-output-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </lightning-record-view-form>
+                                </div>
+                 </lightning-card>  
+                 <lightning-card title="OOBO Order">
+                    <div >
+                       <lightning-record-view-form >
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-grid" style="margin-left: 1rem">
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-output-field field-name="OOBO_Order__c"></lightning-output-field>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-output-field field-name="CSR_Email__c"></lightning-output-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-record-view-form>
+                    </div>
+                 </lightning-card>
+
+                </lightning-record-view-form>
+            </div>
+            </lightning-card>
+</template>

@@ -1,0 +1,32 @@
+<template>
+   <div class="hamburger-menu">
+      <input type="checkbox" id="menu-toggle" onchange={changeDisplay} value={isShowing} checked={isShowing}/>
+      <label class="hamburguer-label" for="menu-toggle">
+         <span></span>
+         <span></span>
+         <span></span>
+      </label>
+      <div class="menu">
+         <label class="close-label" for="menu-toggle">
+            <lightning-icon size="x-small" icon-name="utility:close"></lightning-icon>
+         </label>
+         <div class="menu-items">
+            <c-warranty-nav-menu-item item={home} onnavigation={changeDisplay}></c-warranty-nav-menu-item>
+            <template if:true={isLoaded}>
+               <template for:each={menuItems} for:item="item">
+                  <c-warranty-nav-menu-item key={item.id} item={item} onnavigation={changeDisplay}></c-warranty-nav-menu-item>
+               </template>
+            </template>
+         </div>
+         <div class="logout">
+            <c-warranty-nav-menu-carousel onnavigation={changeDisplay}></c-warranty-nav-menu-carousel>
+            <template if:false={isDesktop}>
+               <c-warranty-nav-menu-item item={language} onnavigation={changeDisplay}></c-warranty-nav-menu-item>
+            </template>
+            <template if:false={isGuest}>
+                  <a href={logoutLink}>Logout</a>
+            </template>
+         </div>
+      </div>
+   </div>
+</template>

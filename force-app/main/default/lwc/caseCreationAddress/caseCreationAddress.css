@@ -1,0 +1,86 @@
+.title-container,
+.card-container {
+    max-width: 390px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.close-title {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.edit-icon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    background-color: white;
+    padding: 10px 15px;
+    max-height: 100px;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+.opened {
+    max-height: 500px;
+}
+
+.edit-title {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.field-container label {
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.field, 
+.field:focus, 
+.field:active {
+    --sds-c-input-text-color: #000000;
+    --dxp-c-input-text-font-size: 14px;
+    --dxp-c-input-text-font-weight: normal;
+    --slds-c-input-spacing-horizontal-start: 0;
+    --slds-c-input-shadow-focus: transparent;
+    --slds-c-input-color-border-focus: transparent;
+}
+
+.full-address {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #000000;
+    margin: 10px 0;
+}
+
+.button-container {
+    cursor: pointer;
+}
+
+.button-container:hover {
+    opacity: 75%;
+}

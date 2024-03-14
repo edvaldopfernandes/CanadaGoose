@@ -1,0 +1,16 @@
+<template>
+    <div class="step">
+        <div>
+            <div class="title">{labels.title}</div>
+            <div class="content">
+                <span>{labels.content}</span>
+            </div>
+        </div>
+        <div class="checkbox">
+            <c-warranty-checkbox label={labels.agreementLabel} icon-width="13" icon-height="10" required="true" checked={agreed} oncheckchange={agree}></c-warranty-checkbox>
+        </div>
+        <div class="continue-button">
+            <c-cag-button disabled={disabledContinue} label={labels.continue} variant="brand" onbuttonclick={saveInfo}></c-cag-button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,49 @@
+<template>
+    <section if:false={editing}>
+        <div class="card">
+            <div if:false={disableEdit} class="edit-icon" onclick={edit}>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_939_31708)">
+                        <path d="M13.9707 0.636719L12.5574 2.05005L12.084 2.52339L6.89737 7.71005L6.4707 10.9634L9.72404 10.5367L16.7974 3.46339L13.9707 0.636719ZM13.9707 1.57672L15.8574 3.46339L14.9174 4.41005L13.0307 2.52339L13.9707 1.57672ZM9.41737 9.90339L7.24404 10.1901L7.5307 8.01672L12.5574 2.99672L14.444 4.88339L9.41737 9.90339Z" fill="black"/>
+                        <path d="M14.7969 7.97005V16.6367H0.796875V2.63672H10.1302V3.30339H1.46354V15.9701H14.1302V7.97005H14.7969Z" fill="black"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_939_31708">
+                            <rect width="16" height="16" fill="white" transform="translate(0.796875 0.636719)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <span class="close-title">{labels.imgTitle}</span>
+        </div>
+    </section>
+    <section if:true={editing}>
+        <section>
+            <div class="title">{labels.imgTitle}</div>
+            <div class="subtitle">{labels.imgSubtitle}</div>
+        </section>
+        <template for:each={imageOpts} for:item="image">
+            <div key={image.developerName} class="image-upload">
+                <div key={image.developerName} class="image-container" data-item={image.developerName} onclick={openFileSearch}>
+                    <div data-item={image.developerName} class="image-label">
+                        <span data-item={image.developerName}>{image.label}<span data-item={image.developerName} if:true={image.required}>*</span></span>
+                    </div>
+                </div>
+                <template if:true={image.image}>
+                    <div class="img-icon close-icon" data-item={image.developerName} onclick={removeImage}>
+                        <lightning-icon data-item={image.developerName} onclick={removeImage} icon-name="utility:close" size="x-small"></lightning-icon>
+                    </div>
+                </template>
+                <template if:false={image.image}>
+                    <div if:true={image.hasHelp} class="img-icon info-icon" data-item={image.developerName} onclick={openInfo}>
+                        <lightning-icon data-item={image.developerName} onclick={openInfo} icon-name="utility:info_alt" size="x-small"></lightning-icon>
+                    </div>
+                </template>
+                <input style="display:none;" class={image.developerName} key={image.developerName} type="file" onchange={handleFileUpload}/>
+            </div>
+        </template>
+        <div if:true={editing} class="slds-m-top_medium">
+            <c-cag-button label={labels.submitBtn} variant="brand" disabled={disableContinue} onbuttonclick={save}></c-cag-button>
+        </div>
+    </section>
+</template>

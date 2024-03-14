@@ -1,0 +1,10 @@
+.dummy{
+	color : black;
+}
+.round{
+	border-radius: 50px;
+}
+.header-title{
+	font-size: 20rem;
+	padding: 1rem;
+}

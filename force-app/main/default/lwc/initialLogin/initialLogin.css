@@ -1,0 +1,41 @@
+.selected {
+    border: 2px solid black;
+}
+
+.clickable-continue{
+    width: 19.5rem;
+    height: 3rem;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.continue-text{
+    color: white;
+}
+
+.clickable {
+    cursor: pointer;
+    width: 19.5rem;
+    height: 8.5rem;
+    background-color: #F6F7F8;
+}
+
+.clickable:focus {
+    border: 2px solid black;
+}
+
+.login-text-size{
+    font-size: 1.25rem;
+    line-height: 32.5px;
+    padding: 16px 0 0 16px;
+}
+
+.complemantary-text-size{
+    font-size: 0.75rem;
+    line-height: 24px;
+    padding: 0 16px 0 16px;
+
+}

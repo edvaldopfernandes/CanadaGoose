@@ -1,0 +1,54 @@
+<aura:component controller="PrintController" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="Name" type="String" />
+    <aura:attribute name="Style" type="String" />
+    <aura:attribute name="Color" type="String" />
+    <aura:attribute name="Size" type="String" />
+    <aura:attribute name="Country" type="String" />
+    <aura:attribute name="Missing" type="String" />
+    <aura:attribute name="ColourName" type="String" />
+    <aura:attribute name="MIDCode" type="String" />
+    <aura:attribute name="CutNumber" type="String" />
+    <aura:attribute name="YearofManufacture" type="String" />
+    <aura:attribute name="GenerationCheckbox" type="String" />
+    <aura:attribute name="printDate" type="DateTime" />  
+    
+    <div id="lightning" style="height:120px" >
+        <div class="slds-grid  slds-wrap slds-m-left_medium slds-m-right_medium slds-m-top_medium slds-grid_align-center">
+            <div class="slds-col slds-size_2-of-4">
+                <span>Case#: {!v.Name}</span>
+            </div>
+            <div class="slds-col  slds-size_1-of-4">
+                <span>Size: {!v.Size}</span>
+            </div>
+            <div class="slds-col  slds-size_1-of-4">
+                <span>{!v.Country}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_2-of-4">
+                <span>Colour Name: {!v.ColourName}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_2-of-4">
+                <span>MID Code: {!v.MIDCode}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_2-of-4">
+                <span>Cut Number: {!v.CutNumber}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_2-of-4">
+                <span>Year of Manufacture: {!v.YearofManufacture}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_2-of-4">
+                <span>Generation Checkbox: {!v.GenerationCheckbox}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_2-of-4">
+                <span>Style: {!v.Style}</span>
+            </div>
+            <div class="slds-col  slds-border_top slds-size_4-of-4">
+                <span>Missing: {!v.Missing}</span>
+            </div>
+            <div class="slds-col slds-border_top slds-size_4-of-4">
+                <span>Date: {!v.printDate}</span>
+            </div>
+        </div>
+    </div>
+</aura:component>

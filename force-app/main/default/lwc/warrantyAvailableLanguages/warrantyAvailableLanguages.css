@@ -1,0 +1,42 @@
+.container {
+    width: fit-content;
+    margin: 20px auto;
+    color: #000000;
+}
+
+.spinner {
+    min-height: 30dvh;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.languages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.language {
+    border: 1px solid #D1D1D1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    user-select: none;
+}
+
+.language[data-active="true"] {
+    border-color: #000000;
+}
+
+.language:hover {
+    background-color: #000000;
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+}

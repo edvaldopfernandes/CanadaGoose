@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Warranty Logo</masterLabel>
+    <description>Warranty Logo</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property type="ContentReference" name="logoCmsId" label="Logo CMS ID" filter="cms_image"/>
+            <property type="String" name="width" label="Logo Widht" description="Set the width of the image. Example: 200px, 10rem, etc."/>
+            <property type="String" name="height" label="Logo Height" description="Set the height of the image. Example: 200px, 10rem, etc."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

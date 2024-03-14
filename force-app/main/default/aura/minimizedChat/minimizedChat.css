@@ -1,0 +1,49 @@
+.THIS {
+	position: fixed;
+	left: auto;
+	bottom: 0;
+	right: 5px;
+	margin: 0;
+	height: 46px;
+	max-height: 100%;
+	text-align: center;
+	text-decoration: none;
+	display: flex;
+	flex-direction: center;
+    justify-content: center;
+    box-shadow: none;
+	pointer-events: all;
+	overflow: hidden;
+    border-radius: 0px;
+    width: 52px;
+    max-width: min-content;
+    min-width: fit-content;
+    padding-left: 0px;
+    text-decoration: none;
+    padding-right: 0px;
+	border: black;
+    background: white;
+    border-style: solid;
+    border-width: thin;
+    color: black;
+}
+
+.THIS.minimizedContainer:focus,
+.THIS.minimizedContainer:hover {
+color: rgb(255, 255, 255);
+text-decoration: none;
+outline: none;
+box-shadow: none;
+    border: black;
+    background: white;
+    border-style: solid;
+    border-width: thin;
+    color: black;
+}
+
+.THIS .messageContent {
+	display: block;
+	padding: 0 8px;
+	height: 100%;
+    color: black;
+}

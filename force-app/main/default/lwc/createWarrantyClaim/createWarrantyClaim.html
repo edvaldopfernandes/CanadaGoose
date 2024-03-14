@@ -1,0 +1,14 @@
+<template>
+    <div class="container">
+      <div class="image-container">
+        <img src={imageWarranty}>
+      </div>
+      <div class="text-container">
+        <h2 class="title">{labels.createClaim}</h2>
+        <p class="description">{labels.createClaimText}</p>
+      </div>
+      <div class="btn">
+        <c-cag-button label={labels.creatClaimButton} onclick={navigateToCaseCreation}></c-cag-button>
+      </div>
+    </div>
+</template>

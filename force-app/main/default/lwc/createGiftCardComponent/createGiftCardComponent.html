@@ -1,0 +1,84 @@
+<template>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true">
+        <div class="slds-modal__container">
+                <div class="slds-modal__content slds-p-around_small" id="modal-content-id-1">
+                     <div class="slds-p-around_medium">
+                        <lightning-card title="Generate GWG Gift Card">
+                            <lightning-layout multiple-rows>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                 <lightning-input type="decimal" lwc:ref="valueref" label="Enter Gift Card Value" value={cardValue} placeholder="Value..." formatter="currency" required></lightning-input>
+                               </lightning-layout-item>
+                               
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-combobox  lwc:ref="channelref" input-field data-id="in_channel" field-name="Channel__c"
+                                    label = "Select Channel"
+                                    variant="label-inline"
+                                    value={channel}
+                                    options={channelOptions}
+                                    required>
+                                    </lightning-combobox>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-combobox  lwc:ref="buref" input-field data-id="in_bu" field-name="Business_Unit__c"
+                                    label = "Select Business Unit"
+                                    variant="label-inline"
+                                    value={businessunit}
+                                    options={buOptions}
+                                    onchange={handleBuChange}
+                                    required>
+                                    </lightning-combobox>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-combobox  lwc:ref="reasonref" input-field data-id="in_reason" field-name="Reason__c"
+                                    label = "Select Reason"
+                                    variant="label-inline"
+                                    value={reason}
+                                    options={reasonOptions}
+                                    required>
+                                    </lightning-combobox>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                               <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                <lightning-textarea type="text" lwc:ref="reasonDesc" label="Enter the Reason Description" value={reasonDesc} placeholder="Value..." required></lightning-textarea>
+                              </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-combobox  lwc:ref="GWGCountref" input-field data-id="in_GWGCon" field-name="GWG_Country__c"
+                                    label = "Select GWG Country"
+                                    variant="label-inline"
+                                    value={GWGCountry}
+                                    onchange={changeHandler}
+                                    options={GWGCountryOptions}
+                                    required>
+                                    </lightning-combobox>
+                                </lightning-layout-item>
+                                
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-combobox  lwc:ref="langref" input-field data-id="in_lang" field-name="GC_Language__c"
+                                    label = "Select Language"
+                                    variant="label-inline"
+                                    value={language}
+                                    options={langOptions}
+                                    required>
+                                    </lightning-combobox>
+                                </lightning-layout-item>
+                               
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6"></lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-button variant="brand" label="Cancel" title="Cancel" onclick= {cancelHandler} class="slds-m-left_x-small"></lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                                    <lightning-button variant="brand" label="Create Gift Card" title="Create Gift Card" onclick= {handleInsert} class="slds-m-left_x-small"></lightning-button>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                    </lightning-card>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+</template>

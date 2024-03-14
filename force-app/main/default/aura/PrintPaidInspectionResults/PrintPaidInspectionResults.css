@@ -1,0 +1,10 @@
+.THIS {    
+}  
+
+.THIS .bolded {
+    font-weight: bold;
+}
+
+.THIS .slds-form-element__label {
+    font-size: 14px;
+}

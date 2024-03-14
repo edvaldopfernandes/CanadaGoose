@@ -1,0 +1,3 @@
+<design:component label="Accept Claim Charges">
+    <design:attribute name="recordId" label="Record ID" required="true" default="{!recordId}" />
+</design:component>

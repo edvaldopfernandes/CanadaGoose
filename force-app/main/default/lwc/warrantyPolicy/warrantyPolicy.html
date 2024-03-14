@@ -1,0 +1,25 @@
+<template>
+    <template if:true={loading}>
+        <div class="spinner-container">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <div if:false={loading} class="content-container">
+        <div class="breadcrumb-container">
+            <template for:each={steps} for:item="breadcrumb">
+                <div key={breadcrumb.current} class={breadcrumb.class}></div>
+            </template>
+        </div>
+        <div class="step-container">
+            <template if:true={isOne}>
+                <c-warranty-policy-step-one onproceedstep={proceed}></c-warranty-policy-step-one>
+            </template>
+            <template if:true={isTwo}>
+                <c-warranty-policy-step-two onproceedstep={proceed}></c-warranty-policy-step-two>
+            </template>
+            <template if:true={isThree}>
+                <c-warranty-policy-step-three onsaveinfo={saveInfo}></c-warranty-policy-step-three>
+            </template>
+        </div>
+    </div>
+</template>

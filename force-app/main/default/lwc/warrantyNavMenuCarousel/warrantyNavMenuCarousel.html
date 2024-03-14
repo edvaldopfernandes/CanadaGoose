@@ -1,0 +1,24 @@
+<template>
+    <div class="carousel">
+        <div class="carousel-inner">
+            <template for:each={images} for:item="image">
+                <div key={image.id} class="carousel-item">
+                    <img src={image.url} alt={image.label} />
+                    <div class="carousel-caption">
+                        <span class="carousel-title">{image.title}</span>
+                        <button data-id={image.id} class="carousel-button" onclick={handleRedirect}>
+                            <span data-id={image.id}>{image.buttonLabel}</span>
+                            <lightning-icon data-id={image.id} icon-name="utility:chevronright" size="xx-small"></lightning-icon>
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="carousel-arrow left" onclick={handleClick}>
+            <lightning-icon class="icon-left" icon-name="utility:chevronleft" size="xx-small"></lightning-icon>
+        </div>
+        <div class="carousel-arrow right" onclick={handleClick}>
+            <lightning-icon class="icon-right" icon-name="utility:chevronright" size="xx-small"></lightning-icon>
+        </div>
+    </div>
+</template>

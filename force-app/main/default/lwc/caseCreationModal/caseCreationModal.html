@@ -1,0 +1,12 @@
+<template>
+    <div class="info-container">
+        <div class="close-icon" onclick={handleClose}>
+            <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+        </div>
+        <div class="info-title">{title}</div>
+        <div class="info-content">{content}</div>
+        <div class="info-image" data-item={render}>
+            <img onload={renderComponent} src={imageSrc} />
+        </div>
+    </div>
+</template>

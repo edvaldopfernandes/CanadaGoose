@@ -1,0 +1,134 @@
+.spinner-container {
+    min-height: 50dvh;
+}
+
+.container {
+    max-width: 500px;
+    min-height: 100dvh;
+    margin: auto;
+}
+
+.container:has(.edit-container) {
+    display: flex;
+    align-items: center;
+}
+
+.close-icon {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+}
+
+.edit-container {
+    margin: auto;
+    width: 80%;
+    position: relative;
+    animation: fade-in 0.3s ease-in;
+}
+
+.edit-content {
+    margin: 30px 0;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.edit-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.edit-content label {
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.field, 
+.field:focus, 
+.field:active {
+    --sds-c-input-text-color: #000000;
+    --dxp-c-input-text-font-size: 14px;
+    --dxp-c-input-text-font-weight: normal;
+    --slds-c-input-spacing-horizontal-start: 0;
+    --slds-c-input-shadow-focus: transparent;
+    --slds-c-input-color-border-focus: transparent;
+}
+
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .info-box {
+        margin: 20px -5%;
+    }
+
+    .edit-title {
+        font-size: 17px;
+        text-align: start;
+    }
+
+    .container {
+        max-width: unset;
+        min-height: 100dvh;
+        margin: unset;
+    }
+
+    .container:has(.edit-container) {
+        display: flex;
+        align-items: unset;
+    }
+
+    .edit-container {
+        margin: unset;
+        width: 100%;
+        position: relative;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .info-modal {
+        max-width: 75vw;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .info-modal {
+        max-width: 50vw;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .info-modal {
+        max-width: 25vw;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

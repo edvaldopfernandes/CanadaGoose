@@ -1,0 +1,138 @@
+<template>
+    <!-- Scenario 1: No Claims created -->
+    <template if:true={noClaim}>
+        <div class="container-no-claim">
+            <div class="image-container-no-claim">
+                <img src={imageClaims}>
+            </div>
+            <div class="text-container-no-claim">
+                <h2 class="title-no-claim">{labels.noCaseCreatedTitle}</h2>
+                <p class="description-no-claim">{labels.noCaseCreatedContent}</p>
+            </div>
+            <div class="btn-no-claim">
+                <c-cag-button disabled="true" label={labels.caseHistoryModuleButton} variant="neutral" onclick={navigateToCaseHistory}></c-cag-button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scenario 2: At least one Claim created -->
+    <template if:true={claimExist}>
+        <div class="container-claim">
+            <div class="slds-align_absolute-center slds-grid">
+                <div style="border-style: none;" class="slds-box slds-col slds-size_6-of-12, info-claim">
+                    <template for:each={lastCase} for:item="caseItem">
+                        <p class="row-title-1" key={caseItem.Id}>
+                            Case # {caseItem.CaseNumber}
+                        </p>
+                        <p class="row-title-2" key={caseItem.Id}>Case Creation Date</p>
+                        <p class="row-description" key={caseItem.Id}>
+                            {caseCreatedDate}
+                        </p>
+                        <p class="row-title-2" key={caseItem.Id}>Garment</p>
+                        <p class="row-description" key={caseItem.Id}>
+                            {caseItem.Style__r.Name}
+                        </p>
+                        <p class="row-title-2" key={caseItem.Id}>Product Issue</p>
+                        <p class="row-description" key={caseItem.Id}>
+                            {caseItem.Description}
+                        </p>
+                    </template>
+                </div>
+                <div style="border-style: none;" class="slds-box slds-col slds-size_6-of-12">
+                    <div class="image-container-claim">
+                        <img src={imageData}>
+                    </div>
+                </div>
+            </div>
+            <template for:each={lastCase} for:item="caseItem">
+                <div class="text-container-claim" key={caseItem.Id}>
+                    <h2 class="title-claim" >{caseItem.statusTranslated}</h2>
+                    <p class="description-claim">{caseItem.statusDescription}</p>
+                </div>
+            </template>
+            <div class="btn-claim">
+                <c-cag-button label={labels.caseHistoryModuleButton} variant="neutral" onclick={navigateToCaseHistory}></c-cag-button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scenario 3: One Claim pending payment -->
+    <template if:true={claimPendingPayment}>
+        <div class="container-claim-payment">
+            <div class="slds-align_absolute-center slds-grid">
+                <div style="border-style: none;" class="slds-box slds-col slds-size_6-of-12, info-claim-payment">
+                    <template for:each={lastCase} for:item="caseItem">
+                        <p class="row-title-1-payment" key={caseItem.Id}>
+                            Case # {caseItem.CaseNumber}
+                        </p>
+                        <p class="row-title-2-payment" key={caseItem.Id}>Case Creation Date</p>
+                        <p class="row-description-payment" key={caseItem.Id}>
+                            {caseCreatedDate}
+                        </p>
+                        <p class="row-title-2-payment" key={caseItem.Id}>Garment</p>
+                        <p class="row-description-payment" key={caseItem.Id}>
+                            {caseItem.Style__r.Name}
+                        </p>
+                        <p class="row-title-2-payment" key={caseItem.Id}>Product Issue</p>
+                        <p class="row-description-payment" key={caseItem.Id}>
+                            {caseItem.Description}
+                        </p>
+                    </template>
+                </div>
+                <div style="border-style: none;" class="slds-box slds-col slds-size_6-of-12">
+                    <div class="image-container-claim-payment">
+                        <img src={imageData}>
+                    </div>
+                </div>
+            </div>
+            <template for:each={lastCase} for:item="caseItem">
+                <div class="text-container-claim-payment" key={caseItem.Id}>
+                    <h2 class="title-claim-payment" >{caseItem.statusTranslated}</h2>
+                    <p class="description-claim-payment">{caseItem.statusDescription}</p> 
+                </div>
+            </template>
+            <div class="text-container-claim-payment">
+                <p class="summary">Order Summary</p>
+            </div>
+            <!-- Inspection Results -->
+            <template for:each={inspectionResults} for:item="result">
+                <div key={result.Id}  class="info-payment">
+                    <div class="info-left">
+                        <div class="text-container-claim-payment">
+                            <p class="description-claim-details">{result.Repair_Type__c}</p>
+                        </div>
+                    </div>
+                    <div class="info-right">
+                        <div class="text-container-claim-payment">
+                            <p class="description-claim-details">${result.Display_Price__c}</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <!-- Line -->
+            <div class="line-divider"></div>      
+            <!-- Total -->
+            <div class="info-payment">
+                <div class="info-left">
+                    <div class="text-container-claim-payment">
+                        <p class="title-claim-details">Grand Total</p>
+                    </div>
+                </div>
+                <div class="info-right">
+                    <div class="text-container-claim-payment">
+                        <p class="title-claim-details">${calculateTotalPayment}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Buttons -->
+            <template if:true={payNowbutton}>
+                <div class="btn-claim-payment-1">
+                    <c-pay-now-frame record-id={caseId} width="100%" height="35px"></c-pay-now-frame>
+                </div>
+            </template>
+            <div class="btn-claim-payment-2">
+                <c-cag-button label={labels.caseHistoryModuleButton} variant="neutral" onclick={navigateToCaseHistory}></c-cag-button>
+            </div>
+        </div>
+    </template>
+</template>

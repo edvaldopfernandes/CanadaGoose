@@ -1,0 +1,22 @@
+<template>
+    <div if:true={isLoading} class="spinner">
+        <lightning-spinner size="medium"></lightning-spinner>
+    </div>
+    <div if:false={isLoading} class="container">   
+        <div class="title">{labels.title}</div>
+        <div class="languages">
+            <template for:each={activeLanguages} for:item="language">
+                <div key={language.code} class="language" data-code={language.code} data-active={language.active} onclick={handleSelect}>{language.label}</div>
+            </template>    
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="update-button">
+            <c-cag-button label={labels.updateBtn} onbuttonclick={savePreference}></c-cag-button>
+        </div>
+    </div>
+    <div data-f6-region>
+        <slot name="languageSelector"></slot>
+    </div>
+</template>

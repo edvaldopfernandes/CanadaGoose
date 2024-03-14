@@ -1,0 +1,37 @@
+<template>
+    <div>
+        <lightning-layout vertical-align="center" horizontal-align="center" class="x-large" multiple-rows="true">
+            <lightning-layout-item size="12" class="slds-align_absolute-center">
+                <h1 class="slds-text-heading_large"><br>Canada Goose Warranty</h1>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" class="slds-align_absolute-center">
+                <p class="slds-text-body_regular"><br>Welcome to the Canada Goose Warranty Program.<br><br></p>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" class="slds-align_absolute-center" padding="around-small">
+                <a>
+                    <div class="clickable selected" tabindex="0" onclick={selectButton} data-value="Button 1">
+                        <h2 class="login-text-size"><b>Customer Login</b></h2>
+                        <p class="complemantary-text-size">To submit a warranty claim, please login or create an account to get started on the journey.</p>
+                    </div>
+                </a>
+                
+            </lightning-layout-item>
+            <lightning-layout-item size="12" class="slds-align_absolute-center" padding="around-small">
+                <a>
+                    <div class="clickable" tabindex="0" onclick={selectButton} data-value="Button 2">
+                        <h2 class="login-text-size"><b>Retailer Login</b></h2>
+                        <p class="complemantary-text-size">If you are an authorized retailer and you do not have an account yet, please contact Europe@canadagoose.com</p>
+                    </div>
+                </a>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" class="slds-align_absolute-center" padding="around-small">
+                <a>
+                    <div class="clickable-continue" title="Continue" onclick={saveAndRedirect}>
+                        <p class="continue-text">Continue</p>
+                    </div>
+                </a>
+                <!-- <lightning-button label="Continue" title="Continue" onclick={saveAndRedirect}>Continue</lightning-button> -->
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

@@ -1,0 +1,55 @@
+<!-- <template>
+    <lightning-card title="Search Contacts by Email" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Email"
+                             type="email"
+                             onchange={handleEmailChange}
+                             value={searchEmail}>
+            </lightning-input>
+            <lightning-button label="Search"
+                              onclick={handleSearch}
+                              class="slds-m-top_small">
+            </lightning-button>
+            
+                <lightning-button label="Create Account" 
+                                    onclick={handleClick}
+                                    class="slds-m-top_small">
+                </lightning-button>
+            
+        </div>
+        <template if:true={isData}>
+            <template for:each={contacts} for:item="contact">
+                <p key={contact.Id}>{contact.Name} - {contact.Email}</p>
+            </template>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card> 
+</template>  -->
+
+<template>
+    <lightning-card title="Canada Goose" >
+        <div class="slds-m-around_medium">
+            <div class="slds-form-element slds-m-bottom_medium "> 
+                <lightning-input type="text" label="Email" onchange={handleEmailChange} value={searchEmail} > </lightning-input>
+            </div> 
+        <!--<lightning-button label="Search" onclick={handleSearch} class="slds-m-top_small  slds-align_absolute-center"> </lightning-button> -->
+        <lightning-button label="Create Account" onclick={handleClick} class="slds-m-top_small  slds-align_absolute-center"> </lightning-button>
+        </div>
+        <template if:true={isData}>
+            <lightning-datatable
+                key-field="dttable"
+                data={contacts}
+                columns={columns}>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+        </template>
+        <c-cg-modal-account  if:true={showModal}
+                            onclosemodal={closeModal}
+                            onsaveaccount={saveAccount}>
+        </c-cg-modal-account>
+    </lightning-card>
+</template>

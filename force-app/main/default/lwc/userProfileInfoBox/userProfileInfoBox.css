@@ -1,0 +1,58 @@
+.info-box {
+    display: flex;
+    background-color: #FFFFFF;
+    color: #000000;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px 0;
+    align-items: center;
+    line-height: 25px;
+    box-sizing: content-box;
+    user-select: none;
+}
+
+.info-box:hover,
+.info-box:has(.info-icon:hover) {
+    background: #000000;
+    color: #FFFFFF;
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+}
+
+.info {
+    font-size: 15px;
+}
+
+.info-box,
+.info-icon {
+    cursor: pointer;
+}
+
+.field-container label {
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.field, 
+.field:focus, 
+.field:active {
+    --sds-c-input-text-color: #000000;
+    --dxp-c-input-text-font-size: 14px;
+    --dxp-c-input-text-font-weight: normal;
+    --slds-c-input-spacing-horizontal-start: 0;
+    --slds-c-input-shadow-focus: transparent;
+    --slds-c-input-color-border-focus: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+    .info-box {
+        margin: 20px -7%;
+    }
+}

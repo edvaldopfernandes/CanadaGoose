@@ -1,0 +1,107 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" controller="AdyenPaymentController">
+    <html>
+        <head>
+            <apex:stylesheet value="{!$Resource.SLDS_CSS}"/>
+            <style>
+                html {
+                    background: #fff !important;
+                }
+                
+                .payButton {
+                    background-color: rgb(0, 0, 0) !important;
+                    border-bottom-color: rgb(0, 0, 0) !important;
+                    border-left-color: rgb(0, 0, 0) !important;
+                    border-right-color: rgb(0, 0, 0) !important;
+                    border-top-color: rgb(0, 0, 0) !important;
+                    color: rgb(224, 224, 224) !important;
+                    text-decoration-color: rgb(224, 224, 224) !important;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+                }
+            </style>
+            <script>
+                window.onload = function() {
+                    var CaseId = '{!$CurrentPage.parameters.Id}';
+                    var OrderNumber = CaseId +'-'+ new Date().getTime();
+
+                    AdyenPaymentController.getHppform(CaseId, OrderNumber, function(result, event) {
+                        if (event.status) {
+                            if (result != null) {
+                                var data = JSON.parse(result);
+                                if (data.merchantSig != null && decodeURIComponent(data.merchantSig) != null) {
+                                    document.getElementById('brandCode').value = decodeURIComponent(data.brandCode);
+                                    document.getElementById('countryCode').value = decodeURIComponent(data.countryCode);
+                                    document.getElementById('currencyCode').value = decodeURIComponent(data.currencyCode);
+                                    document.getElementById('merchantAccount').value = decodeURIComponent(data.merchantAccount);
+                                    document.getElementById('merchantReference').value = decodeURIComponent(data.merchantReference);
+                                    document.getElementById('merchantReturnData').value = decodeURIComponent(data.merchantReturnData);
+                                    document.getElementById('merchantSig').value = decodeURIComponent(data.merchantSig);
+                                    document.getElementById('orderData').value = decodeURIComponent(data.orderData);
+                                    document.getElementById('paymentAmount').value = decodeURIComponent(data.paymentAmount);
+                                    document.getElementById('sessionValidity').value = decodeURIComponent(data.sessionValidity);
+                                    document.getElementById('shipBeforeDate').value = decodeURIComponent(data.shipBeforeDate);
+                                    document.getElementById('shopperEmail').value = decodeURIComponent(data.shopperEmail);
+                                    document.getElementById('shopperLocale').value = decodeURIComponent(data.shopperLocale);
+                                    document.getElementById('shopperReference').value = decodeURIComponent(data.shopperReference);
+                                    document.getElementById('shopperStatement').value = decodeURIComponent(data.shopperStatement);
+                                    document.getElementById('skinCode').value = decodeURIComponent(data.skinCode);
+                                    document.getElementById('resURL').value = decodeURIComponent(data.resURL);
+                                    document.getElementById('adyenForm').style.display = 'block';
+                                    document.getElementById('your-payment-div').style.display = 'block';
+                                }
+                                else {
+                                    document.getElementById('wire-transfer-div').style.display = 'block';
+                                }
+                                
+                                window.parent.document.getElementById(window.frameElement.id).height = '40px';
+                            }
+                            else {
+                                window.parent.document.getElementById(window.frameElement.id).style.display = 'none';
+                            }
+                        }
+                    }, {escape: false});
+                }
+            </script>
+        </head>
+        <body>
+            <div class="slds-form-element" >
+                <div class="slds-form-element__control" id="your-payment-div" style="display : none">
+                    <form method="post" action="{!HPP_ENDPOINT}" id="adyenForm" name="adyenForm" target="_parent" style="display : none">
+                        <!--target="_parent"-->
+                        <input name="brandCode" type="hidden" id="brandCode" value=""/>
+                        <input name="countryCode" type="hidden" id="countryCode" value=""/>
+                        <input name="currencyCode" type="hidden" id="currencyCode" value=""/>
+                        <input name="merchantAccount" type="hidden" id="merchantAccount" value=""/>
+                        <input name="merchantReference" type="hidden" id="merchantReference" value=""/>
+                        <input name="merchantReturnData" type="hidden" id="merchantReturnData" value=""/>
+                        <input name="merchantSig" type="hidden" id="merchantSig" value=""/>
+                        <input name="orderData" type="hidden" id="orderData" value=""/>
+                        <input name="paymentAmount" type="hidden" id="paymentAmount" value=""/>
+                        <input name="sessionValidity" type="hidden" id="sessionValidity" value="" />
+                        <input name="shipBeforeDate" type="hidden" id="shipBeforeDate" value=""/>
+                        <input name="shopperEmail" type="hidden" id="shopperEmail" value=""/>
+                        <input name="shopperLocale" type="hidden" id="shopperLocale" value=""/>
+                        <input name="shopperReference" type="hidden" id="shopperReference" value=""/>
+                        <input name="shopperStatement" type="hidden" id="shopperStatement" value=""/>
+                        <input name="skinCode" type="hidden" id="skinCode" value=""/>
+                        <input name="resURL" type="hidden" id="resURL" value=""/>
+
+                        <button class="slds-size_1-of-1 slds-button slds-button_brand payButton" type="submit" id="Accept-Charges" 
+                                onclick="window.parent.document.getElementById(window.frameElement.id).height = '610px';
+                                         document.getElementById('Adyen-Payment').height = '600px';
+                                         document.getElementById('Adyen-Container').style.display = 'block';
+                                         document.getElementById('Adyen-Payment').style.display = 'block';
+                                         document.getElementById('Accept-Charges').style.display = 'none';">
+                            {!$Label.Warranty_Adyen_Button_PayNow}
+                        </button>
+                    </form>
+                    <article class="slds-card" style="display : none" name="Adyen-Container" id="Adyen-Container">
+                        <iframe name="Adyen-Payment" id="Adyen-Payment" width="100%" frameborder="0" src="https://uat-canadagoose.cs9.force.com/warranty/s"> </iframe>
+                    </article>
+                </div>
+                <div class="slds-form-element__control slds-text-align_center slds-text-color_default" id="wire-transfer-div" style="display : none; font-weight: bold;">
+                    {!$Label.Warranty_Adyen_Message_CheckEmailForInstructions}
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>

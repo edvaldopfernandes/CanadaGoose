@@ -1,0 +1,47 @@
+<aura:component controller="TopNavigationController" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="CurrentLanguage" type="String" />
+    <aura:attribute name="ShowEnglish" type="Boolean" />
+    <aura:attribute name="ShowFrench" type="Boolean" />
+    <aura:attribute name="ShowGerman" type="Boolean" />
+    <aura:attribute name="ShowChinese" type="Boolean" />
+    <aura:attribute name="ShowItalian" type="Boolean" />
+    <aura:attribute name="ShowSpanish" type="Boolean" />
+    <aura:attribute name="LocaleEnglish" type="String" />
+    <aura:attribute name="LocaleFrench" type="String" />
+    <aura:attribute name="LocaleGerman" type="String" />
+    <aura:attribute name="LocaleChinese" type="String" />
+    <aura:attribute name="LocaleItalian" type="String" />
+    <aura:attribute name="LocaleSpanish" type="String" />
+    <aura:attribute name="ShowLanguagePicker" type="Boolean" />
+    
+    <aura:if isTrue="{!v.ShowLanguagePicker}">
+        <div>
+            <ul>
+                <li style="float:right" class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">{!v.CurrentLanguage}</a>
+                    <div class="dropdown-content">
+                        <aura:if isTrue="{!v.ShowEnglish}">
+                            <a href="javascript:void(0)" onclick="{!c.setLanguage}" data-language="en_US" data-locale="{!v.LocaleEnglish}">EN</a>
+                        </aura:if>
+                        <aura:if isTrue="{!v.ShowFrench}">
+                            <a href="javascript:void(0)" onclick="{!c.setLanguage}" data-language="fr" data-locale="{!v.LocaleFrench}">FR</a>
+                        </aura:if>
+                        <aura:if isTrue="{!v.ShowGerman}">
+                            <a href="javascript:void(0)" onclick="{!c.setLanguage}" data-language="de" data-locale="{!v.LocaleGerman}">DE</a>
+                        </aura:if>
+                        <aura:if isTrue="{!v.ShowChinese}">
+                            <a href="javascript:void(0)" onclick="{!c.setLanguage}" data-language="zh_CN" data-locale="{!v.LocaleChinese}">中文</a>
+                        </aura:if>
+                        <aura:if isTrue="{!v.ShowItalian}">
+                            <a href="javascript:void(0)" onclick="{!c.setLanguage}" data-language="it" data-locale="{!v.LocaleItalian}">IT</a>
+                        </aura:if>
+                        <aura:if isTrue="{!v.ShowSpanish}">
+              <!--Venkata--> <a href="javascript:void(0)" onclick="{!c.setLanguage}" data-language="es" data-locale="{!v.LocaleSpanish}">ES</a> 
+                        </aura:if>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aura:if>
+</aura:component>

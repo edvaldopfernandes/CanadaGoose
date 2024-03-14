@@ -1,0 +1,49 @@
+.info-container {
+    background-color: #FFFFFF;
+    text-align: center;
+    position: relative;
+    display: block;
+}
+
+.info-container:not(:has(.info-image[data-item="true"])) {
+    display: none;
+}
+
+.info-container:has(.info-content) {
+    animation: fade-in 0.1s linear;
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.info-title {
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+    margin: auto;
+    line-height: 20px;
+    padding: 25px 25px 0 25px;
+}
+
+.info-content {
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 0 25px;
+}
+
+.info-image[data-item="true"] {
+    background-color: #000000;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,73 @@
+<template>
+    <div class="container" if:true={render}>
+        <section>
+            <div class="slds-grid desktop-header">
+                <div class="slds-size_1-of-2">
+                    <div class="desktop-title">{labels.title} {caseNumber}</div>
+                    <div class="desktop-subtitle">{labels.subtitle}</div>
+                </div>
+            </div>
+            <div class="mobile-header">
+                <div class="desktop-title">{labels.title} {caseNumber}</div>
+            </div>
+        </section>
+        <section class="desktop-detail-card">
+            <div class="desktop-details">
+                <section class="first-section">
+                    <div class="field-container">
+                        <label>{labels.creationDate}</label>
+                        <span>{caseCreatedDate}</span>
+                    </div>
+                    <div class="field-container">
+                        <label>{labels.garment}</label>
+                        <span>{caseStyle}</span>
+                    </div>
+                    <div class="field-container">
+                        <label>{labels.prodIssue}</label>
+                        <span>{caseDescription}</span>
+                    </div>
+                </section>
+                <section>
+                    <div class="desktop-status">{caseStatus}</div>
+                    <div class="desktop-description">{labels.wipStatusDesc}</div>
+                    <template if:true={isWaitingPayment}>
+                        <div class="pay-now-button">
+                            <c-pay-now-frame record-id={recordId} width="100%" height="35px"></c-pay-now-frame>
+                        </div>
+                    </template>
+                </section>
+            </div>
+            <div class="desktop-image">
+                <img src={imageUrl}/>
+            </div>
+        </section>
+        <section class="mobile-detail-card">
+            <div class="mobile-details">
+                <section class="first-section">
+                    <div class="field-container">
+                        <label>{labels.creationDate}</label>
+                        <span>{caseCreatedDate}</span>
+                    </div>
+                    <div class="field-container">
+                        <label>{labels.garment}</label>
+                        <span>{caseStyle}</span>
+                    </div>
+                    <div class="field-container">
+                        <label>{labels.prodIssue}</label>
+                        <span>{caseDescription}</span>
+                    </div>
+                </section>
+                <img src={imageUrl}/>
+            </div>
+            <section>
+                <div class="mobile-status">{caseWIPStatus}</div>
+                <div class="mobile-description">{labels.wipStatusDesc}</div>
+                <template if:true={isWaitingPayment}>
+                    <div class="pay-now-button">
+                        <c-pay-now-frame record-id={recordId} width="100%" height="35px"></c-pay-now-frame>
+                    </div>
+                </template>
+            </section>
+        </section>
+    </div>
+</template>

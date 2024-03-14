@@ -1,0 +1,36 @@
+<aura:component controller="AcceptClaimChargesController" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="record" type="Object" description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+    <aura:attribute name="uiMessageTitle" type="String"/>
+    <aura:attribute name="uiMessage" type="String" default=""/>
+    <aura:attribute name="severity" type="String" />
+    
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="VIEW"/>
+
+    <aura:if isTrue="{! and(and(and(and(and(and(v.simpleRecord.Payment_Pending__c > 0
+                     , v.simpleRecord.Status != 'New_Validate')
+                     , v.simpleRecord.Status != 'Waiting On Product')
+                     , v.simpleRecord.Status != 'Cleaning')
+                     , v.simpleRecord.Status != 'Inspecting')
+                     , v.simpleRecord.Status != 'Pending Customer Feedback')
+                     , v.simpleRecord.Status != 'Check In With Customer')}" >
+        <div>
+            <aura:if isTrue="{!v.uiMessage == ''}" >
+                <lightning:button class="slds-size_1-of-1" iconName="utility:approval" variant="brand"
+                                  label="{!$Label.c.Warranty_AcceptCharges_Button}" title="{!$Label.c.Warranty_AcceptCharges_Button}" onclick="{! c.handleAcceptCharges }"/>
+                <aura:set attribute="else">
+                    <ui:message title="{!v.uiMessageTitle}" severity="{!v.severity}" closable="false">
+                        {!v.uiMessage}
+                    </ui:message>
+                </aura:set>
+            </aura:if>
+        </div>
+    </aura:if>
+</aura:component>

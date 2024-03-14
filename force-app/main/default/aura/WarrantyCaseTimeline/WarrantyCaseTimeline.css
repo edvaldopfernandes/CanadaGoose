@@ -1,0 +1,61 @@
+.THIS {
+}
+
+@media all and (max-width: 480px) {
+    .THIS .tdContainer {
+        height: 54px;
+        width: 40px;
+        min-height: 54px;
+        max-width: 47px;
+        padding-left:7px;
+    }
+    
+    .THIS .statusHeader {
+        font-size: 14px;
+        letter-spacing: 0;
+    }
+    
+    .THIS .slds-form-element__static {
+        align:left;
+        color:#fff;
+        font-size: 14px;
+        letter-spacing: 0;
+    }
+    
+    .THIS .statusImage {
+        height: 40px;
+        width: 40px;
+        min-height: 40px;
+        min-width: 40px;
+    }
+}
+
+@media all and (min-width: 480px) {
+    .THIS .tdContainer {
+        height: 120px;
+        width: 80px;
+        min-height: 120px;
+        max-width: 100px;
+        padding-left:20px;
+    }
+    
+    .THIS .statusHeader {
+        font-size: 18px;
+        letter-spacing: 0;
+    }
+    
+    .THIS .slds-form-element__static {
+        align:left;
+        color:#fff;
+        font-size: 18px;
+        letter-spacing: 0;
+    }
+
+    
+    .THIS .statusImage {
+        height: 80px;
+        width: 80px;
+        min-height: 80px;
+        min-width: 80px;
+    }
+}

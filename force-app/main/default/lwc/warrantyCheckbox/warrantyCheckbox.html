@@ -1,0 +1,16 @@
+<template>
+    <div class="content-container" onclick={setChecked}>
+        <div class="checkbox-container">
+            <template if:true={checked}>
+                <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 4.17773L5.18421 7.67773L11.5 1.67773" stroke="black" stroke-width="2"/>
+                </svg>
+            </template>
+        </div>
+        <div class="checkbox-label">
+            <span>{label}</span>
+            <span if:true={isRequired}>*</span>
+        </div>
+    </div>
+    
+</template>

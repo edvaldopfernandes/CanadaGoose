@@ -1,0 +1,1072 @@
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* Scenario 1: No Claims created */
+  .container-no-claim {
+    width: 100%; 
+    height: 100%;
+    position: relative;
+    background-color: white;
+    padding-bottom: 15px;
+  }
+
+  .image-container-no-claim {
+    width: 100%;
+  }
+
+  .image-container-no-claim img {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 2px; /* Remove this later by changing the size of the image */
+  }
+
+  .text-container-no-claim {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-no-claim {
+    color: #727483;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px; 
+    margin-top: 40px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .description-no-claim {
+    color: #727483;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 40px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .btn-no-claim {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .old-btn-no-claim {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    border: 1px #727483 solid;
+    display: block;
+    margin-bottom: 15px; 
+    color: #727483;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  } */
+
+  /* Scenario 2: At least one Claim created */
+  .container-claim {
+    width: 100%; 
+    height: 100%;
+    position: relative;
+    background: white;
+    padding-bottom: 18px; 
+  }
+
+  .info-claim {
+    transform: translateX(20px);
+  }
+
+  .row-title-1 {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    padding-bottom: 25px; 
+    padding-top: 0px;
+  }
+
+  .row-title-2 {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .row-description {
+    color: black;
+    font-size: 15px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    padding-bottom: 15px; 
+    padding-top: 5px;
+  }
+
+  .image-container-claim {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container-claim img {
+    width: 150px;
+    height: auto;
+    transform: translateX(50px);
+  }
+
+  .text-container-claim {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-claim {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .description-claim {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 40px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .btn-claim {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+
+  /* Scenario 3: One Claim pending payment */
+  .container-claim-payment {
+    width: auto; 
+    height: auto; 
+    position: relative;
+    background: white;
+    padding-bottom: 18px; 
+  }
+
+  .info-claim-payment {
+    transform: translateX(20px);
+  }
+
+  .row-title-1-payment {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    padding-bottom: 25px; 
+    padding-top: 0px;
+  }
+
+  .row-title-2-payment {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .row-description-payment {
+    color: black;
+    font-size: 15px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    padding-bottom: 15px; 
+    padding-top: 5px;
+  }
+
+  .image-container-claim-payment {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container-claim-payment img {
+    width: 150px;
+    height: auto;
+    transform: translateX(50px);
+  }
+
+  .text-container-claim-payment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-claim-payment {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px;  
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .description-claim-payment {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 40px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .btn-claim-payment-1 {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim-payment-1 {
+    width: 90%;
+    height: 48px;
+    background-color: black;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+  .btn-claim-payment-2 {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim-payment-2 {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+  .title-claim-details {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-bottom: 20px; 
+    margin-top: 15px;
+  }
+
+  .summary {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-left: 40px;
+  }
+
+  .description-claim-details {
+    color: black;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    margin-bottom: 0px; 
+    margin-top: 15px; 
+  }
+
+  .info-payment {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .info-left {
+    text-align: left;
+    padding-left: 40px;
+  }
+
+  .info-right {
+    text-align: right;
+    padding-right: 40px;
+  }
+
+  .line-divider {
+    transform: translate(40px, 10px); 
+    width: 87%; 
+    height: 0px; 
+    border: 0.50px #DEDEDE solid;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  /* Scenario 1: No Claims created */
+  .container-no-claim {
+    width: 100%; 
+    height: 100%;
+    position: relative;
+    background-color: white;
+    padding-bottom: 15px;
+  }
+
+  .image-container-no-claim {
+    width: 100%;
+  }
+
+  .image-container-no-claim img {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 2px; /* Remove this later by changing the size of the image */
+  }
+
+  .text-container-no-claim {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-no-claim {
+    color: #727483;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px; 
+    margin-top: 40px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .description-no-claim {
+    color: #727483;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 40px; 
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .btn-no-claim {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .old-btn-no-claim {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    border: 1px #727483 solid;
+    display: block;
+    margin-bottom: 15px; 
+    color: #727483;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  } */
+
+  /* Scenario 2: At least one Claim created */
+  .container-claim {
+    width: 100%; 
+    height: 100%;
+    position: relative;
+    background: white;
+    padding-bottom: 18px; 
+  }
+
+  .info-claim {
+    transform: translateX(20px);
+  }
+
+  .row-title-1 {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    padding-bottom: 25px; 
+    padding-top: 0px;
+  }
+
+  .row-title-2 {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .row-description {
+    color: black;
+    font-size: 15px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    padding-bottom: 15px; 
+    padding-top: 5px;
+  }
+
+  .image-container-claim {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container-claim img {
+    width: 150px;
+    height: auto;
+    transform: translateX(50px);
+  }
+
+  .text-container-claim {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-claim {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px; 
+    margin-left: 35px;
+    margin-right: 40px;
+  }
+
+  .description-claim {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 40px; 
+    margin-left: 35px;
+    margin-right: 40px;
+  }
+
+  .btn-claim {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+
+  /* Scenario 3: One Claim pending payment */
+  .container-claim-payment {
+    width: auto; 
+    height: auto; 
+    position: relative;
+    background: white;
+    padding-bottom: 18px; 
+  }
+
+  .info-claim-payment {
+    transform: translateX(20px);
+  }
+  
+  .row-title-1-payment {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    padding-bottom: 25px; 
+    padding-top: 0px;
+  }
+
+  .row-title-2-payment {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .row-description-payment {
+    color: black;
+    font-size: 15px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    padding-bottom: 15px; 
+    padding-top: 5px;
+  }
+
+  .image-container-claim-payment {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container-claim-payment img {
+    width: 150px;
+    height: auto;
+    transform: translateX(50px);
+  }
+
+  .text-container-claim-payment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-claim-payment {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px;  
+    margin-left: 35px;
+    margin-right: 40px;
+  }
+
+  .description-claim-payment {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 40px; 
+    margin-left: 35px;
+    margin-right: 40px;
+  }
+
+  .btn-claim-payment-1 {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim-payment-1 {
+    width: 90%;
+    height: 48px;
+    background-color: black;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+  .btn-claim-payment-2 {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim-payment-2 {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+  .title-claim-details {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-bottom: 20px; 
+    margin-top: 15px;
+  }
+
+  .summary {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-left: 35px;
+  }
+
+  .description-claim-details {
+    color: black;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    margin-bottom: 0px; 
+    margin-top: 15px; 
+  }
+
+  .info-payment {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .info-left {
+    text-align: left;
+    padding-left: 35px;
+  }
+
+  .info-right {
+    text-align: right;
+    padding-right: 40px;
+  }
+
+  .line-divider {
+    transform: translate(40px, 10px); 
+    width: 87%; 
+    height: 0px; 
+    border: 0.50px #DEDEDE solid;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  /* Scenario 1: No Claims created */
+  .container-no-claim {
+    width: 100%; 
+    height: 100%;
+    position: relative;
+    background-color: white;
+    padding-bottom: 15px;
+  }
+
+  .image-container-no-claim {
+    width: 100%;
+  }
+
+  .image-container-no-claim img {
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+
+  .text-container-no-claim {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-no-claim {
+    color: #727483;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 15px; 
+    margin-top: 20px; 
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .description-no-claim {
+    color: #727483;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 20px; 
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .btn-no-claim {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .old-btn-no-claim {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    border: 1px #727483 solid;
+    display: block;
+    margin-bottom: 15px; 
+    color: #727483;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  } */
+
+  /* Scenario 2: At least one Claim created */
+  .container-claim {
+    width: 100%; 
+    height: 100%;
+    position: relative;
+    background: white;
+    padding-bottom: 18px; 
+  }
+
+  .row-title-1 {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap:normal;
+  }
+
+  .row-title-2 {
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .row-description {
+    color: black;
+    font-size: 12px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .image-container-claim {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container-claim img {
+    width: 150px;
+    height: auto;
+  }
+
+  .text-container-claim {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-claim {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 5px; 
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+
+  .description-claim {
+    color: black;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 20px; 
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .btn-claim {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+
+  /* Scenario 3: One Claim pending payment */
+  .container-claim-payment {
+    width: auto; 
+    height: auto; 
+    position: relative;
+    background: white;
+    padding-bottom: 18px; 
+  }
+
+  .row-title-1-payment {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: normal;
+  }
+
+  .row-title-2-payment {
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .row-description-payment {
+    color: black;
+    font-size: 12px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+  }
+
+  .image-container-claim-payment {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container-claim-payment img {
+    width: 150px;
+    height: auto;
+  }
+
+  .text-container-claim-payment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-claim-payment {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 5px; 
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+
+  .description-claim-payment {
+    color: black;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.45px;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 20px; 
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .btn-claim-payment-1 {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim-payment-1 {
+    width: 90%;
+    height: 48px;
+    background-color: black;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+  .btn-claim-payment-2 {
+    width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  /* .btn-claim-payment-2 {
+    width: 90%;
+    height: 48px;
+    background-color: white;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 15px; 
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+  } */
+
+  .title-claim-details {
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-bottom: 20px; 
+    margin-top: 15px;
+  }
+
+  .summary {
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 32.50px;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-left: 15px;
+  }
+
+  .description-claim-details {
+    color: black;
+    font-size: 12px;
+    font-weight: 450;
+    line-height: 20.50px;
+    word-wrap: break-word;
+    margin-bottom: 0px; 
+    margin-top: 15px;
+  }
+
+  .info-payment {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .info-left {
+    text-align: left;
+    padding-left: 15px;
+  }
+
+  .info-right {
+    text-align: right;
+    padding-right: 15px;
+  }
+
+  .line-divider {
+    transform: translate(15px, 10px); 
+    width: 87%; 
+    height: 0px; 
+    border: 0.50px #DEDEDE solid;
+  }
+}

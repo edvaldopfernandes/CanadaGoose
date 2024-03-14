@@ -1,0 +1,123 @@
+.hamburger-menu .hamburguer-label {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-menu .close-label {
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-menu input[type="checkbox"] {
+    display: none;
+}
+
+.hamburger-menu input[type="checkbox"]:checked~.menu {
+    left: 0;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    height: 100dvh;
+    background-color: #1C1C1C;
+    list-style-type: none;
+    padding: 75px 20px 50px 20px;
+    margin: 0;
+    z-index: 99999;
+    transition: left 0.3s ease-in-out;
+}
+
+.menu-items,
+.logout {
+    --dxp-s-link-text-color-hover: #FFFFFF;
+    --dxp-s-link-text-color: #FFFFFF;
+    color:white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-size: 18px;
+}
+
+.logout a {
+    margin-top: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .menu {
+        left: -80vw;
+        width: 80vw;
+        padding: 30px 20px 50px 20px;
+    }
+
+    .menu-items,
+    .logout {
+        font-size: 14px;
+    }
+
+    .hamburger-menu .hamburguer-label {
+        padding: 5px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .menu {
+        left: -80vw;
+        width: 80vw;
+        padding: 30px 20px 30px 20px;
+    }
+
+    .menu-items,
+    .logout {
+        font-size: 14px;
+    }
+
+    .hamburger-menu .hamburguer-label {
+        padding: 5px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .menu {
+        left: -25vw;
+        width: 25vw;
+        padding: 25px 20px 50px 20px;
+    }
+
+    .menu-items,
+    .logout {
+        font-size: 14px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .menu {
+        left: -20vw;
+        width: 20vw;
+        padding: 75px 20px 50px 20px;
+    }
+
+    .menu-items,
+    .logout {
+        font-size: 18px;
+    }
+}

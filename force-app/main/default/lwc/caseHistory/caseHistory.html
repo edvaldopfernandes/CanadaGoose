@@ -1,0 +1,52 @@
+<template>
+    <div class="main-container">
+        <div class="center-container">
+            <!-- Title -->
+            <div class="page-title">{labels.caseHistoryTitle}</div>
+            <!-- Description -->
+            <div class="page-description">{labels.caseHistoryContent}</div>
+            <template if:true={casesExist}>
+                <div class="search-container">
+                    <!-- Search field -->
+                    <div class="search-field">
+                        <lightning-input type="search" onchange={handleSearch}></lightning-input>
+                    </div>
+                </div>
+            </template>
+            <!-- Table data -->
+            <template if:true={casesExist}>
+                <div style="display: flex; flex-direction: column;">
+                    <template for:each={cases} for:item="caseItem">
+                        <div key={caseItem.Id}>
+                            <div class="page-date">{caseItem.CreatedDate}</div>
+                        </div>
+                        <div class="table-title-container" key={caseItem.Id}>
+                            <div class="table-title-text-1">Case Number</div>
+                            <div class="table-title-text-2">Garment Name</div>
+                            <div class="table-title-text-3">Status</div>
+                        </div>
+                        <table key={caseItem.Id} style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td class="data-container-row collumn-1">{caseItem.CaseNumber}</td>
+                                    <td class="data-container-row collumn-2">{caseItem.Style__r.Name}</td>
+                                    <td class="data-container-row collumn-3">{caseItem.Status}</td>
+                                    <td class="data-container-row collumn-4">
+                                        <a onclick={handleViewCase} data-value={caseItem.Id}>
+                                            <img class="icon-history" src={arrowHistory}> 
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </template>
+                </div>
+            </template>
+            <template if:false={casesExist}>
+                <div style="text-align: center;">
+                    No Claims Created Yet
+                </div>
+            </template>
+        </div> 
+    </div>
+</template>

@@ -1,0 +1,81 @@
+<template>
+    <section if:true={showTitle} class="title-container">
+        <div class="title">{labels.addressTitle}</div>
+        <div class="subtitle">{labels.addressSubtitle}</div>
+    </section>
+    <div class={editingClass}>
+        <template if:false={editing}>
+            <div class="edit-icon" onclick={edit}>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_939_31708)">
+                        <path d="M13.9707 0.636719L12.5574 2.05005L12.084 2.52339L6.89737 7.71005L6.4707 10.9634L9.72404 10.5367L16.7974 3.46339L13.9707 0.636719ZM13.9707 1.57672L15.8574 3.46339L14.9174 4.41005L13.0307 2.52339L13.9707 1.57672ZM9.41737 9.90339L7.24404 10.1901L7.5307 8.01672L12.5574 2.99672L14.444 4.88339L9.41737 9.90339Z" fill="black"/>
+                        <path d="M14.7969 7.97005V16.6367H0.796875V2.63672H10.1302V3.30339H1.46354V15.9701H14.1302V7.97005H14.7969Z" fill="black"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_939_31708">
+                            <rect width="16" height="16" fill="white" transform="translate(0.796875 0.636719)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <span if:false={confirming} class="close-title">{labels.addressTitle}</span>
+            <div class="full-address">
+                <div class="slds-size_1-of-1">
+                    {complement}, {address}, {zipCode}
+                </div>
+                <div class="slds-size_1-of-1">
+                    {city}, {province}, {country}
+                </div>
+            </div>
+        </template>
+        <template if:true={editing}>
+                <div class="edit-title">{labels.addressBoxTitle}</div>
+                <div>
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 field-container">
+                            <label>{labels.addressLabel}</label>
+                            <lightning-input name="address" class="field" variant="label-hidden" required="true" value={address} onchange={setField}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 field-container">
+                            <label>{labels.complementLabel}</label>
+                            <lightning-input name="complement" class="field" variant="label-hidden" required="true" value={complement} onchange={setField}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 field-container">
+                            <label>{labels.zipCodeLabel}</label>
+                            <lightning-input name="zipCode" class="field" variant="label-hidden" required="true" value={zipCode} onchange={setField}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 field-container">
+                            <label>{labels.cityLabel}</label>
+                            <lightning-input name="city" class="field" variant="label-hidden" required="true" value={city} onchange={setField}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 field-container">
+                            <label>{labels.provinceLabel}</label>
+                            <lightning-input name="province" class="field" variant="label-hidden" required="true" value={province} onchange={setField}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 field-container">
+                            <label>{labels.countryLabel}</label>
+                            <lightning-input name="country" class="field" variant="label-hidden" required="true" value={country} onchange={setField}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 field-container">
+                            <label>{labels.phoneLabel}</label>
+                            <lightning-input name="phone" class="field" variant="label-hidden" required="true" value={phone} onchange={setField}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+        </template>
+    </div>
+    <div if:true={editing} class="slds-m-top_medium">
+        <c-cag-button label={labels.saveBtn} variant="brand" onbuttonclick={confirmAddress}></c-cag-button>
+    </div>
+    <div if:true={confirming} class="slds-m-top_medium">
+        <c-cag-button label={labels.confirmBtn} variant="brand" onbuttonclick={saveAddress}></c-cag-button>
+    </div>
+</template>

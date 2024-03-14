@@ -1,0 +1,45 @@
+<aura:component controller="PrintController" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="paidInspectionResults" type="List" 
+                    description="List of Inspection results to be displayed"/>
+    <aura:attribute name="caseId" type="String" 
+                    description="Case ID passed by the Application to the component"/>
+    <aura:attribute name="caseNumber" type="String"/>
+    
+    <div class="lightning" >
+        <div class="slds-grid  slds-truncate slds-wrap slds-grid_align-end slds-m-left_small slds-m-right_small" >
+            <div class="slds-size_1-of-1">
+                <table class="slds-table slds-table--bordered table1">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col" class="slds-cell-wrap t1col1" colspan="6">
+                                <div class="slds-truncate" title="Paid Inspection Results">Inspection Results - Case# {!v.caseNumber}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.paidInspectionResults}" var="obj">
+                            <tr>
+                                <td data-label="Name" class="slds-cell-wrap t1col1" colspan="6">
+                                    <div class="bolded" title="{!obj.Repair_Type__c}">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">{!obj.Repair_Type__c}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <aura:if isTrue="{! obj.Description__c != null}">
+                                        <div class="slds-cell-wrap" title="{!obj.Description__c}">
+                                            <aura:unescapedHtml value="{! 'Description:'+ obj.Description__c}"/>
+                                        </div>
+                                    </aura:if>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</aura:component>

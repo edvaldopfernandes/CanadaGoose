@@ -1,0 +1,109 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,force:hasRecordId,force:hasSObjectName" controller="GCJSON">
+    <!--<aura:attribute name="RE" type="String" default=""/>-->
+    <aura:attribute name="CaseId" type="String"/>
+    <aura:attribute name="gca" type="String"/>
+    <aura:attribute name="curr" type="String"/>
+    <aura:attribute name="lang" type="String"/>
+    <aura:attribute name="arr" type="String[]" default="[]"/>
+    <aura:attribute name="err" type="String" default=""/>
+    <aura:attribute name="gct" type="String"/>
+    <aura:attribute name="terr" type="String"  default=""/>
+    <aura:attribute name="gcamt" type="String"  default=""/>
+    <aura:attribute name="sign" type="String"/>
+    <aura:attribute name="isNorthAmerica" type="boolean" default='false'/>
+    <aura:attribute name="sobjecttype" type="String" default="{!v.sObjectName}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+    <!--Component-->
+    <div> 
+        <lightning:layoutItem>
+            <lightning:card iconName="standard:thanks" title="Gift Card Request">
+                <div>	
+                    <lightning:recordEditForm objectApiName="Case" aura:id="CaseForm" recordId="{!v.CaseId}"
+                                              onload="{!c.refresh}"   onsubmit="{!c.handleonSubmit}"  onsuccess="{!c.handleOnSuccess}">
+                        <lightning:messages />
+                        <div class="c-container">
+                            <lightning:layout >
+                                <lightning:layoutItem padding="around-small" size="6">
+                                    <div class="header-column">
+                                        
+                                        <!--<label>Language<span class="star">*</span></label><lightning:inputField aura:id="l" fieldName="Language__c" variant="label-hidden" required="true"/>-->
+                                        <!--<label>Language</label><lightning:outputField fieldName="Language__c" variant="label-hidden"/>-->
+                                        <label>Language</label><br /><ui:outputText value="{!v.lang}"/><br />
+                                        <br />
+                                        <label>Confirmation Email</label><lightning:outputField aura:id="ce" fieldName="CustomerEmail__c" variant="label-hidden" required="true" />
+                                        <br />
+                                        <!--<label>E-cert Delievery Method<span class="star">*</span></label><lightning:inputField aura:id="edm" fieldName="ecertDeliveryMethod__c" variant="label-hidden" required="true"/>-->
+                                        <label>E-cert Delievery Method</label><lightning:outputField fieldName="ecertDeliveryMethod__c" variant="label-hidden"/>
+                                        <br />
+                                        <div aura:id="err" class="slds-form-element">
+                                            <label>{!v.isNorthAmerica == true ?'Refund Amount Before Taxes' :'Refund Total' }<span class="star">*</span></label>
+                                            <div class="slds-form-element__control">
+                                                <input type="text" id="refamt" value="{!v.gca}" required="" aria-describedby="error-message-unique-id" class="slds-input" aria-invalid="true" onfocus="{!c.removecurr}" oninput="{!c.setgcamt}" onfocusout="{!c.addcurr}"/>
+                                            </div> 
+                                            <div  aura:id="errtxt" class="slds-form-element__help" id="error-message-unique-id">{!v.err}</div>
+                                        </div>
+                                        <br />
+                                        <aura:renderIf isTrue="{!v.isNorthAmerica}">
+                                            <label>Receipt Provided ?</label><lightning:inputField fieldName="Receipt_Provided__c" variant="label-hidden"/> 
+                                            <br />              
+                                            <div aura:id="terr" class="slds-form-element">
+                                                <label>Taxes<span class="star">*</span></label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="statetax" value="{!v.gct}" required="" aria-describedby="error-message-unique-id" class="slds-input" aria-invalid="true" onfocus="{!c.removecurr}" oninput="{!c.setgcamt}" onfocusout="{!c.addcurr}"/>
+                                                </div> 
+                                                <div  aura:id="errtax" class="slds-form-element__help" id="error-message-unique-id">{!v.terr}</div>
+                                            </div>
+                                            <br />
+                                        </aura:renderIf> 
+                                       
+                                        <label>Gift Card Amount</label><br /><output type="text" id="gc" value="{!v.gcamt}"/>
+                                        <br />     
+                                      	<br />  
+                                        <label>Region</label><lightning:outputField fieldName="Region__c" variant="label-hidden"/>
+                                        <br />  
+                                        <label>Currency</label><br /><ui:outputText value="{!v.curr}"/><br />
+                                    
+                                         <br />
+                                        <!--<label>Currency</label><lightning:outputField aura:id="c" fieldName="Currency__c" variant="label-hidden"/>-->
+                                        
+                                    </div>
+                                </lightning:layoutItem>
+                                
+                                <lightning:layoutItem padding="around-small" size="6">
+                                    <div class="header-column"> 
+                                        <!--<label>Transaction Code</label><br /><ui:outputText value="{!v.CaseId}"/><br />-->
+                                        <label>Transaction Code</label><lightning:outputField fieldName="CaseNumber" variant="label-hidden"/>
+                                        <br />
+                                        <label>Order Sender</label><lightning:outputField fieldName="orderSender__c" variant="label-hidden"/>
+                                        <br />
+                                        <label>Item Quantity</label><br /><ui:outputText value="1"/><br />
+                                        <br />
+                                        <label>Invoiced Total</label><lightning:outputField fieldName="Invoiced_Total__c" variant="label-hidden"/>
+                                        <br />
+                                        <label>Receiving Name</label><lightning:outputField fieldName="receivingName__c" variant="label-hidden"/> 
+                                        <br />
+                                        <label>Receiving Email</label><lightning:outputField fieldName="CustomerEmail__c" variant="label-hidden"/>                
+                                        <br />
+                                        <label>Entry Greeting From</label><lightning:outputField fieldName="entryGreetingFrom__c" variant="label-hidden"/>
+                                        <br />
+                                        <label>Entry Greeting To</label><lightning:outputField fieldName="CustomerName__c" variant="label-hidden"/>
+                                      </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </div>
+                        <lightning:layout class="slds-align_absolute-center">
+                            <lightning:layoutItem  size="6" padding="around-small">
+                                <div class = "slds-m-top_small slds-align_absolute-center">
+                                    <lightning:button class="slds-button slds-button_brand slds-size_full" variant="brand" label="Save" type="submit" />
+                                </div>    
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </lightning:recordEditForm>
+                </div>                    
+            </lightning:card>
+        </lightning:layoutItem>
+    </div>
+</aura:component>

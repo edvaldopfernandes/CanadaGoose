@@ -1,0 +1,20 @@
+.content-container {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+}
+
+.checkbox-container {
+    border: 1px solid #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0.9375rem;
+    min-height: 0.875rem;
+}
+
+.checkbox-label {
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}

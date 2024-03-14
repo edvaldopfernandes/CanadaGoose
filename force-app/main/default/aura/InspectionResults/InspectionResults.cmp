@@ -1,0 +1,278 @@
+<aura:component controller="InspectionResultsController" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="InspectionResults" type="List" />
+    <aura:attribute name="paidInspectionResults" type="List" />
+    <aura:attribute name="SubtotalResult" type="Currency" 
+                    description="Calculated subtotal"/>
+    <aura:attribute name="TaxResult" type="Currency" 
+                    description="Calculated tax"/>
+    <aura:attribute name="TotalResult" type="Currency" 
+                    description="Calculated total"/>
+    <aura:attribute name="SubtotalInvoiced" type="Currency" 
+                    description="Calculated subtotal"/>
+    <aura:attribute name="TaxInvoiced" type="Currency" 
+                    description="Calculated tax"/>
+    <aura:attribute name="TotalInvoiced" type="Currency" 
+                    description="Calculated total"/>
+    <aura:attribute name="ShowInspectionResults" type="Boolean" default="False" 
+                    description="Determines whether the Inspection results are to be shown"/>
+    <aura:attribute name="ShowPaidInspectionResults" type="Boolean" default="False" 
+                    description="Determines whether the paid Inspection results are to be shown"/>
+    <aura:attribute name="ShowPrices" type="Boolean" default="False"
+                    description="Determines whether the Prices are to be shown"/>
+    <aura:attribute name="ShowSubtotalResults" type="Boolean" default="False" 
+                    description="Determines whether the tax results are shown"/>
+    <aura:attribute name="ShowSubtotalInvoiced" type="Boolean" default="False" 
+                    description="Determines whether the tax results are shown"/>
+    
+    <aura:attribute name="CurrencyCode" type="String" default="USD" 
+                    description="Captures currency code from the contact to be displayed on the payment items"/>
+    <aura:attribute name="CaseStatus" type="String" 
+                    description="Status of Case"/>
+    <aura:attribute name="CasePaymentPending" type="Double" default=""
+                    description="Amount of Payment pending"/>
+    <aura:attribute name="PrintHtml" type="String" default=""
+                    description="PrintHtml"/>
+    <aura:attribute name="UserLanguage" type="String" default="en" />
+    
+    <aura:if isTrue="{!v.ShowPaidInspectionResults}" >
+        <lightning:card iconName="standard:quotes" title="{!$Label.c.Warranty_InspectionResult_label_OngoingRepairs}" >
+            <div class="slds-grid slds-wrap slds-grid_align-end slds-m-left_small slds-m-right_small" >
+                <div class="slds-size_1-of-1">
+                    <!-- Inspection Results -->
+                    <table class="slds-table slds-table--bordered table1">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col" class="slds-cell-wrap t1col1" colspan="6">
+                                    <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Item_Name}">{!$Label.c.Warranty_InspectionResult_Item_Name}</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap t1col2" colspan="3">
+                                    <div class="slds-truncate slds-text-align_center" title="{!$Label.c.Warranty_InspectionResult_Item_Warranty}">{!$Label.c.Warranty_InspectionResult_Item_Warranty}</div>
+                                </th>
+                                <aura:if isTrue="{!v.ShowPrices}" >
+                                    <th scope="col" class="slds-cell-wrap t1col3" colspan="3">
+                                        <div class="slds-truncate slds-text-align_right" title="{!$Label.c.Warranty_InspectionResult_Item_Price}">{!$Label.c.Warranty_InspectionResult_Item_Price}</div>
+                                    </th>
+                                </aura:if>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.paidInspectionResults}" var="obj">
+                                <tr>
+                                    <td data-label="Name" class="slds-cell-wrap t1col1" colspan="6">
+                                        <aura:if isTrue="{!v.UserLanguage == 'en'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name}">
+                                                {!obj.Repair__r.Name}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'fr'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name_FR__c}">
+                                                {!obj.Repair__r.Name_FR__c}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'de'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name_DE__c}">
+                                                {!obj.Repair__r.Name_DE__c}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'zh'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name_ZH__c}">
+                                                {!obj.Repair__r.Name_ZH__c}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'it'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Repair_Name_IT__c}">
+                                                {!obj.Repair__r.Repair_Name_IT__c}
+                                            </div>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="Warranty" class="slds-cell-wrap t1col2" colspan="3">
+                                        <div class="slds-truncate slds-text-align_center" title="{!obj.Under_Warranty__c}">
+                                            <ui:outputCheckbox value="{!obj.Under_Warranty__c}"/>
+                                        </div>
+                                    </td>
+                                    
+                                    <aura:if isTrue="{!v.ShowPrices}" >
+                                        <td data-label="Price" class="slds-cell-wrap t1col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!obj.Display_Price__c}">
+                                                <lightning:formattedNumber value="{!obj.Display_Price__c}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </aura:if>
+                                </tr>
+                            </aura:iteration>
+                            <aura:if isTrue="{!v.ShowPrices}" > 
+                                <aura:if isTrue="{!v.ShowSubtotalInvoiced}">
+                                    <tr>
+                                        <td class="t2col1" colspan="7"></td>
+                                        <td data-label="Subtotal" class="slds-cell-wrap t2col2" colspan="2">
+                                            <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Subtotals_Subtotal}">{!$Label.c.Warranty_InspectionResult_Subtotals_Subtotal}</div>
+                                        </td>
+                                        <td data-label="Value" class="t2col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!v.SubtotalInvoiced}">
+                                                <lightning:formattedNumber value="{!v.SubtotalInvoiced}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t2col1" colspan="7"></td>
+                                        <td data-label="Tax" class="slds-cell-wrap t2col2" colspan="2">
+                                            <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Subtotals_Tax}">{!$Label.c.Warranty_InspectionResult_Subtotals_Tax}</div>
+                                        </td>
+                                        <td data-label="Value" class="t2col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!v.TaxInvoiced}">
+                                                <lightning:formattedNumber value="{!v.TaxInvoiced}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t2col1" colspan="7"></td>
+                                        <td data-label="Total" class="slds-cell-wrap t2col2" colspan="2">
+                                            <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Subtotals_Total}">{!$Label.c.Warranty_InspectionResult_Subtotals_Total}</div>
+                                        </td>
+                                        <td data-label="Value" class="t2col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!v.TotalInvoiced}">
+                                                <lightning:formattedNumber value="{!v.TotalInvoiced}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <aura:set attribute="else">
+                                        <tr>
+                                            <td class="t2col1" colspan="7"></td>
+                                            <td data-label="Total" class="slds-cell-wrap t2col2" colspan="5">
+                                                <div class="slds-truncate slds-text-color_error slds-text-align_right" title="{!$Label.c.Warranty_InspectionResult_Subtotals_TaxError}">{!$Label.c.Warranty_InspectionResult_Subtotals_TaxError}</div>
+                                            </td>
+                                        </tr>
+                                    </aura:set>
+                                    
+                                </aura:if>
+                            </aura:if>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </lightning:card>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.ShowInspectionResults}" >
+        <br/>   
+        <lightning:card iconName="standard:quotes" title="{!$Label.c.Warranty_InspectionResult_label_UnpaidRepairs}" >
+            <div class="slds-grid slds-wrap slds-grid_align-end slds-m-left_small slds-m-right_small" >
+                <div class="slds-size_1-of-1">
+                    <!-- Inspection Results -->
+                    <table class="slds-table slds-table--bordered table1">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col" class="slds-cell-wrap t1col1" colspan="6">
+                                    <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Item_Name}">{!$Label.c.Warranty_InspectionResult_Item_Name}</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap t1col2" colspan="3">
+                                    <div class="slds-truncate slds-text-align_center" title="{!$Label.c.Warranty_InspectionResult_Item_Warranty}">{!$Label.c.Warranty_InspectionResult_Item_Warranty}</div>
+                                </th>
+                                <aura:if isTrue="{!v.ShowPrices}" >
+                                    <th scope="col" class="slds-cell-wrap t1col3" colspan="3">
+                                        <div class="slds-truncate slds-text-align_right" title="{!$Label.c.Warranty_InspectionResult_Item_Price}">{!$Label.c.Warranty_InspectionResult_Item_Price}</div>
+                                    </th>
+                                </aura:if>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.InspectionResults}" var="obj">
+                                <tr>
+                                    <td data-label="Name" class="slds-cell-wrap t1col1" colspan="6">
+                                        <aura:if isTrue="{!v.UserLanguage == 'en'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name}">
+                                                {!obj.Repair__r.Name}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'fr'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name_FR__c}">
+                                                {!obj.Repair__r.Name_FR__c}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'de'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name_DE__c}">
+                                                {!obj.Repair__r.Name_DE__c}
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.UserLanguage == 'zh'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Name_ZH__c}">
+                                                {!obj.Repair__r.Name_ZH__c}
+                                            </div>
+                                        </aura:if>
+                                         <aura:if isTrue="{!v.UserLanguage == 'it'}" >
+                                            <div class="slds-truncate" title="{!obj.Repair__r.Repair_Name_IT__c}">
+                                                {!obj.Repair__r.Repair_Name_IT__c}
+                                            </div>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="Warranty" class="slds-cell-wrap t1col2" colspan="3">
+                                        <div class="slds-truncate slds-text-align_center" title="{!obj.Under_Warranty__c}">
+                                            <ui:outputCheckbox value="{!obj.Under_Warranty__c}"/>
+                                        </div>
+                                    </td>
+                                    
+                                    <aura:if isTrue="{!v.ShowPrices}" >
+                                        <td data-label="Price" class="slds-cell-wrap t1col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!obj.Display_Price__c}">
+                                                <lightning:formattedNumber value="{!obj.Display_Price__c}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </aura:if>
+                                </tr>
+                            </aura:iteration>
+                            <aura:if isTrue="{!v.ShowPrices}" > 
+                                <aura:if isTrue="{!v.ShowSubtotalResults}">
+                                    <tr>
+                                        <td class="t2col1" colspan="7"></td>
+                                        <td data-label="Subtotal" class="slds-cell-wrap t2col2" colspan="2">
+                                            <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Subtotals_Subtotal}">{!$Label.c.Warranty_InspectionResult_Subtotals_Subtotal}</div>
+                                        </td>
+                                        
+                                        
+                                        <td data-label="Value" class="t2col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!v.SubtotalResult}">
+                                                <lightning:formattedNumber value="{!v.SubtotalResult}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="t2col1" colspan="7"></td>
+                                        <td data-label="Tax" class="slds-cell-wrap t2col2" colspan="2">
+                                            <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Subtotals_Tax}">{!$Label.c.Warranty_InspectionResult_Subtotals_Tax}</div>
+                                        </td>
+                                        <td data-label="Value" class="t2col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!v.TaxResult}">
+                                                <lightning:formattedNumber value="{!v.TaxResult}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t2col1" colspan="7"></td>
+                                        <td data-label="Total" class="slds-cell-wrap t2col2" colspan="2">
+                                            <div class="slds-truncate" title="{!$Label.c.Warranty_InspectionResult_Subtotals_Total}">{!$Label.c.Warranty_InspectionResult_Subtotals_Total}</div>
+                                        </td>
+                                        <td data-label="Value" class="t2col3" colspan="3">
+                                            <div class="slds-truncate slds-text-align_right" title="{!v.TotalResult}">
+                                                <lightning:formattedNumber value="{!v.TotalResult}" style="currency" currencyCode="{!v.CurrencyCode}"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <aura:set attribute="else">
+                                        <tr>
+                                            <td class="t2col1" colspan="7"></td>
+                                            <td data-label="Total" class="slds-cell-wrap t2col2" colspan="5">
+                                                <div class="slds-truncate slds-text-color_error slds-text-align_right" title="{!$Label.c.Warranty_InspectionResult_Subtotals_TaxError}">{!$Label.c.Warranty_InspectionResult_Subtotals_TaxError}</div>
+                                            </td>
+                                        </tr>
+                                    </aura:set>
+                                </aura:if>
+                            </aura:if>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </lightning:card>
+    </aura:if>
+</aura:component>

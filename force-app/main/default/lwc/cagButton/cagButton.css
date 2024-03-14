@@ -1,0 +1,57 @@
+.button-container button {
+    width: 100%;
+}
+
+.button-container {
+    cursor: pointer;
+    position: relative;
+}
+
+/* Neutral button */
+
+.button-container button.slds-button_neutral:disabled,
+.button-container button.slds-button_neutral:hover:disabled {
+    background-color: #FFFFFF;
+    border-color: #727483;
+    color: #727483;
+}
+
+/* Brand button */
+
+.button-container .line {
+    display: none;
+    background-color: white;
+    height: 1px;
+    position: absolute;
+    bottom: 7px;
+}
+
+.button-container:has(button.slds-button_brand:hover:not(:disabled)) .line {
+    display: block;
+    animation: line-passing 1s ease-in-out;
+}
+
+.button-container button.slds-button_brand:disabled {
+    background-color: #727483;
+    border-color: #727483;
+}
+
+.button-container button:hover:disabled {
+    height: 100%;
+    padding: 0;
+}
+
+@keyframes line-passing {
+    0% {
+        width: 0;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        right: 0;
+    }
+    100% {
+        width: 0;
+        right: 0;
+    }
+}

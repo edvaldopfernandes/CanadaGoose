@@ -1,0 +1,89 @@
+<template>
+ 
+ <lightning-spinner alternative-text="Loading" size="large" if:true={bShowSpinner}></lightning-spinner>
+
+ <template if:false={bHideMainCmp}>
+ 
+     <template if:true={bShowNewPersonAccountCreation}>   
+          <!--last option for create new person account if Based on phone or email contact not found-->
+           <lightning-card title="Create and Link Person Account">                         
+           <lightning-layout multiple-rows>
+             <lightning-layout-item padding="around-small" size="6">
+                 <lightning-input type="text" name="sFName" label="First Name" required onchange={onNewInputChange}></lightning-input> 
+            </lightning-layout-item>        
+            <lightning-layout-item padding="around-small" size="6">
+                 <lightning-input type="text" name="sLName" label="Last Name" required onchange={onNewInputChange}></lightning-input> 
+            </lightning-layout-item>        
+            <lightning-layout-item padding="around-small" size="6">
+                 <lightning-input type="phone" name="sPhone"  label="Phone" required onchange={onNewInputChange} value={newPersonRec.PersonMobilePhone}></lightning-input> 
+            </lightning-layout-item>        
+            <lightning-layout-item padding="around-small" size="6"> 
+                 <lightning-input type="email" name="sEmail" placeholder="john@email.com" label="Email" required onchange={onNewInputChange}></lightning-input> 
+            </lightning-layout-item>        
+
+            <lightning-layout-item padding="around-small" size="12">
+                 <lightning-button variant="brand" label="Create and Link" title="Create and Link" onclick={createNewAccAndLink}></lightning-button>
+            </lightning-layout-item>        
+             
+   
+           </lightning-layout>
+      </lightning-card>    
+     </template>
+
+  
+  <template if:true={bShowSearchByEmail}>   
+    <lightning-card title="Search Person Account By Email">    
+          <span class="slds-text-color_error slds-m-left_medium">{msgWhenNoRecordsFoundByPhone}</span>
+           <lightning-layout multiple-rows>
+            <lightning-layout-item padding="around-small" size="12">
+                 <lightning-input type="email" name="sEmail" placeholder="john@email.com" label="Email" required onchange={onEmailSearchValueChange}></lightning-input> 
+                 <span class="slds-text-color_error">{emailSearchUiMsg}</span>
+            </lightning-layout-item>        
+
+            <lightning-layout-item padding="around-small" size="12">
+                 <lightning-button variant="brand" label="Search" disabled={hasDataInEmailInputField}  title="Search" onclick={searchByEmail}></lightning-button>
+            </lightning-layout-item>       
+
+           </lightning-layout>
+    </lightning-card>
+  </template>
+
+ <template if:true={bShowExistingListOfPersonAccountTable}>
+  
+  <lightning-card title="Existing Person Account" >          
+     
+      <template lwc:if={wrapper.matchPersonAccount}>
+
+          <div class="slds-m-around_x-small" >
+                <lightning-datatable
+                    key-field="Id"
+                    data={wrapper.matchPersonAccount}
+                    columns={columns} 
+                    max-row-selection="1"     
+                    onrowselection={getSelectedName}             
+                >
+                </lightning-datatable>
+          <br/>
+         <div class="slds-clearfix">
+  <div class="slds-float_right">
+
+   
+     <!--<lightning-button variant="brand" label="Create New Account" title="CreateNewAcc" onclick={createNewAccountScreen} if:false={bShowNewPersonAccountCreation}></lightning-button> &nbsp;-->
+
+
+    <lightning-button variant="brand" label="Link Account" disabled={isLinkingRecSelected} title="Link Account" onclick={linkExistingAccountRecord}></lightning-button>
+  </div>
+</div>
+          </div>
+
+         
+
+      </template>
+      
+  </lightning-card>
+
+ </template>
+
+
+ </template>
+</template>

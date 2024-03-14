@@ -1,0 +1,77 @@
+<template>
+<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_full">
+<div class="slds-modal__container">
+<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeAction} >
+<svg class="slds-button__icon slds-button__icon_large"  aria-hidden="true">
+<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+</svg>
+<span class="slds-assistive-text" >Cancel and close</span>
+</button>
+<div class="slds-modal__header">
+<h5 id="modal-heading-01" class="slds-modal__title slds-hyphenate" style="font-size: 2.5rem">Canada Goose</h5>
+</div>
+<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">   
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+          <div class="slds-grid slds-wrap"> 
+         <lightning-card  title="Customer Information">
+         </lightning-card>
+          <lightning-layout multiple-rows>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2" >
+                <lightning-input type="text" label="First Name"  value={getAccountRecord.FirstName} onchange={firstNameInpChange} ></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" label="Last Name"  value={getAccountRecord.LastName} onchange={lastNameInpChange} ></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="phone" label="Mobile Number"  value={getAccountRecord.PersonMobilePhone} onchange={phoneInpChange} ></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" label="Language" value={getAccountRecord.Language__c} onchange={languageInpChange} ></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-1">
+                <lightning-input type="email" label="Email" value={getAccountRecord.PersonEmail} onchange={emailInpChange} ></lightning-input>
+            </p>
+            <div class="slds-checkbox slds-p-horizontal_small slds-col slds-size_1-of-1">
+                    <input type="checkbox" id="consentCheckbox" name="consentCheckbox" value="consentGiven" onchange={handleCheckboxChange}/>
+                    <label class="slds-checkbox__label" for="consentCheckbox">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label slds-m-left_xx-small" style="font-size: 10px; margin: 15px;">
+                                By checking off the box, I agree that I want to receive emails from Canada Goose Inc. about updates, products, collections, upcoming events and services that I may find interesting. I can withdraw this consent at any time as described in the Privacy Policy or by clicking on the "unsubscribe" link in the email
+                        </span>
+                    </label>
+            </div>
+          </lightning-layout>
+         </div>
+         <div class="slds-grid slds-wrap" >
+           <lightning-card  title="Address">
+           </lightning-card>
+           <lightning-layout multiple-rows>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-1">
+                <lightning-input type="text" label="Street" value={getAccountRecord.PersonMailingStreet} onchange={streetInpChange}></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" label="City" value={getAccountRecord.PersonMailingCity} onchange={cityInpChange}></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" label="Country" value={getAccountRecord.PersonMailingCountry} onchange={countryInpChange}></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" label="State" value={getAccountRecord.PersonMailingState} onchange={stateInpChange}></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" label="Postal Code" value={getAccountRecord.PersonMailingPostalCode} onchange={postalCodeInpChange}></lightning-input>
+            </p>
+            </lightning-layout>
+         </div>
+        </div>
+    </lightning-card>   
+</div>
+<div class="slds-modal__footer slds-modal__footer_directional">
+<button class="slds-button slds-button_neutral" aria-label="Cancel and close">Cancel</button>
+ <lightning-button label="Submit" style="background-color: #000" onclick={saveAccountAction} ></lightning-button>
+</div>
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>   
+</template>

@@ -1,0 +1,54 @@
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container {
+        display: flex;
+        height: 100%;
+    }
+    
+    .left-component,
+    .right-component {
+        flex: 1;
+        margin-right: 40px;
+        margin-bottom: 100px;
+    }
+    
+    .right-component {
+        margin-right: 0;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .left-component,
+    .right-component {
+        margin-bottom: 30px;
+    }
+    
+    .right-component {
+        margin-bottom: 0;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .left-component,
+    .right-component {
+        margin-bottom: 30px;
+    }
+    
+    .right-component {
+        margin-bottom: 0;
+    }
+}

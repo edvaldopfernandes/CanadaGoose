@@ -1,0 +1,53 @@
+.inputElem{
+    margin-bottom:10px;
+    padding: 7px;
+    background-color:white;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.input{
+    margin-left: 1px;
+    margin-top: 1px;
+    border: none;
+    width: 70%;
+    -webkit-appearance: none;
+    font-size: 14px;
+}
+
+.errorMsg{
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-bottom:10px;
+    border: none;
+    width: 70%;
+    -webkit-appearance: none;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    color: #ff0000;
+    text-align: center;
+}
+
+.sfdc_button {
+    height: 100%;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #920707;
+    background-color: #ffffff;
+    border-color: #fcfcfc;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    background-image: none;
+    border: none; 
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    line-height: 1.42857143;
+    border-radius: 2px;
+}
