@@ -88,8 +88,18 @@ public with sharing class CaseCreationController extends LightningController {
             Case context = insertCase(userCnt, caseObj);
             insertImages(caseObj.images, context.Id);
 
+            // Recuperar o CaseNumber após inserir o Case
+            String caseNumber = [SELECT CaseNumber FROM Case WHERE Id =:context.Id].CaseNumber;
+            system.debug('id' + context.Id);
 
-            return new Response(true, 'Success', context.Id);
+            // Incluir o CaseNumber na resposta usando o campo values
+            Map<String, Object> values = new Map<String, Object>();
+            values.put('caseId', context.Id);
+            values.put('caseNumber', caseNumber);
+
+            system.debug('case number' + caseNumber);
+
+            return new Response(true, 'Success', values);
         } catch (Exception e) {
             System.debug('@@@ERROR - ' + e.getStackTraceString());
             System.debug('@@@ERROR - ' + e.getMessage());

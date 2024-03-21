@@ -22,17 +22,17 @@
                 <div style="border-style: none;" class="slds-box slds-col slds-size_6-of-12, info-claim">
                     <template for:each={lastCase} for:item="caseItem">
                         <p class="row-title-1" key={caseItem.Id}>
-                            Case # {caseItem.CaseNumber}
+                            <label>{labels.caseNo}</label> {caseItem.CaseNumber}
                         </p>
-                        <p class="row-title-2" key={caseItem.Id}>Case Creation Date</p>
+                        <p class="row-title-2" key={caseItem.Id}><label>{labels.caseCreationDate}</label></p>
                         <p class="row-description" key={caseItem.Id}>
                             {caseCreatedDate}
                         </p>
-                        <p class="row-title-2" key={caseItem.Id}>Garment</p>
+                        <p class="row-title-2" key={caseItem.Id}><label>{labels.garment}</label></p>
                         <p class="row-description" key={caseItem.Id}>
                             {caseItem.Style__r.Name}
                         </p>
-                        <p class="row-title-2" key={caseItem.Id}>Product Issue</p>
+                        <p class="row-title-2" key={caseItem.Id}><label>{labels.prodIssue}</label></p>
                         <p class="row-description" key={caseItem.Id}>
                             {caseItem.Description}
                         </p>
@@ -62,19 +62,19 @@
             <div class="slds-align_absolute-center slds-grid">
                 <div style="border-style: none;" class="slds-box slds-col slds-size_6-of-12, info-claim-payment">
                     <template for:each={lastCase} for:item="caseItem">
-                        <p class="row-title-1-payment" key={caseItem.Id}>
-                            Case # {caseItem.CaseNumber}
+                        <p class="row-title-1" key={caseItem.Id}>
+                            <label>{labels.caseNo}</label> {caseItem.CaseNumber}
                         </p>
-                        <p class="row-title-2-payment" key={caseItem.Id}>Case Creation Date</p>
-                        <p class="row-description-payment" key={caseItem.Id}>
+                        <p class="row-title-2" key={caseItem.Id}><label>{labels.caseCreationDate}</label></p>
+                        <p class="row-description" key={caseItem.Id}>
                             {caseCreatedDate}
                         </p>
-                        <p class="row-title-2-payment" key={caseItem.Id}>Garment</p>
-                        <p class="row-description-payment" key={caseItem.Id}>
+                        <p class="row-title-2" key={caseItem.Id}><label>{labels.garment}</label></p>
+                        <p class="row-description" key={caseItem.Id}>
                             {caseItem.Style__r.Name}
                         </p>
-                        <p class="row-title-2-payment" key={caseItem.Id}>Product Issue</p>
-                        <p class="row-description-payment" key={caseItem.Id}>
+                        <p class="row-title-2" key={caseItem.Id}><label>{labels.prodIssue}</label></p>
+                        <p class="row-description" key={caseItem.Id}>
                             {caseItem.Description}
                         </p>
                     </template>

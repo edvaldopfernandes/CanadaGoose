@@ -249,6 +249,7 @@ public class UserTriggerHandler {
                             || usr.LanguageLocaleKey != oldUsr.LanguageLocaleKey
                             || usr.LocaleSidKey != oldUsr.LocaleSidKey
                            ) {
+                               System.debug('User Trigger Handler After Update If part'+usr);
                                setCommunityPersonAccountIds.add(usr.AccountId);
                                lstCommunityUserIds.add(usr.Id);
                            }
@@ -261,6 +262,7 @@ public class UserTriggerHandler {
                             || usr.Phone != oldUsr.Phone
                             || usr.MobilePhone != oldUsr.MobilePhone
                            ) {
+                               System.debug('User Trigger Handler After Update else part'+usr);
                                setCommunityContactIds.add(usr.ContactId);
                                lstCommunityUserIds.add(usr.Id);
                            }
@@ -420,9 +422,10 @@ public class UserTriggerHandler {
     *  returns: N/A
 	*/
     public static void SyncCommunityPersonAccounts(Set<Id> lstUserId, Set<Id> setAccountId) {
+        
         setUserAccountId.addAll(setAccountId);
         List<Account> lstCommunityPersonAccounts = new List<Account>();
-        system.debug('SyncCommunityPersonAccounts lstUserId: '+lstUserId);
+        system.debug('SyncCommunityPersonAccounts lstUserId:<><> '+lstUserId);
         // First retrieve list of users that requires synchronizing
         List<User> lstUsers = [
             SELECT AccountId, LocaleSidKey, LanguageLocaleKey
@@ -472,7 +475,7 @@ public class UserTriggerHandler {
     public static void SyncCommunityAccounts(Set<Id> lstUserId, Set<Id> setAccountId) {
         setUserAccountId.addAll(setAccountId);
         List<Account> lstCommunityAccounts = new List<Account>();
-        
+        system.debug('SyncCommunityAccounts lstUserId:<><><>'+lstUserId);
         // First retrieve list of users that requires synchronizing
         List<User> lstUsers = [
             SELECT AccountId, LocaleSidKey, LanguageLocaleKey

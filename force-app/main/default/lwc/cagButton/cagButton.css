@@ -9,6 +9,18 @@
 
 /* Neutral button */
 
+.button-container button.slds-button_neutral{
+    color: #000000;
+}
+
+.button-container .line_neutral {
+    display: none;
+    background-color: #000000;
+    height: 1px;
+    position: absolute;
+    bottom: 7px;
+}
+
 .button-container button.slds-button_neutral:disabled,
 .button-container button.slds-button_neutral:hover:disabled {
     background-color: #FFFFFF;
@@ -16,9 +28,14 @@
     color: #727483;
 }
 
+.button-container:has(button.slds-button_neutral:hover:not(:disabled)) .line_neutral {
+    display: block;
+    animation: line-passing 1s ease-in-out;
+}
+
 /* Brand button */
 
-.button-container .line {
+.button-container .line_brand {
     display: none;
     background-color: white;
     height: 1px;
@@ -26,7 +43,7 @@
     bottom: 7px;
 }
 
-.button-container:has(button.slds-button_brand:hover:not(:disabled)) .line {
+.button-container:has(button.slds-button_brand:hover:not(:disabled)) .line_brand {
     display: block;
     animation: line-passing 1s ease-in-out;
 }

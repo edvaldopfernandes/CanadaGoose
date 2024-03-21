@@ -52,17 +52,15 @@
     user-select: none;
 }
 
-@media only screen and (min-width: 768px) {
-    .image-container:hover,
-    .img-icon:hover,
-    .image-upload:has(.image-container:hover) .img-icon,
-    .image-upload:has(.img-icon:hover) .image-container {
-        --slds-c-icon-color-foreground: #FFFFFF;
-        --sds-c-icon-color-foreground-default: #FFFFFF;
-        background-color: #000000;
-        color: #FFFFFF;
-        fill: #000000;
-    }
+.image-container:hover,
+.img-icon:hover,
+.image-upload:has(.image-container:hover) .img-icon,
+.image-upload:has(.img-icon:hover) .image-container {
+    --slds-c-icon-color-foreground: #FFFFFF;
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+    background-color: #000000;
+    color: #FFFFFF;
+    fill: #000000;
 }
 
 .image-upload:has(.img-icon.close-icon:active) .image-container {

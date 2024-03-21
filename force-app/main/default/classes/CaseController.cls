@@ -6,17 +6,44 @@ Inspection_Result__c records associated with a given caseId
 public with sharing class CaseController {
     
     /**********************************************************************************************
-    * @description  : returns a list of open cases for the current user
+    * @description  : returns a map of open cases for the current user grouped by CreatedDate only Date
     * @param        : none
-    * @return       : List<Case> - a list of open cases for the current user
+    * @return       : Map<Date,List<Case>> - a map of open cases for the current user
     ***********************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static List<Case> getOpenCases() {
-        return [SELECT Id, CaseNumber, Style__r.Name, Status, CreatedDate
-                FROM Case 
-                WHERE Status != 'Closed' 
-                AND CreatedById = :UserInfo.getUserId() 
-                ORDER BY CreatedDate DESC];
+    public static Map<Date,List<Case>> getOpenCases() {
+        
+        // Group by CreatedDate only Date
+        List<Case> cases = [
+            SELECT Id, CaseNumber, Style__r.Name, Status, toLabel(Status) statusTranslated, CreatedDate
+            FROM Case 
+            WHERE Status != 'Closed' 
+            AND CreatedById = :UserInfo.getUserId() 
+            ORDER BY CreatedDate DESC
+        ];
+
+        Map<Date,List<Case>> caseMap = new Map<Date,List<Case>>();
+        
+        // Group by CreatedDate only Date
+        for(Case c : cases) {
+            Date createdDate = c.CreatedDate.date();
+            
+            // Converting Datetime to user timezone
+            String formattedDate = c.CreatedDate.format('yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'', UserInfo.getTimeZone().getID());
+
+            // converting to Date
+            createdDate = Date.valueOf(formattedDate);
+            
+            if(caseMap.containsKey(createdDate)){
+                caseMap.get(createdDate).add(c);
+            }
+            else{
+                caseMap.put(createdDate, new List<Case>{c});
+            }
+        }
+        
+        // Return the map of cases grouped by CreatedDate only Date
+        return caseMap;
     }
     
     /**********************************************************************************************

@@ -15,3 +15,18 @@
   display: block;
   margin: 20px auto;
 }
+.custom-header {
+  /*background-image: url('/resources/CompanyName');*/
+  background-position: center;
+  background-size: contain;
+  
+  height: 200px;
+}
+.no-accounts{
+  text-align: center;
+  font-size: 20px;
+  color: #707070;
+  padding: 20px;
+  margin-top: 20px;
+  display: block;
+}

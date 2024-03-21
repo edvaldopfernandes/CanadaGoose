@@ -1,4 +1,4 @@
-<apex:page controller="LiveChatFeedbackController">
+<apex:page controller="LiveChatFeedbackController" showHeader="false">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
     <style type="text/css">
         div.checkboxes {
@@ -47,8 +47,14 @@
         div.center-text {
         text-align: center;
         font-size: 10px;
-    }
+        }
+        .center-image {
+        display: block;
+        margin: 0 auto;
+        height: 75px;
+        }
     </style>
+    <apex:image url="{!$Resource.CG_Logo}" styleClass="center-image" />
     <apex:form >
         <div class="center-text">
             <br/>

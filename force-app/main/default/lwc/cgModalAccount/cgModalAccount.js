@@ -5,6 +5,7 @@ import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import {getRecord, getFieldValue} from 'lightning/uiRecordApi';
 import getCountryData from '@salesforce/apex/subscribeMeController.getMetaData';
 import SHIPSTATE from "@salesforce/schema/Account.shippingState";
+import COMPANY_LOGO from '@salesforce/resourceUrl/companyName';
 
 export default class CgModalAccount extends LightningElement {
 
@@ -26,6 +27,12 @@ export default class CgModalAccount extends LightningElement {
     @track countries = [];
     @track languages = [];
     shippingStates = [];
+    headerImageUrl = COMPANY_LOGO;
+
+    get myheader(){
+        return 'background-image: url(${this.headerImageUrl});';
+    }
+    
     countryMap = []
      @wire(getPicklistValues, { recordTypeId: "012000000000000AAA", fieldApiName: SHIPSTATE })
         picklistResults({ error, data }) {

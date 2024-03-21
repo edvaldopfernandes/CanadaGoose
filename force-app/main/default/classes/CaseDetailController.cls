@@ -25,11 +25,12 @@ public with sharing class CaseDetailController extends LightningController {
                 Style__r.Name,
                 Description,
                 WIP_Status__c,
-                Status
+                Status,
+                toLabel(Status) statusTranslated
             FROM Case
             WHERE Id =:recordId
         ];
-
+        System.debug('Case List: ' + caseList);
         return (caseList.isEmpty() ? null : caseList[0]);
     }
 

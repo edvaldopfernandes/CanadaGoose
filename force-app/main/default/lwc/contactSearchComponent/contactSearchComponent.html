@@ -29,13 +29,20 @@
 </template>  -->
 
 <template>
-    <lightning-card title="Canada Goose" >
+        <lightning-card >
+            <lightning-card class="slds-align_absolute-center" >
+                <div slot="title" class="slds-align_absolute-center" >
+                <img src={headerImageUrl} alt ="Canada Goose logo"/>
+                </div>
+            </lightning-card>  
+        </lightning-card>
+        <lightning-card >
         <div class="slds-m-around_medium">
             <div class="slds-form-element slds-m-bottom_medium "> 
                 <lightning-input type="text" label="Email" onchange={handleEmailChange} value={searchEmail} > </lightning-input>
             </div> 
         <!--<lightning-button label="Search" onclick={handleSearch} class="slds-m-top_small  slds-align_absolute-center"> </lightning-button> -->
-        <lightning-button label="Create Account" onclick={handleClick} class="slds-m-top_small  slds-align_absolute-center"> </lightning-button>
+        <lightning-button label="Create Account" onclick={handleClick} class="slds-m-top_small  slds-align_absolute-center" disabled={disableCreatAccountButton} > </lightning-button>
         </div>
         <template if:true={isData}>
             <lightning-datatable
@@ -43,6 +50,11 @@
                 data={contacts}
                 columns={columns}>
             </lightning-datatable>
+        </template>
+        <template if:true={noContactsFound} >
+            <p class="no-accounts">
+            No Accounts To Display, Please Create an Account for the Customer
+            </p>
         </template>
         <template if:true={error}>
                 <p class="slds-text-color_error">{error}</p>

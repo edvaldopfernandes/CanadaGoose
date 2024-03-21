@@ -15,6 +15,7 @@ public class AccountTriggerHandler {
 	*/
     public static void OnBeforeInsert(List<Account> lstNewAccounts, Map<Id, Account> mapNewAccounts) {
         Map<String, Country_Setting__mdt> mapCountrySetting = Utilities.GetCountrySettings();
+        User_Ids__c ids = User_Ids__c.getOrgDefaults();
         
         for (Account acc : lstNewAccounts) {
             Country_Setting__mdt countrySetting = (mapCountrySetting.containsKey(acc.ShippingCountryCode)) ? mapCountrySetting.get(acc.ShippingCountryCode) : mapCountrySetting.get(Utilities.DEFAULT_COUNTRY_CODE);
@@ -32,6 +33,14 @@ public class AccountTriggerHandler {
             if(acc.Marketing_Consent_Status__pc == 'Implied'){
              	acc.Implied_timestamp__c = datetime.now();
             }
+            system.debug('<<Step 1>>');
+            System.debug('In OnBeforeInsert 36>>>>> Owner Update' + acc.OwnerId);
+            //To update Owner if the Owner is Automated Process or System User
+           if(acc.OwnerId != null && ids != null && (acc.OwnerId == ids.Automated_Process__c || acc.OwnerId == ids.System_User__c)){
+                acc.OwnerId = ids.DataLoader_Admin__c;
+               System.debug('In OnBeforeInsert 39>>>>> Owner Update' + acc.OwnerId);
+            } 
+            System.debug('In OnBeforeInsert 41>>>>> Owner Update' + acc.OwnerId);
         }
     }
     /*
@@ -54,10 +63,19 @@ public class AccountTriggerHandler {
     public static void OnBeforeUpdate(List<Account> lstNewAccounts, Map<Id, Account> mapNewAccounts, List<Account> lstOldAccounts, Map<Id, Account> mapOldAccounts) {
         Map<String, Country_Setting__mdt> mapCountrySetting = Utilities.GetCountrySettings();
         Set<Id> setContactIdToEnable = new Set<Id>();
+        User_Ids__c ids = User_Ids__c.getOrgDefaults();
+        
 			System.debug('In OnBeforeUpdate>>>>>');
         for (Account acc : lstNewAccounts) {
             Account oldAcc = mapOldAccounts.get(acc.Id);
-         
+         system.debug('<<Step 2>>');
+            //To update Owner if the Owner is Automated Process or System User
+            if(acc.OwnerId != null && ids != null && (acc.OwnerId == ids.Automated_Process__c || acc.OwnerId == ids.System_User__c)){
+                acc.OwnerId = ids.DataLoader_Admin__c;
+                System.debug('In OnBeforeUpdate 73>>>>> Owner Update' + acc.OwnerId);
+            }
+            System.debug('In OnBeforeInsert 75>>>>> Owner Update' + acc.OwnerId);
+            
             //To update Unsubscribed based on the data from SFMC
             if(acc.PersonHasOptedOutOfEmail != oldAcc.PersonHasOptedOutOfEmail && acc.PersonHasOptedOutOfEmail == true){
                 acc.B2C_Add_To_Email_List__pc = false;
@@ -99,7 +117,6 @@ public class AccountTriggerHandler {
             } 
             
            // subscription source Code start --
-            User_Ids__c ids = User_Ids__c.getOrgDefaults();
         	Profile currentProfile = new Profile ();
             User createdUser = new User();
             createdUser = [SELECT id, ProfileId FROM User WHERE id =:acc.CreatedById LIMIT 1];
@@ -121,7 +138,8 @@ public class AccountTriggerHandler {
                          acc.Marketing_Source_Location__pc = 'SFSC';
                          acc.Origin__pc = 'Service Portal';
                 }
-                if(currentProfile != null && currentProfile.Name == 'Warranty CSR-Tier2 User' || currentProfile.Name == 'System Administrator' || currentProfile.Name =='Flagship Store' ){
+                if(currentProfile != null && currentProfile.Name == 'Warranty CSR-Tier2 User' || currentProfile.Name == 'Warranty CE-Ops User' || currentProfile.Name =='Flagship Store' ){
+                        System.debug('<<currentProfile.Name>>'+currentProfile.Name);
                     	 acc.Marketing_Consent_Status__pc = 'unconsented';
                          acc.Marketing_Subscription_Source__pc = 'CSR';
                          acc.Marketing_Source_Location__pc = 'SFSC';
@@ -203,6 +221,7 @@ public class AccountTriggerHandler {
                                     , EmailEncodingKey = 'ISO-8859-1'
                                     , TimeZoneSidKey = 'America/New_York'
                                 ));
+                                system.debug('<<Step 3>>');
                             }
                         }
                     }
@@ -230,14 +249,25 @@ public class AccountTriggerHandler {
     public static void OnAfterUpdate(List<Account> lstNewAccounts, Map<Id, Account> mapNewAccounts, List<Account> lstOldAccounts, Map<Id, Account> mapOldAccounts) {
         Set<Id> setCommunityAccountIds = new Set<Id>();
         Set<Id> setCommunityPersonAccountIds = new Set<Id>();
-
+        Map<Id, Account> regionUpdateIds = new Map<Id, Account>();
+		List<Case> caseList = new List<Case>();
+        
         for (Account acc : lstNewAccounts) {
+            Account olAcc = mapOldAccounts.get(acc.Id);
+            if (acc.Region__c != null && olAcc.Region__c != acc.Region__c){
+                if(!regionUpdateIds.containskey(acc.Id)){
+                	regionUpdateIds.put(acc.Id, acc);  
+                    System.debug('<<<< ACC Id>>>>>'+acc.Id);
+                    System.debug('<<<< regionUpdateIds>>>>>'+regionUpdateIds);
+                }
+            }
             // First check for recursion before processing the record
             if (UserTriggerHandler.setUserAccountId.contains(acc.Id)) {
                 UserTriggerHandler.setUserAccountId.remove(acc.Id);
             }
             // If no recursion, then process the record
             else {
+                system.debug('<<Step 4>>');
                 Account oldAcc = mapOldAccounts.get(acc.Id);
 
                 if (acc.IsPersonAccount) {
@@ -269,8 +299,27 @@ public class AccountTriggerHandler {
                         || acc.ShippingCountryCode != oldAcc.ShippingCountryCode) {
                             setCommunityAccountIds.add(acc.Id);
                         }
+                    system.debug('<<Step 5>>');
                 }
             }
+        }
+        
+        //Update Case Region from Account Region when there is an update on the Account Region
+        System.debug('<<<< Line 299>>>>>' );
+        if(regionUpdateIds != null && regionUpdateIds.size() > 0){
+            System.debug('<<<< Line 301>>>>>' );
+            for(Case cs : [SELECT Id, Region__c,AccountId,Status, RecordTypeId FROM CASE WHERE AccountId= :regionUpdateIds.keyset() AND RecordTypeId = '0121N000000o5mrQAA' AND Status != 'Closed - Resolved' AND Status !='Closed - Unresolved']){
+                System.debug('<<<< Case>>>>>'+ cs.Region__c );
+                System.debug('<<<< Case Status 304>>>>>'+ cs.Status );
+                System.debug('<<<< Case Status 306>>>>>'+ cs.Status );
+                    if(regionUpdateIds.containskey(cs.AccountId)){
+                		cs.Region__c = regionUpdateIds.get(cs.AccountId).Region__c;
+                        	System.debug('<<<< Case Status>>>>>'+ cs.Status ); 
+                        	System.debug('<<<< Case Region>>>>>'+ cs.Region__c );
+                            System.debug('<<<< Account Region>>>>>'+ regionUpdateIds.get(cs.AccountId).Region__c);
+                        caseList.add(cs);
+                    }
+            }           	
         }
 
         if (!setCommunityPersonAccountIds.isEmpty()) {
@@ -316,6 +365,7 @@ public class AccountTriggerHandler {
                            ) {
                                lstCommunityPersonUsersIdToUpdate.add(usr.Id);
                            }
+                        system.debug('<<Step 6>>');
                     }
                 }
 
@@ -357,6 +407,7 @@ public class AccountTriggerHandler {
                            ) {
                                lstCommunityUsersIdToUpdate.add(usr.Id);
                            }
+                        system.debug('<<Step 7>>');
                     }
                 }
                 
@@ -364,7 +415,11 @@ public class AccountTriggerHandler {
                 if (!lstCommunityUsersIdToUpdate.isEmpty()) {
                     SyncCommunityUsers(lstCommunityUsersIdToUpdate);
                 }
-            }
+             }
+        }
+        // updating region on related case on Account Region Update //
+        if(!caseList.isEmpty()){
+          update caseList;
         }
     }
     
@@ -425,6 +480,8 @@ public class AccountTriggerHandler {
             if(bypass) {
                 usr.Bypass_Validation__c = true;
             }
+            
+            system.debug('<<Step 8>>');
         }
         
         // Finally update the list of users
@@ -481,6 +538,7 @@ public class AccountTriggerHandler {
             if(bypass) {
                 usr.Bypass_Validation__c = true;
             }
+            system.debug('<<Step 9>>');
         }
     
         // Finally update the list of users

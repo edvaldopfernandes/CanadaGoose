@@ -1,7 +1,7 @@
 global class BulkCustomerImporter implements Database.Batchable<SObject> {
     
 	global Database.QueryLocator start(Database.BatchableContext bc) {
-        String query = 'SELECT State__c, Gender_Id__c, Consent_Date__c, Preferred_Lang__c,Marketing_Source_Location__c,Origin__c, Email__c, Has_Been_Processed__c, Marketing_Subscription_Source__c,Marketing_Consent_Status__c, First_Name__c, Last_Name__c, B2C_CustomerList__c, City__c, Contact__c, CountryCode__c,Generations_Trade_In__c FROM Customer_Data_Temp_Store__c where Contact__c = null';
+        String query = 'SELECT State__c, Gender_Id__c, Consent_Date__c, Preferred_Lang__c,Marketing_Source_Location__c,Origin__c, Email__c, Has_Been_Processed__c, Is_Friends_Family_Lead__c,Marketing_Subscription_Source__c,Marketing_Consent_Status__c, First_Name__c, Last_Name__c, B2C_CustomerList__c, City__c, Contact__c, CountryCode__c,Generations_Trade_In__c FROM Customer_Data_Temp_Store__c where Contact__c = null';
         return Database.getQueryLocator(query);
     }
     
@@ -38,22 +38,14 @@ global class BulkCustomerImporter implements Database.Batchable<SObject> {
             }
             //Get and set the associated contact Id
 			System.debug('>>cdts.EMail__c in EmailContacIdMap>>'+EmailContacIdMap.containsKey(cdts.Email__c));
-            /*if(EmailContacIdMap.containsKey(cdts.Email__c) && EmailContacIdMap.get(cdts.Email__c) != null) {
-				
-				System.debug('>>In If line 45 cdts.EMail__c in EmailContacIdMap>>'+EmailContacIdMap.get(cdts.Email__c));
-                contact con = new Contact(id = EmailContacIdMap.get(cdts.Email__c));
-                con.Generations_Trade_In__c = cdts.Generations_Trade_In__c;
-                contactList.add(con);
-				cdts.Contact__c = EmailContacIdMap.get(cdts.Email__c);
-                cdts.Has_Been_Processed__c = true;
-                customerDataTempStoresToUpdate.add(cdts);
-            } */
+            
             if(EmailContacIdMap.containsKey(cdts.Email__c) && EmailContacIdMap.get(cdts.Email__c) != null 
                	&& EmailContacIdMap.get(cdts.Email__c).Marketing_Consent_Status__c == 'express') {
 				
 				System.debug('>>In If line 45 cdts.EMail__c in EmailContacIdMap>>'+EmailContacIdMap.get(cdts.Email__c));
                 contact con = new Contact(id = EmailContacIdMap.get(cdts.Email__c).id);
                 con.Generations_Trade_In__c = cdts.Generations_Trade_In__c;
+				con.Is_Friends_Family_Lead__c = cdts.Is_Friends_Family_Lead__c;
                 contactList.add(con);
 				cdts.Contact__c = EmailContacIdMap.get(cdts.Email__c).id;
                 cdts.Has_Been_Processed__c = true;
@@ -67,9 +59,12 @@ global class BulkCustomerImporter implements Database.Batchable<SObject> {
                 con.Generations_Trade_In__c = cdts.Generations_Trade_In__c;
                 con.Marketing_Consent_Status__c = cdts.Marketing_Consent_Status__c;
                 con.Origin__c = cdts.Origin__c;
+                con.B2C_Add_To_Email_List__c = true;
 				con.Marketing_Consent_Date__c = cdts.Consent_Date__c; 
                 con.Marketing_Subscription_Source__c = cdts.Marketing_Subscription_Source__c;
                 con.Marketing_Source_Location__c = cdts.Marketing_Source_Location__c;
+                con.B2C_Add_To_Email_List__c = true;
+                con.Is_Friends_Family_Lead__c = cdts.Is_Friends_Family_Lead__c; 
                 contactList.add(con);
 				cdts.Contact__c = EmailContacIdMap.get(cdts.Email__c).id;
                 cdts.Has_Been_Processed__c = true;
@@ -95,6 +90,11 @@ global class BulkCustomerImporter implements Database.Batchable<SObject> {
                 } else {
                     newPersonAccount.Marketing_Consent_Status__pc = 'express';
                 }
+                if(cdts.Is_Friends_Family_Lead__c != null) {
+                    newPersonAccount.Is_Friends_Family_Lead__pc = cdts.Is_Friends_Family_Lead__c;
+                } else {
+                    newPersonAccount.Is_Friends_Family_Lead__pc = false;
+                }
                 if(cdts.Origin__c != null) {
                     newPersonAccount.Origin__pc = cdts.Origin__c;
                 }
@@ -102,7 +102,7 @@ global class BulkCustomerImporter implements Database.Batchable<SObject> {
                     newPersonAccount.Marketing_Consent_Date__pc = cdts.Consent_Date__c;
                 }
                 if(cdts.B2C_CustomerList__c != null) {
-                    newPersonAccount.B2C_CustomerList_ID__pc = cdts.B2C_CustomerList__c;
+                    newPersonAccount.B2C_CustomerList_ID__pc = 'a0mDb000003mQv0IAE';
                 }
                 if(cdts.Marketing_Subscription_Source__c != null) {
                     newPersonAccount.Marketing_Subscription_Source__pc = cdts.Marketing_Subscription_Source__c;
@@ -111,6 +111,7 @@ global class BulkCustomerImporter implements Database.Batchable<SObject> {
                     newPersonAccount.PersonMailingCity = cdts.City__c;
                     newPersonAccount.ShippingCity = cdts.City__c;//Changed by Venkata as part of quick fix
                 }
+                
                 if (cdts.CountryCode__c != null) {
 					 System.debug('>>In If  line 87 cdts.');
                     newPersonAccount.PersonMailingCountryCode = cdts.CountryCode__c;
@@ -127,12 +128,17 @@ global class BulkCustomerImporter implements Database.Batchable<SObject> {
                 }
                 if(cdts.Preferred_Lang__c != null) {
                     newPersonAccount.Preferred_Lang__pc = cdts.Preferred_Lang__c;
+                }else {
+                    newPersonAccount.Preferred_Lang__pc = 'EN';
                 }
                 if(cdts.Gender_Id__c != null) {
                     newPersonAccount.B2C_Gender_ID__pc = cdts.Gender_Id__c;
+                }else{
+                    newPersonAccount.B2C_Gender_ID__pc = Integer.valueOf('3');
                 }
                 newPersonAccount.Generations_Trade_In__pc = cdts.Generations_Trade_In__c;
                 newPersonAccount.PersonEmail = cdts.Email__c; 
+                newPersonAccount.B2C_Add_To_Email_List__pc = true;
                 accountList.add(newPersonAccount);
 				 System.debug('>>In If  line 109 cdts.+ accountList'+ accountList);
                 cdts.Has_Been_Processed__c = true;

@@ -6,7 +6,7 @@ public class ContactSearchController {
             return new List<contact>();
         }
         String searchQuery = '%' + email + '%';
-        return [SELECT Id, Name, Email FROM contact WHERE Email LIKE :searchQuery LIMIT 10];
+        return [SELECT Id, FirstName, LastName, Email FROM contact WHERE Email LIKE :searchQuery LIMIT 10];
     
 	}
     @AuraEnabled()

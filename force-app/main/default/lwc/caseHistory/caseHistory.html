@@ -16,35 +16,39 @@
             <!-- Table data -->
             <template if:true={casesExist}>
                 <div style="display: flex; flex-direction: column;">
-                    <template for:each={cases} for:item="caseItem">
-                        <div key={caseItem.Id}>
-                            <div class="page-date">{caseItem.CreatedDate}</div>
+
+                    <template for:each={groupedCases} for:item="group">
+                        <div key={group.createdDate}>
+                            <div class="page-date">{group.createdDate}</div>
                         </div>
-                        <div class="table-title-container" key={caseItem.Id}>
+                        <div class="table-title-container" key={group.createdDate}>
                             <div class="table-title-text-1">Case Number</div>
                             <div class="table-title-text-2">Garment Name</div>
                             <div class="table-title-text-3">Status</div>
                         </div>
-                        <table key={caseItem.Id} style="width: 100%;">
+                        <table key={group.createdDate} style="width: 100%;">
                             <tbody>
-                                <tr>
-                                    <td class="data-container-row collumn-1">{caseItem.CaseNumber}</td>
-                                    <td class="data-container-row collumn-2">{caseItem.Style__r.Name}</td>
-                                    <td class="data-container-row collumn-3">{caseItem.Status}</td>
-                                    <td class="data-container-row collumn-4">
-                                        <a onclick={handleViewCase} data-value={caseItem.Id}>
-                                            <img class="icon-history" src={arrowHistory}> 
-                                        </a>
-                                    </td>
-                                </tr>
+                                <template for:each={group.cases} for:item="caseItem">
+                                    <tr key={caseItem.Id}>
+                                        <td class="data-container-row collumn-1">{caseItem.CaseNumber}</td>
+                                        <td class="data-container-row collumn-2">{caseItem.Style__r.Name}</td>
+                                        <td class="data-container-row collumn-3">{caseItem.statusTranslated}</td>
+                                        <td class="data-container-row collumn-4">
+                                            <a onclick={handleViewCase} data-value={caseItem.Id}>
+                                                <img class="icon-history" src={arrowHistory}> 
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </template>
                             </tbody>
                         </table>
                     </template>
+
                 </div>
             </template>
             <template if:false={casesExist}>
                 <div style="text-align: center;">
-                    No Claims Created Yet
+                    {labels.caseHistoryNoClaims}
                 </div>
             </template>
         </div> 

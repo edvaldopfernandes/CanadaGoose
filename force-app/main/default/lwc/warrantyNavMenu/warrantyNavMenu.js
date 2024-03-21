@@ -98,4 +98,20 @@ export default class WarrantyNavMenu extends LightningElement {
     changeDisplay(event) {
         this.isShowing = !this.isShowing;
     }
+
+    closeMenuOnClickOutside(event) {
+        let menu = document.querySelector('.hamburger-menu');
+
+        document.addEventListener('click', function (event) {
+
+            let targetElement = event.target;  // clicked element
+
+            if (!menu.contains(targetElement)) {
+                this.isShowing = false;
+            }
+
+        });
+        
+    }
+    
 }

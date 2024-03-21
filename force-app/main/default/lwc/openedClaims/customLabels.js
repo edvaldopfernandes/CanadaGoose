@@ -20,6 +20,10 @@ import caseClosedInstoreDesc from '@salesforce/label/c.CGWCaseClosedInstoreDesc'
 import caseClosedCreditNoteDesc from '@salesforce/label/c.CGWCaseClosedCreditNoteDesc';
 import caseClosedRTCDesc from '@salesforce/label/c.CGWCaseClosedRTCDesc';
 import caseHistoryButton from '@salesforce/label/c.CGWCaseHistoryButton';
+import caseNo from '@salesforce/label/c.CGWCaseNo';
+import caseCreationDate from '@salesforce/label/c.CGWCaseCreationDate';
+import garment from '@salesforce/label/c.CGWGarment';
+import prodIssue from '@salesforce/label/c.CGWProdIssue';
 
 export default {
     'noCaseCreatedTitle' : noCaseCreatedTitle,
@@ -43,5 +47,9 @@ export default {
     'caseClosedInstoreDesc' : caseClosedInstoreDesc,
     'caseClosedCreditNoteDesc' : caseClosedCreditNoteDesc,
     'caseClosedRTCDesc' : caseClosedRTCDesc,
-    'caseHistoryButton' : caseHistoryButton
+    'caseHistoryButton' : caseHistoryButton,
+    'caseNo' : caseNo,
+    'caseCreationDate' : caseCreationDate,
+    'garment' : garment,
+    'prodIssue' : prodIssue
 }

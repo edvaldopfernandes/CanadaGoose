@@ -12,91 +12,86 @@
 global without sharing class RestWebServiceToInsertPOSOrders {
 
     @HttpPost
-    global static void doPost() {
-        String message = '';
-        String response ='';
-        string xmlString ='';
-        String jsonString ='';
+    global static String createRecordsFromXML() {
+        // Parse XML from request body
+        String xmlBody = RestContext.request.requestBody.toString();
+        system.debug('XML Request Body'+ xmlBody);
+        Dom.Document doc = new Dom.Document();
+        Account acct = new Account();
+        String errorMessage = '';
+        RestResponse res = RestContext.response;
         try {
-                RestRequest req = RestContext.request;
-            	//jsonString = req.requestBody.toString();
-            	system.debug('XML String---'+req.requestBody.toString());
-            	xmlString = req.requestBody.toString();
-            	jsonString = updateData(req.requestBody.toString());
-                Blob body = req.requestBody;
-                  	
-        }catch (Exception ex) {
-            	System.debug(message +'>>>Catch Exception' +ex);
-            	IntegrationLogUtility.error = ex.getMessage();
-            if(jsonString != null){
+            doc.load(xmlBody);
+            Dom.XMLNode emailNode = doc.getRootElement();
+        	String email = emailNode.getChildElement('email_address', null).getText();
+        	String firstName = emailNode.getChildElement('order', null).getChildElement('order_first_name', null).getText();
+        	String lastName = emailNode.getChildElement('order', null).getChildElement('order_last_name', null).getText();
+        	String consentType = emailNode.getChildElement('order', null).getChildElement('consent_type', null).getText();
+        	acct = upsertAccount(email, firstName, lastName, consentType);
+        	
+        } 
+        catch (Exception e) {
+            errorMessage = e.getMessage();
+            //return 'Error loading XML: ' + e.getMessage();
+            System.debug('catch error message ' + e.getMessage());
+            	IntegrationLogUtility.error = e.getMessage();
+            if(xmlBody != null){
             	IntegrationLogUtility.status = 'Request captured With Error';
             }else {
                 IntegrationLogUtility.status = 'Empty Request';
             }
-            	IntegrationLogUtility.exp = ex;
+            	IntegrationLogUtility.exp = e;
         }
         finally{
-             string resCode = '';
-           		RestResponse res = RestContext.response;
-                if(xmlString != '' && xmlString != NULL){
-                    res.responseBody = Blob.ValueOf(response);
-                    res.statusCode = 200;
-                    resCode = response;
-                    if(String.valueOf(response) == '[]'){
-                        resCode = 'Insertion failed due to internal error';
-                        IntegrationLogUtility.status = 'Request captured With Error';
-					}
-                }
-            	else{ res.statusCode = 400;  resCode = 'failure';}
-            	IntegrationLogUtility.createOutBoundLog(xmlString, resCode , 'restService_Order'+DateTime.now(), 'Inbound', 'restService_Order', null);
-         }
-    }
-    
-    public static string updateData(string xmlReq){
-       	Dom.Document doc = new Dom.Document();
-        doc.load(xmlReq);
-        Dom.XMLNode root = doc.getRootElement();  //getting the root element and parsing it recursively
-        Object temp = parse(root);
-        Map<String, Object> jsonResult = new Map<String, Object>{root.getName() => temp};
-        system.debug('>>>>>jsonResult>>>'+JSON.serialize(jsonResult));
-        return JSON.serialize(jsonResult);
-    }
-    
-    //method to recursively parse child nodes from XML document
-    private static Object parse(Dom.XMLNode node){
-       	Map<String, Object> jsonResult = new Map<String, Object>();  //map to store data of current XML node
-        List<Dom.XMLNode> children = node.getChildElements(); //getting list of child elements
-        if(children.isEmpty()){
-            return node.getText(); //if no child elements found, we simply return the text value
+            	if(acct != null && acct.id != null){
+            		res.statusCode = 200;
+               		res.responseBody = Blob.valueOf(acct.id);
+            	}
+            	else{
+           			res.statusCode = 400;
+               		res.responseBody = Blob.ValueOf(errorMessage);
+                	IntegrationLogUtility.status = 'Request captured With Error';
+            	}
+            	IntegrationLogUtility.createOutBoundLog(xmlBody, String.valueOf(res.statusCode) , 'restService_Order'+DateTime.now(), 'Inbound', 'restService_Order', null);
         }
-		Map<String, Integer> nodeNameCount = new Map<String, Integer>(); //map to store occurence count of child elements against their names
-        for(Dom.XMLNode child : children){
-            String nodeName = child.getName();
-            if(!nodeNameCount.containsKey(child.getName())){
-                nodeNameCount.put(nodeName, 0);
-            }
-			Integer oldCount = nodeNameCount.get(nodeName);
-            nodeNameCount.put(nodeName, oldCount + 1);
-        }
-        for(Dom.XMLNode child : children) {  //iterating over child elements and parsing them recursively
-        	Object temp = parse(child);
-            String nodeName = child.getName();
-            //checking if this child is an array 
-            Boolean childIsArray = (nodeNameCount.get(nodeName) > 1);
-            if(childIsArray) {  //if child is array, save the values as array, else as strings. 
-                if(jsonResult.get(nodeName) == null){
-                    jsonResult.put(nodeName, new List<Object>{ temp });
-                }
-                else{
-                    List<Object> tempList = (List<Object>)jsonResult.get(nodeName);
-                    tempList.add(temp);
-                    jsonResult.put(nodeName, tempList);
-                }
-           }else{
-                jsonResult.put(nodeName, temp.toString());
+		return acct.id != null ? String.valueOf(acct.id) : errorMessage ;
+    }
+      
+    private static Account upsertAccount(String email, String firstName, String lastName, String consentType){
+        List<Account> existingAccounts = [SELECT Id,PersonEmail, Marketing_Consent_Status__pc FROM Account WHERE PersonEmail = :email LIMIT 1];
+        system.debug('<<Number of Accounts>>' + existingAccounts.size());
+        Account acct = new Account();
+        system.debug('<<<<<Line 145>>>>');
+        system.debug('<<<<<Line 147>>>> email>>>' + email);
+        if(!existingAccounts.isEmpty() && existingAccounts != null){
+            system.debug('<<<<<Line 148>>>> email is found>>>' + email);
+            acct = existingAccounts[0];
+            if(acct.Marketing_Consent_Status__pc != 'express'){
+                system.debug('<<<<<Line 149>>>>'+acct.Marketing_Consent_Status__pc);
+                acct.Marketing_Consent_Status__pc = 'express';
+                acct.Marketing_Source_Location__pc = 'POS';
+                acct.Marketing_Subscription_Source__pc = 'POS';
+                //acct.Marketing_Consent_Date__pc = ;
+                update acct;
+                system.debug('<<<<<Line 156>>>>'+ acct.id);
             }
         }
-        return jsonResult;
-        
+        else{
+                system.debug('<<<<<Create New Account Code>>>>'+ email);
+            	acct = new Account(PersonEmail = email, 
+                                   FirstName = firstName, 
+                                   LastName = lastName,
+                                   recordtypeId = '0121N0000019B66QAE',
+                                   //PersonMobilePhone = '6476754974',
+                                   Marketing_Consent_Status__pc = 'express',
+                                   Marketing_Source_Location__pc = 'POS' );
+                try{
+            		insert acct;
+                system.debug('<<<<<Line 167>>>>'+ acct.id);
+                } catch(Exception e){
+                    system.debug('<<Error In Creating Account>>'+ e.getMessage());
+                }
+        	} 
+        return acct;
     }
 }

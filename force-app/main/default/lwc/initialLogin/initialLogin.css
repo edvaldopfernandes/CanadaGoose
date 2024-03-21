@@ -27,15 +27,29 @@
     border: 2px solid black;
 }
 
-.login-text-size{
-    font-size: 1.25rem;
-    line-height: 32.5px;
-    padding: 16px 0 0 16px;
-}
-
 .complemantary-text-size{
     font-size: 0.75rem;
     line-height: 24px;
     padding: 0 16px 0 16px;
 
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 767px) {
+    /* Coloque aqui os estilos para dispositivos móveis */
+    .login-text-size{
+        font-size: 1.25rem;
+        line-height: 32.5px;
+        padding: 7px 0 0 16px;
+    }
+}
+
+/* Estilos para desktops */
+@media (min-width: 768px) {
+    /* Coloque aqui os estilos para desktops */
+    .login-text-size{
+        font-size: 1.25rem;
+        line-height: 32.5px;
+        padding: 16px 0 0 16px;
+    }
 }

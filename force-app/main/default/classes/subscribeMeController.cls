@@ -1,4 +1,4 @@
-public with sharing class subscribeMeController {
+public class subscribeMeController {
     @AuraEnabled()
     public static account updateAccountData(string recordId, boolean isSubscribed, String countryCode, String language, string mobile){
         Account acc = new Account();

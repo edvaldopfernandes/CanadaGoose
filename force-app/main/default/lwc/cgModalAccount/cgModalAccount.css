@@ -1,0 +1,10 @@
+.dummy{
+	color : blue;
+}
+.custom-header {
+  /*background-image: url('/resources/CompanyName');*/
+  background-position: center;
+  background-size: contain;
+  
+  height: 200px;
+}

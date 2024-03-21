@@ -72,10 +72,17 @@ export default class CaseCreation extends NavigationMixin(LightningElement) {
         })
         .then((result) => {
             if(result.success) {
+                // Extrair caseNumber do mapa values
+                const caseNumber = result.values.caseNumber;
+                console.log ('Case Number: ' + caseNumber);
                 this[NavigationMixin.Navigate]({
                     type: 'comm__namedPage',
                     attributes: {
                         name: 'caseConfirmation__c'
+                    },
+                    state: {
+                        // Passando caseNumber como um parâmetro de estado para a página de confirmação
+                        caseNumber: caseNumber
                     }
                 });
             } else {

@@ -64,7 +64,9 @@ export default class CaseDetail extends LightningElement {
         })
         .then((result) => {
             if(result.success) {
+                console.log(result.values.case);
                 this.case = result.values.case;
+                console.log(this.case);
                 this.image = result.values.images;
             } else {
                 console.log('ERROR -', result.message);
@@ -72,5 +74,44 @@ export default class CaseDetail extends LightningElement {
         }).catch(e => {
             console.log('ERROR -', JSON.stringify(e));
         });
+    }
+
+    get statusDescription() {
+        if (this.case && this.case.Status) {
+            return this.getStatusDescription(this.case.Status);
+        }
+        return '';
+    }
+    
+    get caseStatusTranslated() {
+        return this.case ? this.case.statusTranslated : '';
+    }
+
+    getStatusDescription(status) {
+        console.log('Status:', status);
+        switch (status) {
+            case 'New_Validate':
+                return this.labels.caseUnderReviewDesc;
+            case 'Waiting On Product':
+                return this.labels.caseShipProductDesc;
+            case 'Received':
+                return this.labels.casePackageReceivedDesc;
+            case 'Cleaning':
+                return this.labels.caseItemCleaningDesc;
+            case 'Inspecting':
+                return this.labels.caseInspectionDesc;
+            case 'Pending Payment':
+                return this.labels.casePaymentReqDesc;
+            case 'Work In Progress':
+                return this.labels.caseInRepairDesc;
+            case 'Ready for Shipping':
+                return this.labels.caseReadyToShipDesc;
+            case 'Gift Card Confirmed':
+                return this.labels.caseClosedGiftCardDesc;
+            case 'Closed - Denied':
+                return this.labels.caseClosedRTCDesc;
+            default:
+                return '';
+        }
     }
 }
