@@ -25,56 +25,101 @@ export default class OpenCases extends NavigationMixin(LightningElement) {
     casesExist;
     cases;
     originalCases;
+    groupedCases;
     labels = labels;
 
-    /**
-    * Wire adapter getOpenCases to get the list of open cases
-    */
-    @wire(getOpenCases)
-    wiredCases({ error, data }) {
-        if (data && data.length > 0) {
-            this.casesExist = true;
-            // if one of the cases has the Style__r field empty, it will throw an error
-            // filtering out the cases that don't have the Style__r field
-            data = data.filter(caseItem => {
-                return caseItem.Style__r;
-            });
-            this.cases = this.formatCases(data);
-            this.originalCases = this.cases;
-        } else if (data && data.length === 0) {
+    connectedCallback() {
+        getOpenCases()
+        .then(caseMap => {
+
+            if(caseMap && Object.keys(caseMap).length > 0) {
+                this.casesExist = true;
+                this.groupedCases = Object.keys(caseMap).map(key => ({
+                    createdDate: this.formatDate(key),
+                    cases: this.filterStyle(caseMap[key])
+                }));
+                this.originalCases = caseMap;
+
+            } else if (error) {
+                this.casesExist = false;
+            }
+   
+        })
+        .catch(error => {
             this.casesExist = false;
-        } else if (error) {
-            console.error(error);
-        }
+            console.log(error);
+        });
+    }
+
+    // if one of the cases has the Style__r field empty, it will throw an error
+    // filtering out the cases that don't have the Style__r field
+    filterStyle(cases) {
+        cases = cases.filter(caseItem => {
+            return caseItem.Style__r;
+        });
+        return cases;
     }
 
     /**
-    * Formats the case data to include the formatted date
+    * Formats the date and converts it to the user's timezone
+    * @param {String} dateString - date string to be formatted
+    * @returns {String} formatted date
     */
-    formatCases(data) {
-        return data.map(caseItem => {
-            let createdDate = new Date(caseItem.CreatedDate);
-            let formattedDate = `${MONTHS[createdDate.getMonth()]} ${createdDate.getDate()}, ${createdDate.getFullYear()}`;
-            return { ...caseItem, CreatedDate: formattedDate };
-        });
+    formatDate(dateString) {
+        // Convertendo a string de data para um objeto Date
+        console.log('dateString: ',dateString);
+        let date = new Date(dateString); //Added a time to convert to user's timezone
+
+        // Usando Intl.DateTimeFormat para formatar a data
+        let options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
+        let formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+        return formattedDate;
     }
 
     /**
     * Handles the search event and filters the cases list
     */
     handleSearch(event) {
-        console.log(event);
-        const searchKey = event.target.value.toLowerCase();
-        if (searchKey) {
-            const filteredCases = this.cases.filter(caseItem => {
-                return caseItem.CaseNumber.toLowerCase().includes(searchKey) ||
-                       caseItem.Style__r.Name.toLowerCase().includes(searchKey) ||
-                       caseItem.Status.toLowerCase().includes(searchKey);
-            });
-            this.cases = filteredCases;
+        const searchKey = event.detail.value.toLowerCase();
+        if(searchKey) {
+
+            console.log('searchKey: ',searchKey);
+            
+            console.log('this.originalCases: ',this.originalCases)
+
+            let filteredDataMap = {};
+
+            for (let key in this.originalCases) {
+                console.log('key: ',key);
+                if (this.originalCases.hasOwnProperty(key)) {
+                    console.log('this.originalCases[key]: ',this.originalCases[key])
+                    // Aplicando o filtro no array
+                    filteredDataMap[key] = this.originalCases[key].filter(item =>{
+                        console.log('item: ',item);
+                        return item.CaseNumber.toLowerCase().includes(searchKey) || 
+                        item.Status.toLowerCase().includes(searchKey) || 
+                        item.Style__r.Name.toLowerCase().includes(searchKey);
+                    });
+                }
+            }
+
+            console.log('filteredDataMap: ',filteredDataMap);
+
+            this.groupedCases = Object.keys(filteredDataMap)
+            .filter(key => filteredDataMap[key].length > 0) // Filtra chaves com arrays não vazios
+            .map(key => ({
+                createdDate: this.formatDate(key),
+                cases: this.filterStyle(filteredDataMap[key])
+            }));
+            
+            console.log('this.groupedCases: ',this.groupedCases);
         } else {
             // Reset the list to show all cases
-            this.cases = this.originalCases;
+            this.groupedCases = Object.keys(this.originalCases).map(key => ({
+                createdDate: this.formatDate(key),
+                cases: this.filterStyle(this.originalCases[key])
+            }));
         }
     }
 

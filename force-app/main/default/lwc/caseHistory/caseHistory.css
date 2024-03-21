@@ -5,11 +5,13 @@
         justify-content: center;
         align-items: center;
         background-color: #F6F7F8;;
+        width: 100%;
       }
       
     .center-container {
         max-width: auto;
         padding: 50px;
+        width: 80%;
     }
       
     .page-title {
@@ -85,7 +87,7 @@
         font-weight: bold; 
         line-height: 19.50px; 
         word-wrap: break-word;
-        transform: translateX(-100px);
+        transform: translateX(-270px);
     }
     
     .table-title-text-3 {
@@ -94,7 +96,7 @@
         font-weight: bold; 
         line-height: 19.50px; 
         word-wrap: break-word;
-        transform: translateX(-180px);
+        transform: translateX(-400px);
     }
       
     .data-container {
