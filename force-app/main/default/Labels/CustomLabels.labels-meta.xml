@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CGWCaseConfirmation</fullName>
+        <categories>CGW</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CGWCaseConfirmation</shortDescription>
+        <value>Thank you
+Your Warranty Claim has been Successfully Submitted
+Your claim number is</value>
+    </labels>
+    <labels>
+        <fullName>CGWCaseConfirmation2</fullName>
+        <categories>CGW</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CGWCaseConfirmation2</shortDescription>
+        <value>You can check back here to view the status of your claim as well as your history. 
+We will email you with any updates about your claim.  
+Our current turnaround time is four weeks from when we receive your garment until we ship it back.</value>
+    </labels>
+    <labels>
+        <fullName>CGWCaseHistoryButton</fullName>
+        <categories>CGW</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CGWCaseHistoryButton</shortDescription>
+        <value>Return Home</value>
+    </labels>
+</CustomLabels>

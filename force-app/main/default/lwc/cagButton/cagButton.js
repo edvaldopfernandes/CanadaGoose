@@ -27,6 +27,15 @@ export default class CagButton extends LightningElement {
         }
     }
 
+    get lineClass(){
+        switch (this.variant) {
+            case 'neutral':
+                return 'line_neutral';
+            default:
+                return 'line_brand';
+        }
+    }
+
     click() {
         this.dispatchEvent(new CustomEvent('buttonclick'));
     }

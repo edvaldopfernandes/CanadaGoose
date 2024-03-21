@@ -1,0 +1,18 @@
+.paragraph1 {
+    white-space: pre-line; /* Preserves line breaks and white spaces in the text */
+    color: #FFFFFF;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    font-family: var(--lwc-fontFamily, "Salesforce Sans", Arial, sans-serif);
+}
+
+.paragraph2 {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 16px;
+    white-space: pre-line; /* Preserves line breaks and white spaces in the text". */
+    color: #FFFFFF;
+    text-align: center;
+    font-family: var(--lwc-fontFamily, "Salesforce Sans", Arial, sans-serif);
+}
