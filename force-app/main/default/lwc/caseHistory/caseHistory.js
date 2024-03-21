@@ -66,11 +66,10 @@ export default class OpenCases extends NavigationMixin(LightningElement) {
     * @returns {String} formatted date
     */
     formatDate(dateString) {
-        // Convertendo a string de data para um objeto Date
-        console.log('dateString: ',dateString);
+        // Converting the date string to a Date object
         let date = new Date(dateString); //Added a time to convert to user's timezone
 
-        // Usando Intl.DateTimeFormat para formatar a data
+        // Using Intl.DateTimeFormat to format the date
         let options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         let formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
@@ -84,19 +83,11 @@ export default class OpenCases extends NavigationMixin(LightningElement) {
         const searchKey = event.detail.value.toLowerCase();
         if(searchKey) {
 
-            console.log('searchKey: ',searchKey);
-            
-            console.log('this.originalCases: ',this.originalCases)
-
             let filteredDataMap = {};
 
             for (let key in this.originalCases) {
-                console.log('key: ',key);
                 if (this.originalCases.hasOwnProperty(key)) {
-                    console.log('this.originalCases[key]: ',this.originalCases[key])
-                    // Aplicando o filtro no array
                     filteredDataMap[key] = this.originalCases[key].filter(item =>{
-                        console.log('item: ',item);
                         return item.CaseNumber.toLowerCase().includes(searchKey) || 
                         item.Status.toLowerCase().includes(searchKey) || 
                         item.Style__r.Name.toLowerCase().includes(searchKey);
@@ -104,16 +95,13 @@ export default class OpenCases extends NavigationMixin(LightningElement) {
                 }
             }
 
-            console.log('filteredDataMap: ',filteredDataMap);
-
             this.groupedCases = Object.keys(filteredDataMap)
-            .filter(key => filteredDataMap[key].length > 0) // Filtra chaves com arrays não vazios
+            .filter(key => filteredDataMap[key].length > 0) // Filter out keys with empty arrays
             .map(key => ({
                 createdDate: this.formatDate(key),
                 cases: this.filterStyle(filteredDataMap[key])
             }));
             
-            console.log('this.groupedCases: ',this.groupedCases);
         } else {
             // Reset the list to show all cases
             this.groupedCases = Object.keys(this.originalCases).map(key => ({

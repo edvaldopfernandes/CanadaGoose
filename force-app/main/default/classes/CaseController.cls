@@ -6,9 +6,9 @@ Inspection_Result__c records associated with a given caseId
 public with sharing class CaseController {
     
     /**********************************************************************************************
-    * @description  : returns a list of open cases for the current user grouped by CreatedDate only Date
+    * @description  : returns a map of open cases for the current user grouped by CreatedDate only Date
     * @param        : none
-    * @return       : List<Case> - a list of open cases for the current user
+    * @return       : Map<Date,List<Case>> - a map of open cases for the current user
     ***********************************************************************************************/
     @AuraEnabled(cacheable=true)
     public static Map<Date,List<Case>> getOpenCases() {
