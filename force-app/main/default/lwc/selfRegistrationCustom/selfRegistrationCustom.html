@@ -1,0 +1,93 @@
+<template>
+
+    <div class="main-container">
+        
+        <div class="header-container">
+            <p class="title">{labels.registerTitle}</p>
+            <p class="subtitle">{labels.registerSubtitle}</p>
+        </div>
+    
+        <div class="general-info-container">
+            <p class="title">{labels.generalInfo}</p>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <label>{labels.firstnameLabel}</label>
+                    <lightning-input name="firstname" class="field" variant="label-hidden" value={firstname} onchange={setField}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <label>{labels.lastnameLabel}</label>
+                    <lightning-input name="lastname" class="field" variant="label-hidden" required="true" value={lastname} onchange={setField}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-1 field-container">
+                    <label>{labels.emailLabel}</label>
+                    <lightning-input name="email" class="field" variant="label-hidden" required="true" value={email} onchange={setField}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-1 field-container">
+                    <label>{labels.phoneLabel}</label>
+                    <lightning-input name="phone" class="field" variant="label-hidden" value={phone} onchange={setField}></lightning-input>
+                </div>
+            </div>
+        </div>
+    
+        <div class="shipping-info-container">
+            <p class="title">{labels.shippingInfo}</p>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-1 field-container">
+                    <label>{labels.addressLabel}</label>
+                    <lightning-input name="street" class="field" variant="label-hidden" value={street} onchange={setField}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <label>{labels.complementLabel}</label>
+                    <lightning-input name="complement" class="field" variant="label-hidden" required="true" value={complement} onchange={setField}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <label>{labels.zipCodeLabel}</label>
+                    <lightning-input name="postalcode" class="field" variant="label-hidden" required="true" value={postalcode} onchange={setField}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2 field-container"> 
+                    <label>{labels.cityLabel}</label>
+                    <lightning-input name="city" class="field" variant="label-hidden" required="true" value={city} onchange={setField}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <label>{labels.countryLabel}</label>
+                    <lightning-combobox class="combobox" name="country" variant="label-hidden" value={selectedCountry} options={countries} onchange={handleCountry}></lightning-combobox>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <label>{labels.provinceLabel}</label>
+                    <lightning-combobox class="combobox" name="state" variant="label-hidden" value={selectedState} options={states} onchange={handleState}></lightning-combobox>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2 field-container">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <div class="slds-checkbox">
+                                <input type="checkbox" name="options" id="checkbox-unique-id-80" value="checkbox-unique-id-80" checked="" />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-80">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">{labels.signUpAgreement}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-m-top_medium">
+            <c-cag-button label={labels.continueLabel} variant="brand" onbuttonclick={save}></c-cag-button>
+        </div>
+
+    </div>
+    
+</template>
